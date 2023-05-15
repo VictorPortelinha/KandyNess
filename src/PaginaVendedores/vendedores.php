@@ -1,4 +1,4 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html>
     <head>
@@ -10,8 +10,9 @@
         <link rel="stylesheet" href="../PaginaVendedores//vendedoresStyles/vendedores.css">
     </head>
     <body>
-        <?php require_once './src/header/header.php' ?>
-       
+        <?php include "../HeaderKandyness/HeaderKandyness.php" ?>
+        
+
         
         <script src="" async defer></script>
     </body>
