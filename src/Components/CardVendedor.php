@@ -1,9 +1,17 @@
+<?php require_once "../dbConnection/queries.php"; ?>
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    
+
+    <?php 
+    $row = selecionarTodasAsLojas();
+    foreach($row as $value=>$result):
+    ?>
     <div class="card">
         <div class="imgContainer"><img src="the witcher.jpg" alt=""></div>
         <div class="cardContent">
-            <div class="cardTitle">Loja do Geraldão</div>
+            <div class="cardTitle"><?php echo "Nome da loja".$query['nome']; ?></div>
             <div style="margin-top: 2px;">
                 <span style="margin-left: -5px;" class="material-symbols-outlined">star</span>
                 <span class="material-symbols-outlined join">star</span>
@@ -13,10 +21,11 @@
             </div>
             <div class="categoriaLoja">$ • doces, brigadeiro, bolo</div>
             <div class="divider"></div>
-            <div class="cardDesc">Doces e macios por dentro, com uma dose extra de carinho</div>
+            <div class="cardDesc"><?php echo "Descrição: ".$query['descricao']; ?></div>
 
         </div>
     </div>
+    <?php endforeach; ?>
 
 
 
