@@ -50,7 +50,7 @@
         align-items: center;
         grid-auto-flow:column;
         grid-template-rows:100%;
-        box-shadow: 0px 1px 30px -15px black;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
 
     }
     .brand{

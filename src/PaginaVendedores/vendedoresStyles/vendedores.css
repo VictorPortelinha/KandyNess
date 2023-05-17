@@ -3,3 +3,9 @@ body{
     
 }
 *{box-sizing: border-box;}
+
+.cardGrid{
+    display: grid;
+    grid-template-columns: repeat(6,250px);
+    gap: 50px;
+}

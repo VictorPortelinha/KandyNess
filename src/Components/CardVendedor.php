@@ -38,6 +38,15 @@
     flex-direction: column;
     font-family: "Roboto",sans-serif;
     font-weight: lighter;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.card:hover{
+    opacity: 100%;
+    scale: 1.05;
+    transition: 50ms ease-in-out;
+    cursor: pointer;
+    filter: brightness(0.9);
 }
 
 .imgContainer{
