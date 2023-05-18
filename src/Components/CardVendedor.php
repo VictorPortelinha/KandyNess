@@ -7,12 +7,12 @@
     <?php 
     $row = selecionarTodasAsLojas();
     foreach($row as $value=>$result):
-    $matricula = $result['matricula'];
+    $nome_loja = $result['nome'];
     
         
     ?>
-
-    <div class="card" onclick=location.href="../PaginaProdutos/produtos.php?<?php echo 'matricula='. $matricula ?>"> <!--tem que passar a matricula via get --a fazer -->
+    <!-- Passa via get qual o nome da loja ao redirecionar paa a pagina de produtos -->
+    <div class="card" onclick=location.href="../PaginaProdutos/produtos.php?<?php echo 'nome_loja='. $nome_loja ?>"> 
         <div class="imgContainer"><img src="the witcher.jpg" alt=""></div>
         <div class="cardContent">
             <div class="cardTitle"><?php echo "Nome da loja: ". $result['nome']; ?></div>

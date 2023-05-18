@@ -1,5 +1,5 @@
 <?php
-$matricula = $_GET['matricula'];
+$nome_loja = $_GET['nome_loja']; // está informação seráe utlizada no CardProduto, passando como parametro para o query em queries
 
 ?>
 

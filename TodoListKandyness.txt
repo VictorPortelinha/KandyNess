@@ -1,0 +1,10 @@
+mySQL kandyness: Criar novas rows para comportar o card do vendedor --working --Portelinha
+vendedores.php: verificar se o grid irá de fato funcionar para nosso modelo de loja. --Joao
+vendedores.php: Loadar todas as páginas --checked
+vendedores.php->página de produtos: Conectar o routing de um vendedor para a página de sua loja --working --Portelinha
+vendedores.php: Caso acesse uma página sem produtos, nenhum produto irá aparecer --critério de aceite, importante
+paginaProdutos.php: Criar a estrutura do grid para comportar os cards.
+paginaProdutos.php: Criar o card de adcionar o produto
+paginaProdutos.php: Criar o card do produto
+paginaProdutos.php: Criar as operaçoes de crud
+paginaProdutos.php: Verificar as operações do CRUD, um usuário qualquer não pode alterar as informações da loja de outro vendedor --critério de aceite, importante

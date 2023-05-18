@@ -12,10 +12,13 @@ function selecionarTodasAsLojas(){
         }
     return $rows;
 }}
+function getLojaFromVendedor(){
+    
+}
 
 function selecionarTodosOsProdutos($matricula){
     global $conn; //declara a variavel como global para que ela possar ser recebida dentro da function. Está sendo recebida do arquivo connection.php
-    $sql = "SELECT * from tb_lojas";
+    $sql = "SELECT * from ";
     $result = $conn->query($sql);
     if($result->num_rows > 0){
         
@@ -24,5 +27,7 @@ function selecionarTodosOsProdutos($matricula){
         }
     return $rows;
 }}
+
+
 
 ?>

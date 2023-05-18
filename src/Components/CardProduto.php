@@ -5,8 +5,8 @@
     
 
     <?php 
-    
-   
+    $row = selecionarTodosOsProdutos()
+   foreach($row as $value=>$result):
         
     ?>
     
@@ -31,7 +31,7 @@
     </div>
     
     
-    <?php  ?>
+    <?phpendforeach  ?>
 
     <script>
         
