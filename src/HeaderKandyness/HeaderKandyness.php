@@ -23,15 +23,13 @@
 </header>
 
 <script>
-    document.querySelector("ham").addEventListener("click",function(){
-        document.querySelector("q").classList.toggle("a");
-        document.querySelector("w").classList.toggle("b");
-        document.querySelector("q").classList.toggle("c");
+//     document.querySelector("ham").addEventListener("click",function(){
+//         document.querySelector("q").classList.toggle("a");
+//         document.querySelector("w").classList.toggle("b");
+//         document.querySelector("q").classList.toggle("c");
 
-    function openMenu(){
-        
-    }
-})    
+   
+// })    
 
 </script>
 

@@ -7,13 +7,14 @@
     <?php 
     $row = selecionarTodasAsLojas();
     foreach($row as $value=>$result):
-    $nome_loja = $result['nome'];
-    
+    $nomeLoja = $result['nome'];
+    $pieces = explode(" ", $nomeLoja);
+    $nomeLoja = implode("%20",$pieces);
         
     ?>
     <!-- Passa via get qual o nome da loja ao redirecionar paa a pagina de produtos -->
-    <div class="card" onclick=location.href="../PaginaProdutos/produtos.php?<?php echo 'nome_loja='. $nome_loja ?>"> 
-        <div class="imgContainer"><img src="the witcher.jpg" alt=""></div>
+    <div class="card" onclick=location.href='../PaginaProdutos/produtos.php?nomeloja=<?php echo $nomeLoja?>'>
+        <div class="imgContainer"><img src="" alt=""></div>                                                                                                                                                                                                                                                                                                                                                                                                                                         
         <div class="cardContent">
             <div class="cardTitle"><?php echo "Nome da loja: ". $result['nome']; ?></div>
             <div style="margin-top: 2px;">

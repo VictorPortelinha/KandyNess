@@ -5,8 +5,13 @@
     
 
     <?php 
-    $row = selecionarTodosOsProdutos()
-   foreach($row as $value=>$result):
+    $nomeLoja = $_GET['nomeloja'];
+    $row = selecionarTodosOsProdutos($nomeLoja);
+    foreach($row as $value=>$result):
+    $nomeProduto = $result['nome'];
+    $descricaoProduto = $result['descricao'];
+    $precoProduto = $result['valor'];
+
         
     ?>
     
@@ -20,18 +25,18 @@
             </div>
         </div>
         <div class="cardContent">
-            <div class="cardTitle">Loja do geraldão</div>
+            <div class="cardTitle"><?php echo "Nome do produto:" . $nomeProduto ?></div>
             <div style="margin-top: 4px;" class="categoriaLoja">$ • doces, brigadeiro, bolo</div>
             <div class="divider"></div>
-            <div class="cardDesc"></div>
+            <div class="cardDesc"><?php echo "Descrição do produto:" . $descricaoProduto ?></div>
             <div class="divider"></div>
-            <div class="price">R$ 300,00</div>
+            <div class="price"><?php echo "Preço: R$ " . $precoProduto ?></div>
         </div>
     </div>
     </div>
     
     
-    <?phpendforeach  ?>
+    <?php endforeach;  ?>
 
     <script>
         
@@ -47,20 +52,12 @@
 .card{
     background-color: rgb(255, 255, 255);
     width: 250px;
-    height: 300px;
+    height: 320px;
     display: flex;
     flex-direction: column;
     font-family: "Roboto",sans-serif;
     font-weight: lighter;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
-}
-
-.card:hover{
-    opacity: 100%;
-    scale: 1.05;
-    transition: 50ms ease-in-out;
-    cursor: pointer;
-    filter: brightness(0.9);
 }
 
 .imgContainer{
@@ -96,6 +93,11 @@
    align-items: center;
    justify-content: center;
    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.iconContainer:hover{
+    cursor: pointer;
+    filter: brightness(0.8);
 }
 
 .red{
