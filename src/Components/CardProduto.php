@@ -5,40 +5,46 @@
     
 
     <?php 
-    $row = selecionarTodasAsLojas();
-    foreach($row as $value=>$result):
-    $matricula = $result['matricula'];
     
+   
         
     ?>
-
-    <div class="card" onclick=location.href="../PaginaProdutos/produtos.php?<?php echo 'matricula='. $matricula ?>"> <!--tem que passar a matricula via get --a fazer -->
-        <div class="imgContainer"><img src="the witcher.jpg" alt=""></div>
-        <div class="cardContent">
-            <div class="cardTitle"><?php echo "Nome da loja: ". $result['nome']; ?></div>
-            <div style="margin-top: 2px;">
-                <span style="margin-left: -5px;" class="material-symbols-outlined">star</span>
-                <span class="material-symbols-outlined join">star</span>
-                <span class="material-symbols-outlined join">star</span>
-                <span class="material-symbols-outlined join">star</span>
-                <span class="material-symbols-outlined join">star</span>
+    
+    <div class="cardGrid">
+        <div class="card" style="border-radius: 1vmin;">
+        <div class="imgContainer">
+            <img src="" alt="">
+            <div class="crud">
+                <div class="iconContainer blue"><span style="color: white;" class="material-symbols-outlined">edit</span></div>
+                <div class="iconContainer red"><span style="color: white;" class="material-symbols-outlined">delete</span></div>
             </div>
-            <div class="categoriaLoja">$ • doces, brigadeiro, bolo</div>
+        </div>
+        <div class="cardContent">
+            <div class="cardTitle">Loja do geraldão</div>
+            <div style="margin-top: 4px;" class="categoriaLoja">$ • doces, brigadeiro, bolo</div>
             <div class="divider"></div>
-            <div class="cardDesc"><?php echo "Descrição: ". $result['descricao']; ?></div>
-            
-
+            <div class="cardDesc"></div>
+            <div class="divider"></div>
+            <div class="price">R$ 300,00</div>
         </div>
     </div>
+    </div>
     
-    <?php endforeach; ?>
+    
+    <?php  ?>
 
     <script>
-       
+        
      </script>
 
 <style>
-    .card{
+    .cardGrid{
+    display: grid;
+    grid-template-columns: repeat(6,250px);
+    gap: 50px;
+}
+
+.card{
     background-color: rgb(255, 255, 255);
     width: 250px;
     height: 300px;
@@ -60,6 +66,7 @@
 .imgContainer{
     width: 100%;
     height: 150px;
+    position: relative;
 }
 .imgContainer img{
     width: 100%;
@@ -76,14 +83,39 @@
 .material-symbols-outlined {
   font-variation-settings:
   'FILL' 0,
-  'wght' 100,
+  'wght' 300,
   'GRAD' 0,
   'opsz' 20
 }
 
+.iconContainer{
+   height: 30px;
+   width: 30px;
+   border-radius: 5vmin;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.red{
+    background-color: #F44336;
+}
+
+.blue{
+    background-color: #2196F3;
+}
 
 .join{
     margin-left: -10px;
+}
+
+.crud{
+    display: flex;
+    gap: 3px;
+    position: absolute;
+    right: 0px;
+    top: 0;
 }
 
 .categoriaLoja{
@@ -107,5 +139,14 @@
     font-size: 11px;
     color: hsl(0, 0%, 40%);
     margin-top: 12px;
+    word-wrap: break-word;
+    height: 36px;
+}
+
+.price{
+    color: blueviolet;
+    font-weight: 600;
+    position: relative;
+    top: 9px;
 }
 </style>

@@ -1,0 +1,15 @@
+SELECT * FROM kandyness.tb_avaliacao;
+SELECT * FROM kandyness.tb_blocos;
+SELECT * FROM kandyness.tb_categoria;
+SELECT * FROM kandyness.tb_chat order by kandyness.tb_chat.data_msg;
+SELECT * FROM kandyness.tb_denuncia;
+SELECT * FROM kandyness.tb_faq;
+SELECT * FROM kandyness.tb_locais;
+SELECT * FROM kandyness.tb_lojafisica;
+SELECT * FROM kandyness.tb_lojas;
+SELECT * FROM kandyness.tb_produtonavenda;
+SELECT * FROM kandyness.tb_produtos;
+SELECT * FROM kandyness.tb_salas;
+SELECT * FROM kandyness.tb_usuario;
+SELECT * FROM kandyness.tb_venda;
+SELECT * FROM kandyness.tbr_categoriaproduto;

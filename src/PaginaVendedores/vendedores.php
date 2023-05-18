@@ -26,7 +26,8 @@
     <body>
         <?php include "../HeaderKandyness/HeaderKandyness.php" ?>
         
-        <div><?php include "../Components/CardVendedor.php" ?></div>
+        <div class="cardGrid"><?php include "../Components/CardVendedor.php" ?></div>
+        
         
 
         
