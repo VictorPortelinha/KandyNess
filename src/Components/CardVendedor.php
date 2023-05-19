@@ -34,6 +34,15 @@
     
     <?php endforeach; ?>
 
+    <div class="container-form-teste">
+        <div class="container-form">
+            <form action="../PaginaVendedores/actions.php/uploadImage.php" method="post" enctype="multipart/form-data">
+            Select Image File to Upload:
+            <input type="file" name="file">
+            <input type="submit" name="submit" value="Upload">
+            </form>
+            </div>
+    </div>
     <script>
        
      </script>
