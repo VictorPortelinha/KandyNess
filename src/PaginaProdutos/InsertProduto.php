@@ -2,6 +2,7 @@
 require "../dbConnection/queries.php";
 
 $idProduto = $_POST['idProduto'];
+$idProduto += 1; 
 $idLoja = $_POST['idLoja'];
 $nomeProduto = $_POST['nomeProduto'];
 $categoria = $_POST['categoriaProduto'];

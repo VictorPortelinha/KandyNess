@@ -45,7 +45,7 @@ function retornarPathImagemDaLoja($idLoja) {
     }};
 function retornPathImagemDoProduto($idLoja,$idProduto){
     global $conn;
-    $result = $conn->query("SELECT * FROM tb_produtosImages WHERE id = " . $idProduto . " AND id_loja = " . $idLoja);
+    $result = $conn->query("SELECT * FROM tb_produtosImages WHERE id_produto = " . $idProduto . " AND id_loja = " . $idLoja);
     if($result->num_rows > 0){
         while($row = $result->fetch_assoc()){
             $imageURL = '../assets/images/StoreImages/'.$row["file_name"];
