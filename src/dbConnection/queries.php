@@ -1,6 +1,28 @@
 <?php
 require "../dbConnection/connection.php";
 
+
+function selectHighestId(){
+    global $conn;
+    $result = $conn->query("SELECT MAX(id) AS max_id FROM tb_produtos");
+    while($row = $result->fetch_assoc()){
+        $id = $row['max_id'];
+        return $id;
+    }
+    
+
+}
+
+
+
+function returnAutoIncrementValue(){
+    global $conn;
+    $result =$conn->query("SHOW TABLE STATUS LIKE 'tb_produtos'");
+    $row = $result->fetch_assoc();
+    $autoIncrementValue = $row['Auto_increment'];
+    return $autoIncrementValue;
+}
+
 function selecionarTodasAsLojas(){
     global $conn; //declara a variavel como global para que ela possar ser recebida dentro da function. Está sendo recebida do arquivo connection.php
     $sql = "SELECT * from tb_lojas";
@@ -12,9 +34,7 @@ function selecionarTodasAsLojas(){
         }
     return $rows;
 }}
-function getLojaFromVendedor(){
-    
-}
+
 
 function selecionarTodosOsProdutos($idLoja){
     global $conn; //declara a variavel como global para que ela possar ser recebida dentro da function. Está sendo recebida do arquivo connection.php
@@ -64,6 +84,7 @@ function retornPathImagemDoProduto($idLoja,$idProduto){
 function insertNovosProdutos($idLoja,$nome,$categoria,$descricao,$valor){
     global $conn;
 
+
     $insertQuery = "INSERT INTO tb_produtos (id_loja, nome, valor, descricao, categoria)
     VALUES ('$idLoja', '$nome', '$valor', '$descricao', '$categoria')";
 
@@ -105,6 +126,13 @@ function insertImageInLoja($idLoja,$idProduto,$imagemProduto) {
     }
     echo $statusMsg;
 };
+function removeProduct($idProduto,$idLoja){
+    global $conn;
+    $removeProduct = $conn->query("DELETE FROM tb_produtos WHERE id = " . $idProduto . " AND id_loja = " . $idLoja);
+    return $removeProduct;
+    
+
+}
     
 
 ?>

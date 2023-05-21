@@ -35,6 +35,7 @@
         <!--Form de ADD -->
         <dialog id="addModal" class="modalForm">
         <div class="modalDiv">
+            <div class="close" id="closeAdd"></div>
             <div style="color: blueviolet;"><h1>Adicionar produto</h1></div>
             <form action="./InsertProduto.php" method="post" enctype="multipart/form-data" id="addForm">
                 <input type="hidden" name="idLoja" value="<?php echo "".$idLoja."" ?>">
@@ -79,7 +80,7 @@
             <div class="modalDiv">
             <div style="color: blueviolet;"><h1>Editar produto</h1></div>
             
-            <form action="./InsertProduto.php" method="post" enctype="multipart/form-data" id="editForm">
+            <form action="" method="post" enctype="multipart/form-data" id="editForm">
                 <input type="hidden" name="idLoja">
                 <input type="hidden" name="idProduto">
                 
@@ -126,27 +127,26 @@
 </body>
 
 <script>
+    // delete produto
+    function removeItem(idProduto,idLoja){
+        location.href = `./removeProduto.php?idLoja=${idLoja}&idProduto=${idProduto}`
+    }
+
+
+
+
     //verificação do form de Add
+    const closeAdd = document.getElementById("closeAdd")
     const openAddModal = document.getElementById("openAdd")
     const addModal = document.getElementById("addModal")
     const close = document.getElementById("closeAdd")
     openAddModal.addEventListener('click',() =>{
         addModal.showModal()
     })
-
-    addModal.addEventListener("click", e => {
-        const dialogDimensions = addModal.getBoundingClientRect()
-        if (
-            e.clientX < dialogDimensions.left ||
-            e.clientX > dialogDimensions.right ||
-            e.clientY < dialogDimensions.top ||
-            e.clientY > dialogDimensions.bottom
-    ) {
-    addModal.close()
-  }
-})
-
-
+    closeAdd.addEventListener('click',() => {
+        addModal.close()
+    })
+   
 
     const addText = document.getElementById("addText")
     const addForm = document.getElementById("addForm")
@@ -206,9 +206,9 @@
             errorsCounter++
         }
 
-        if(addDesc.value.length < 15){
+        if(addDesc.value.length < 5){
             e.preventDefault()
-            descErrors.innerHTML = "A descrição precisa conter pelo menos 15 caracteres!"
+            descErrors.innerHTML = "A descrição precisa conter pelo menos 5 caracteres!"
             errorsCounter++
         }
 
@@ -336,6 +336,16 @@
         top:12vh;
     }    
 
+    .close{
+        width: 50px;
+        height: 50px;
+        border-radius: 5vmin;
+        background-color: orangered;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
 
     .add{
         background-color: green;
@@ -366,7 +376,7 @@
  
     .cardGrid{
         display: grid;
-        grid-template-columns: repeat(6,250px);
+        grid-template-columns: repeat(5,250px);
         gap: 50px;
         margin-top: 12px;
         margin-left: 60px;

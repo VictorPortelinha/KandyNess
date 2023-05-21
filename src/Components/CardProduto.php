@@ -24,11 +24,11 @@
             <img src="<?php echo "".$pathImagem."" ?>" alt="">
             <div class="crud">
                 <div onclick="openEditForm()" class="iconContainer blue"><span style="color: white;" class="material-symbols-outlined">edit</span></div>
-                <div class="iconContainer red"><span style="color: white;" class="material-symbols-outlined">delete</span></div>
+                <div onclick="removeItem(<?php echo $idProduto ?>,<?php echo $idLoja ?>)" class="iconContainer red"><span style="color: white;" class="material-symbols-outlined">delete</span></div>
             </div>
         </div>
         <div class="cardContent">
-            <div class="cardTitle"><?php echo "Nome do produto:" . $nomeProduto ?></div>
+            <div class="cardTitle"><?php echo $nomeProduto ?></div>
             <div style="margin-top: 4px;" class="categoriaLoja"><?php echo $categoriaProduto ?></div>
             <div class="divider"></div>
             <div class="cardDesc"><?php echo "Descrição do produto:" . $descricaoProduto ?></div>
@@ -40,7 +40,9 @@
     
     
     <?php endforeach;} else{
-        echo 'Não há produtos cadastrados para está loja, retornando a página de vendedores';
+        $idProduto = returnAutoIncrementValue(); // retorna o valor atual do AutoIncrement, mesmo que a tabela esteja vazia
+        echo $idProduto;
+        
     }
 
     ?>

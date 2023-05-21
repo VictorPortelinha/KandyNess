@@ -19,9 +19,6 @@
             <h1>SOBRE NÓS</h1>
         </div>
         <div class="rightDiv">
-            <dialog class="userMenu" id="userMenu">
-                <button class="logout">SAIR</button>
-            </dialog>
             <div class="userProfile" id="userProfile">
                 <!-- imagem será colocada aqui depois que tivermos o banco de dados <span><img src=""></span> -->
             </div>
@@ -117,20 +114,6 @@ userMenu.addEventListener("click", e => {
         margin-right: 0px;
     }
 
-    .userMenu{
-        position: absolute;
-        top: 70px;
-        left: 90vw;
-        border-radius: 1vmin;
-        height: 200px;
-        width: 150px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        border: 0;
-        border-radius: 1vmin;
-
-    }
 
     .menuContainer{
         position: absolute;

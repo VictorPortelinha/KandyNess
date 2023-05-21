@@ -2,7 +2,7 @@
 require "../dbConnection/queries.php";
 
 $idProduto = $_POST['idProduto'];
-$idProduto += 1; 
+echo $idProduto;
 $idLoja = $_POST['idLoja'];
 $nomeProduto = $_POST['nomeProduto'];
 $categoria = $_POST['categoriaProduto'];
@@ -13,6 +13,7 @@ $imagemProduto = $_FILES['imgProduto'];
 
 $result = insertNovosProdutos($idLoja,$nomeProduto,$categoria,$descricaoProduto,$valor);
 if($result){
+    $idProduto = selectHighestId();
     insertImageInLoja($idLoja,$idProduto,$imagemProduto);
     //header('location:http://localhost/webProjects/KandyNess/src/PaginaProdutos/produtos.php?idloja='.$idLoja);
 }

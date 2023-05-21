@@ -94,17 +94,35 @@ CREATE TABLE tb_lojaImages (
     PRIMARY KEY (id),
     foreign key (imagem_loja) references TB_Lojas(id)
 ) ;
-
+SELECT MAX(id) FROM tb_produtos
 
 create table TB_Produtos (
-	id_loja int  auto_increment,
-    nome varchar(100),
+	id int primary key auto_increment,
+	id_loja int ,
+    nome varchar(100) unique,
     valor float,
     categoria varchar(30),
     descricao varchar(60),
-    primary key (id_loja,nome),
     foreign key (id_loja) references TB_Lojas(id)
+    
 );
+-- drop table kandyness.tb_produtos
+
+
+CREATE TABLE tb_produtosImages (
+    id INT NOT NULL AUTO_INCREMENT,
+    file_name VARCHAR(255) NOT NULL DEFAULT 'Default.jpg',
+    uploaded_on DATETIME NOT NULL DEFAULT NOW(),
+    status ENUM('1', '0')  NOT NULL DEFAULT '1',
+    id_loja int,
+    id_produto int,
+    PRIMARY KEY (id),
+    foreign key (id_loja) references TB_Produtos(id_loja) ,
+    foreign key (id_produto) references TB_Produtos(id) ON DELETE CASCADE  
+) ;
+
+-- drop table kandyness.tb_produtosImages;
+
 
 create table TB_LojaFisica(
 	dia_da_semana varchar(8),
