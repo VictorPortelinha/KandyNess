@@ -100,6 +100,7 @@ create table TB_Produtos (
 	id_loja int  auto_increment,
     nome varchar(100),
     valor float,
+    categoria varchar(30),
     descricao varchar(60),
     primary key (id_loja,nome),
     foreign key (id_loja) references TB_Lojas(id)
@@ -140,6 +141,8 @@ create table TB_ProdutoNaVenda(
     foreign key (notafiscal) references TB_Venda(NF)
 );
 
+-- drop table kandyness.tb_produtonavenda
+
 create table TBR_CategoriaProduto(
 	cod_categoria int,
 	nome_categoria varchar(50),
@@ -149,7 +152,7 @@ create table TBR_CategoriaProduto(
     foreign key (id_loja, nome_produto) references TB_Produtos(id_loja, nome),
     foreign key (cod_categoria, nome_categoria) references TB_Categoria(cod, nome)
 );
-
+-- drop table kandyness.tb
 create table TB_Denuncia(
 	abertura date,
 	id_loja int auto_increment,
