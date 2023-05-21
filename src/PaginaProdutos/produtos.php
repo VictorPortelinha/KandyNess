@@ -24,37 +24,47 @@
     </div>
     <div class="bigDivider"></div>
     <div class="cardGrid">
-        <?php include "../Components/CardProduto.php"?>
+        <?php include "../Components/CardProduto.php";
+        $idLoja = $_GET['idloja'];
+        ?>
     </div>
     
- 
+    
 
     
-        <dialog id="addModal">
-        <div class="modalForm">
+        <dialog id="addModal" class="modalForm">
+        <div class="modalDiv">
             <div style="color: blueviolet;"><h1>Adicionar produto</h1></div>
-            <form action="insertNewProduct" method="post" id="addForm">
+            <form action="./InsertProduto.php" method="post" id="addForm">
+                <input type="hidden" name="idLoja" value="<?php echo "".$idLoja."" ?>">
+                
                 <label for="nomeProduto">Nome do produto:</label>
                 <input type="text" name="nomeProduto" id="addText">
                 <div class="addErrors" id="addErrors"></div>
                 
                 <label for="categoriaProduto">Categoria do produto:</label>
                 <select name="categoriaProduto" id="categoriaProduto" required>
+                    <option value="null" label=""></option>
                     <option value="Doces" label="Doces"></option>
                     <option value="Salgados" label="Salgados"></option>
-                    <option value="Lolis" label="Bebidas"></option>
+                    <option value="Bebidas" label="Bebidas"></option>
                 </select>
+                <div class="addErrors" id="catErrors"></div>
                  
-                <label for="DescProduto">Descrição do produto:</label>
-                <textarea name="DescProduto" id="DescProduto" cols="28" rows="4" maxlength="100" required></textarea>
+                <label for="descProduto">Descrição do produto:</label>
+                <textarea name="descProduto" id="descProduto" cols="28" rows="4" maxlength="100"></textarea>
+                <div class="addErrors" id="descErrors"></div>
+                
                 <label for="precoProduto">Preço do produto:</label>
                 <div class="addErrors" id="priceErrors"></div>
                 <input type="text" id="precoProduto" name="precoProduto" placeholder="Ex: 45.00">
                 
-                <label class="imgProduto" for="ImgProduto">
+                <label class="imgProduto" for="imgProduto">
                     Imagem do produto:
-                    <input style="display: none;" type="file" id="ImgProduto" name="ImgProduto" accept="image/*">
+                    <input style="display: none;" type="file" id="imgProduto" name="imgProduto" accept="image/*">
                 </label>
+                <div class="addErrors" id="imgErrors"></div>
+                
                 <div style="display: flex;height: 65px;justify-content: center;align-items: center;">
                     <button id="submitBtn" class="submitBtn">Enviar</button>
                 </div>    
@@ -73,38 +83,91 @@
         addModal.showModal()
     })
 
+    addModal.addEventListener("click", e => {
+        const dialogDimensions = addModal.getBoundingClientRect()
+        if (
+            e.clientX < dialogDimensions.left ||
+            e.clientX > dialogDimensions.right ||
+            e.clientY < dialogDimensions.top ||
+            e.clientY > dialogDimensions.bottom
+    ) {
+    addModal.close()
+  }
+})
+
+
+
     const addText = document.getElementById("addText")
     const addForm = document.getElementById("addForm")
-    const addErrors = document.getElementById("addErrors")
     const priceText = document.getElementById("precoProduto")
-    const priceErrors = document.getElementById("priceErrors")
     const submitForm = document.getElementById("submitBtn")
-   
+    const addDesc = document.getElementById("descProduto")
+    const addCategoria = document.getElementById("categoriaProduto")
+    const addImg = document.getElementById("imgProduto")
+    
+    const descErrors = document.getElementById("descErrors")
+    const addErrors = document.getElementById("addErrors")
+    const priceErrors = document.getElementById("priceErrors")
+    const catErrors = document.getElementById("catErrors")
+    const imgErrors = document.getElementById("imgErrors")
   
     
    submitForm.addEventListener("click",(e) => {
+        catErrors.innerHTML= "";
         priceErrors.innerHTML = "";
         addErrors.innerHTML = "";
+        descErrors.innerHTML="";
+        imgErrors.innerHTML = "";
+        
+        let errorsCounter = 0;
         let priceRegex = /^\d+(\.\d{1,2})?$/;
         let errors = []
-        
+        let selectedOption = addCategoria.options[addCategoria.selectedIndex]
+        let imgFile = addImg.files[0];
+
+      
         let nameRegex = /[0-9!@#$%^&*()_+=[\]{};':",./<>?\\|`~\-]/g;
         if (addText.value.length < 3) {
           errors.push("O nome precisa conter pelo menos 3 caracteres!");
+          errorsCounter++
         }
         if (nameRegex.test(addText.value)) {
             errors.push("O nome só pode conter letras!");
+            errorsCounter++
         }
-        if(!priceRegex.test(priceText.value)){
-            e.preventDefault();
-            priceErrors.innerHTML = "Digite o preço no formato especificado!"
+
+        if(!imgFile){
+            e.preventDefault()
+            imgErrors.innerHTML = "Insira uma imagem para o produto!"
         }
+        
         if (errors.length > 0) {
+            errorsCounter++
           e.preventDefault();
           errors.forEach(
             (item) => (addErrors.innerHTML += "- " + item + "<br>")
           )}
-        else{
+          
+
+        if(!priceRegex.test(priceText.value)){
+            e.preventDefault();
+            priceErrors.innerHTML = "Digite o preço no formato especificado!"
+            errorsCounter++
+        }
+
+        if(addDesc.value.length < 15){
+            e.preventDefault()
+            descErrors.innerHTML = "A descrição precisa conter pelo menos 15 caracteres!"
+            errorsCounter++
+        }
+
+        if(selectedOption.value == "null"){
+             e.preventDefault()
+             catErrors.innerHTML = "Selecione uma categoria!"
+             errorsCounter++
+        }
+    
+        if(errorsCounter == 0){
             addForm.submit()
         }
     })
@@ -187,13 +250,22 @@
     /*modal */
 
     .modalForm{
-    background-color: white;
+        background-color: #f5f5f5;
+        position: absolute;
+        margin: auto;
+        border: 0;
+        padding: 30px;
+        border-radius: 1vmin;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4);
+    }
+
+    .modalDiv{
+    background-color: #f5f5f5;
     width: 400px;
     display: flex;
     flex-direction: column;
     align-items: center;
     font-family: sans-serif;
-    margin-left: ;
 
 
 }
@@ -244,9 +316,10 @@ textarea{
     font-family: sans-serif;
     font-size: 25px;
     border-radius: 1vmin;
-    margin-top: 15px;
+    margin-top: 20px;
     position: absolute;
     margin: auto;
+    width: 30%;
 }
 
 .addErrors{

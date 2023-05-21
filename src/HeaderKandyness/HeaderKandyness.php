@@ -20,7 +20,7 @@
         </div>
         <div class="rightDiv">
             <dialog class="userMenu" id="userMenu">
-                <button>Sair</button>
+                <button class="logout">SAIR</button>
             </dialog>
             <div class="userProfile" id="userProfile">
                 <!-- imagem será colocada aqui depois que tivermos o banco de dados <span><img src=""></span> -->
@@ -37,7 +37,19 @@
 const userProfile = document.getElementById("userProfile")
 const userMenu = document.getElementById("userMenu")
 userProfile.addEventListener("click",() =>{
-    userMenu.show()
+    userMenu.showModal()
+})
+
+userMenu.addEventListener("click", e => {
+  const dialogDimensions = userMenu.getBoundingClientRect()
+  if (
+    e.clientX < dialogDimensions.left ||
+    e.clientX > dialogDimensions.right ||
+    e.clientY < dialogDimensions.top ||
+    e.clientY > dialogDimensions.bottom
+  ) {
+    userMenu.close()
+  }
 })
    
 // })    
@@ -62,6 +74,14 @@ userProfile.addEventListener("click",() =>{
         box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
         background-color: #f5f5f5;
 
+    }
+
+    .logout{
+        background-color: blueviolet;
+        width: 80%;
+        color: white;
+        font-size: 15px;
+        margin-top: 15px;
     }
 
     .rightDiv{
@@ -99,11 +119,17 @@ userProfile.addEventListener("click",() =>{
 
     .userMenu{
         position: absolute;
-        top: 60px;
-        right: 150px;
+        top: 70px;
+        left: 90vw;
         border-radius: 1vmin;
         height: 200px;
         width: 150px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border: 0;
+        border-radius: 1vmin;
+
     }
 
     .menuContainer{

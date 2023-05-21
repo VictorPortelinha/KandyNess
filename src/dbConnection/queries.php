@@ -42,7 +42,16 @@ function retornarPathImagemDaLoja($idLoja) {
     else {
         $imageURL = '../assets/images/StoreImages/Default.jpg';
         return $imageURL;
-    }
-};
+    }};
+function insertNovosProdutos($idLoja,$nome,$categoria,$descricao,$valor){
+    global $conn;
 
+    $insertQuery = "INSERT INTO tb_produtos (id_loja, nome, valor, descricao, categoria)
+    VALUES ('$idLoja', '$nome', '$valor', '$descricao', '$categoria')";
+
+    $conn->query($insertQuery);
+    
+    
+    return $insertQuery;
+}
 ?>

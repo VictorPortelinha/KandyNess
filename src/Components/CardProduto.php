@@ -10,9 +10,10 @@
     $row = selecionarTodosOsProdutos($idLoja);
     if(isset($row)) {
         foreach($row as $value=>$result):
-            $nomeProduto = $result['nome'];
+            $nomeProduto = $result['nome']; //valores vindos da query do banco de dados
             $descricaoProduto = $result['descricao'];
             $precoProduto = $result['valor'];
+            $categoriaProduto = $result['categoria']
     ?>
     
     <div class="cardGrid">
@@ -26,7 +27,7 @@
         </div>
         <div class="cardContent">
             <div class="cardTitle"><?php echo "Nome do produto:" . $nomeProduto ?></div>
-            <div style="margin-top: 4px;" class="categoriaLoja">$ • doces, brigadeiro, bolo</div>
+            <div style="margin-top: 4px;" class="categoriaLoja"><?php echo $categoriaProduto ?></div>
             <div class="divider"></div>
             <div class="cardDesc"><?php echo "Descrição do produto:" . $descricaoProduto ?></div>
             <div class="divider"></div>
