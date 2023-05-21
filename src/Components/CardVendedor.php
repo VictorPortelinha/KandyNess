@@ -7,14 +7,17 @@
     <?php 
     $row = selecionarTodasAsLojas();
     foreach($row as $value=>$result):
-    $nomeLoja = $result['nome'];
-    $pieces = explode(" ", $nomeLoja);
-    $nomeLoja = implode("%20",$pieces);
+    $idLoja = $result['id'];
+    $pathImagem = retornarPathImagemDaLoja($idLoja);
+   
+    
+    
         
     ?>
     <!-- Passa via get qual o nome da loja ao redirecionar paa a pagina de produtos -->
-    <div class="card" onclick=location.href='../PaginaProdutos/produtos.php?nomeloja=<?php echo $nomeLoja?>'>
-        <div class="imgContainer"><img src="" alt=""></div>                                                                                                                                                                                                                                                                                                                                                                                                                                         
+    <div class="card" onclick=location.href='../PaginaProdutos/produtos.php?idloja=<?php echo $idLoja?>'>
+        <div class="imgContainer"><img src="<?php echo "".$pathImagem."" ?>" alt=""></div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                 
         <div class="cardContent">
             <div class="cardTitle"><?php echo "Nome da loja: ". $result['nome']; ?></div>
             <div style="margin-top: 2px;">
@@ -34,15 +37,7 @@
     
     <?php endforeach; ?>
 
-    <div class="container-form-teste">
-        <div class="container-form">
-            <form action="../PaginaVendedores/actions.php/uploadImage.php" method="post" enctype="multipart/form-data">
-            Select Image File to Upload:
-            <input type="file" name="file">
-            <input type="submit" name="submit" value="Upload">
-            </form>
-            </div>
-    </div>
+    
     <script>
        
      </script>

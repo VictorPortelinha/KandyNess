@@ -12,12 +12,19 @@
         <h1>Kandy<span>ness</span></h1>
     </div>
     <div class="menuContainer">
-        <div class="content">
-            <a href="">Lojas</a>
-            <a href="">Sobre nós</a>
+        <div class="content" onclick="location.href='../PaginaVendedores/vendedores.php'">
+            <h1>LOJAS</h1>
         </div>
-        <div class="UserProfile">
-            <!-- imagem será colocada aqui depois que tivermos o banco de dados <span><img src=""></span> -->
+        <div class="content">
+            <h1>SOBRE NÓS</h1>
+        </div>
+        <div class="rightDiv">
+            <dialog class="userMenu" id="userMenu">
+                <button>Sair</button>
+            </dialog>
+            <div class="userProfile" id="userProfile">
+                <!-- imagem será colocada aqui depois que tivermos o banco de dados <span><img src=""></span> -->
+            </div>
         </div>
     </div>
 </header>
@@ -27,7 +34,11 @@
 //         document.querySelector("q").classList.toggle("a");
 //         document.querySelector("w").classList.toggle("b");
 //         document.querySelector("q").classList.toggle("c");
-
+const userProfile = document.getElementById("userProfile")
+const userMenu = document.getElementById("userMenu")
+userProfile.addEventListener("click",() =>{
+    userMenu.show()
+})
    
 // })    
 
@@ -49,8 +60,19 @@
         grid-auto-flow:column;
         grid-template-rows:100%;
         box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
+        background-color: #f5f5f5;
 
     }
+
+    .rightDiv{
+        position: relative;
+        margin-right: 30px;
+        width: 150px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+   
     .brand{
         display:flex;
         justify-content: first baseline;
@@ -65,10 +87,31 @@
     .brand span{
         color:orangered;
     }
+
+    .userProfile{
+        height: 55px;
+        width: 55px;
+        background-color: grey;
+        border-radius: 5vmin;
+        margin-left: 20px;
+        margin-right: 0px;
+    }
+
+    .userMenu{
+        position: absolute;
+        top: 60px;
+        right: 150px;
+        border-radius: 1vmin;
+        height: 200px;
+        width: 150px;
+    }
+
     .menuContainer{
+        position: absolute;
+        right: 0px;
         display:flex;
-        justify-content:space-evenly;
         align-items:center;
+        gap: 20px;
 
     }
 
@@ -82,12 +125,27 @@
     }
 
     .content{
-        position: absolute;
+        font-family: "Roboto", sans-serif;
+        width: 140px;
+        height: 50px;
+        font-size: 22px;
         right:35px;
+        color:blueviolet;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
-    .content a:hover{
-        color:orangered; 
+    .content:hover{
+        cursor:pointer;
+        background-color: hsl(0, 0%, 65%);
+        color: orangered;
+        border-radius: 1vmin;
+    }
+
+    .content h1{
+        font-size: 22px;
+        font-weight: 400;
     }
 
 
@@ -116,7 +174,7 @@
     .ger{
         width:20px;
         height:3px;
-        boder-radius:3px;
+        border-radius:3px;
         background: rgb(109,109,109);
         transition:0.5s;
     }

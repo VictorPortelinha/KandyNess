@@ -1,5 +1,29 @@
 create database KandyNess;
 use KandyNess;
+-- drop database kandyness
+
+
+CREATE TABLE TB_Usuario (
+    matricula CHAR(8),
+    nome VARCHAR(150),
+    cpf CHAR(11),
+    PRIMARY KEY (matricula)
+) ;
+
+
+
+
+-- drop table kandyness.tb_lojaImages
+
+CREATE TABLE tb_userImages (
+    id INT NOT NULL AUTO_INCREMENT,
+    file_name VARCHAR(255) NOT NULL DEFAULT 'Default.jpg',
+    uploaded_on DATETIME NOT NULL DEFAULT NOW(),
+    status ENUM('1', '0')  NOT NULL DEFAULT '1',
+    matricula_imagem CHAR(8),
+    PRIMARY KEY (id),
+    FOREIGN KEY (matricula_imagem) REFERENCES TB_Usuario (matricula)
+) ;
 
 create table TB_FAQ(
 	cod int NOT NULL AUTO_INCREMENT,
@@ -8,13 +32,9 @@ create table TB_FAQ(
 	primary key (cod)
 );
 
-CREATE TABLE `tb_images` (
- `id` int NOT NULL AUTO_INCREMENT,
- `file_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Default.jpg',
- `uploaded_on` datetime NOT NULL DEFAULT NOW(),
- `status` enum('1','0') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1',
- PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4 COLLATE=utf8mb4_unicode_ci;
+
+
+-- drop table kandyness.tb_images
 
 create table TB_Categoria(
 	cod int NOT NULL AUTO_INCREMENT,
@@ -22,14 +42,6 @@ create table TB_Categoria(
 	primary key (cod, nome)
 );
 
-create table TB_Usuario(
-	matricula char(8),
-	nome varchar(150),
-	cpf char(11),
-    id_imagem int NOT NULL AUTO_INCREMENT,
-	primary key(matricula),
-	FOREIGN KEY (id_imagem) REFERENCES tb_images(id)
-);
 
 create table TB_Blocos(
 	cod int NOT NULL AUTO_INCREMENT,
@@ -66,102 +78,111 @@ create table TB_Chat(
 );
 
 create table TB_Lojas(
+	id int primary key auto_increment,
 	nome varchar(200),
     descricao varchar(500),
     matricula char(8),
-    primary key (nome),
     foreign key (matricula) references TB_Usuario(matricula)
 );
 
+CREATE TABLE tb_lojaImages (
+    id INT NOT NULL AUTO_INCREMENT,
+    file_name VARCHAR(255) NOT NULL,
+    uploaded_on DATETIME NOT NULL DEFAULT NOW(),
+    status ENUM('1', '0')  NOT NULL DEFAULT '1',
+    imagem_loja int,
+    PRIMARY KEY (id),
+    foreign key (imagem_loja) references TB_Lojas(id)
+) ;
+
+
 create table TB_Produtos (
-	nome_loja varchar(200),
+	id_loja int  auto_increment,
     nome varchar(100),
     valor float,
     descricao varchar(60),
-    primary key (nome_loja, nome),
-    foreign key (nome_loja) references TB_Lojas(nome)
+    primary key (id_loja,nome),
+    foreign key (id_loja) references TB_Lojas(id)
 );
 
 create table TB_LojaFisica(
 	dia_da_semana varchar(8),
 	lugar int,
     abertura time,
-	nome_loja varchar(200),
+	id_loja int  auto_increment,
     cod_local int,
     fechamento time,
-    primary key (dia_da_semana, cod_local, abertura, nome_loja),
+    primary key (dia_da_semana, cod_local, abertura, id_loja),
     foreign key (cod_local) references TB_Locais(cod),
-    foreign key (nome_loja) references TB_Lojas(nome)
+    foreign key (id_loja) references TB_Lojas(id)
 );
 
 create table TB_Venda(
 	NF char(9),
     data_compra date,
     valor float,
-    nome_loja varchar(100),
+    id_loja int  auto_increment,
     matricula char(8),
     cod_local int,
     primary key (NF),
     foreign key (cod_local) references TB_Locais(cod),
-    foreign key (nome_loja) references TB_Lojas(nome),
+    foreign key (id_loja) references TB_Lojas(id),
     foreign key (matricula) references TB_Usuario(matricula)
 );
 
 create table TB_ProdutoNaVenda(
-    nome_loja varchar(100),
+    id_loja int auto_increment,
     nome_produto varchar(100),
     notafiscal char(9),
     qtd float NOT NULL,
-    primary key (nome_loja, nome_produto, notafiscal),
-    foreign key (nome_loja, nome_produto) references TB_Produtos(nome_loja, nome),
+    primary key (id_loja, nome_produto, notafiscal),
+    foreign key (id_loja, nome_produto) references TB_Produtos(id_loja, nome),
     foreign key (notafiscal) references TB_Venda(NF)
 );
 
 create table TBR_CategoriaProduto(
 	cod_categoria int,
 	nome_categoria varchar(50),
-	nome_loja varchar(200),
+	id_loja int auto_increment,
     nome_produto varchar(100),
-    primary key (cod_categoria, nome_categoria, nome_loja, nome_produto),
-    foreign key (nome_loja, nome_produto) references TB_Produtos(nome_loja, nome),
+    primary key (cod_categoria, nome_categoria, id_loja, nome_produto),
+    foreign key (id_loja, nome_produto) references TB_Produtos(id_loja, nome),
     foreign key (cod_categoria, nome_categoria) references TB_Categoria(cod, nome)
 );
 
 create table TB_Denuncia(
 	abertura date,
-	nome_loja varchar(200),
+	id_loja int auto_increment,
     matricula char(8),
     motivo varchar(200),
-    primary key (abertura, nome_loja, matricula),
-    foreign key (nome_loja) references TB_Lojas(nome),
+    primary key (abertura, id_loja, matricula),
+    foreign key (id_loja) references TB_Lojas(id),
     foreign key (matricula) references TB_Usuario(matricula)
 );
 
 create table TB_Moderacao(
+	id int auto_increment,
 	nome_moderador char(8),
-	abertura date,
-	nome_loja varchar(200),
     matricula char(8),
-	primary key (nome_moderador, abertura, nome_loja, matricula),
-	foreign key (abertura, nome_loja, matricula) references TB_Denuncia(abertura, nome_loja, matricula),
+	primary key (id,nome_moderador, matricula),
     foreign key (nome_moderador) references TB_Usuario(matricula)
 );
 
 create table TB_Avaliacao(
 	matricula char(8),
-	nome_loja varchar(200),
+	id_loja int  auto_increment,
     data_av date,
     comentario varchar(300),
     estrelas float,
-    primary key (matricula, nome_loja, data_av),
+    primary key (matricula, id_loja, data_av),
     foreign key (matricula) references TB_Usuario(matricula),
-    foreign key (nome_loja) references TB_Lojas(nome)
+    foreign key (id_loja) references TB_Lojas(id)
 );
 
 
 
 
-drop database kandyness;
+   -- drop database kandyness;
 
 -- atributo, op, valor (mono valoradas) (!=);
 -- entre conjuntos (multi valorada)		(not in (seletct ..));

@@ -5,14 +5,14 @@
     
 
     <?php 
-    $nomeLoja = $_GET['nomeloja'];
-    $row = selecionarTodosOsProdutos($nomeLoja);
-    foreach($row as $value=>$result):
-    $nomeProduto = $result['nome'];
-    $descricaoProduto = $result['descricao'];
-    $precoProduto = $result['valor'];
-
-        
+    $idLoja = $_GET['idloja'];
+    
+    $row = selecionarTodosOsProdutos($idLoja);
+    if(isset($row)) {
+        foreach($row as $value=>$result):
+            $nomeProduto = $result['nome'];
+            $descricaoProduto = $result['descricao'];
+            $precoProduto = $result['valor'];
     ?>
     
     <div class="cardGrid">
@@ -36,7 +36,11 @@
     </div>
     
     
-    <?php endforeach;  ?>
+    <?php endforeach;} else{
+        echo 'Não há produtos cadastrados para está loja, retornando a página de vendedores';
+    }
+
+    ?>
 
     <script>
         
