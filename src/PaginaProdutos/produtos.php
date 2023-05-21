@@ -24,10 +24,7 @@
     </div>
     <div class="bigDivider"></div>
     <div class="cardGrid">
-        <?php include "../Components/CardProduto.php";
-        $idLoja = $_GET['idloja'];
-        
-        ?>
+        <!--include do card -->
     </div>
     
     
@@ -80,7 +77,6 @@
 <script>
     const openAddModal = document.getElementById("openAdd")
     const addModal = document.getElementById("addModal")
-    const close = document.getElementById("closeAdd")
     openAddModal.addEventListener('click',() =>{
         addModal.showModal()
     })
