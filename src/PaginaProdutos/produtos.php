@@ -26,6 +26,7 @@
     <div class="cardGrid">
         <?php include "../Components/CardProduto.php";
         $idLoja = $_GET['idloja'];
+        
         ?>
     </div>
     
@@ -35,8 +36,9 @@
         <dialog id="addModal" class="modalForm">
         <div class="modalDiv">
             <div style="color: blueviolet;"><h1>Adicionar produto</h1></div>
-            <form action="./InsertProduto.php" method="post" id="addForm">
+            <form action="./InsertProduto.php" method="post" enctype="multipart/form-data" id="addForm">
                 <input type="hidden" name="idLoja" value="<?php echo "".$idLoja."" ?>">
+                <input type="hidden" name="idProduto" value="<?php echo "".$idProduto."" ?>">
                 
                 <label for="nomeProduto">Nome do produto:</label>
                 <input type="text" name="nomeProduto" id="addText">

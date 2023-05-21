@@ -9,9 +9,6 @@
     foreach($row as $value=>$result):
     $idLoja = $result['id'];
     $pathImagem = retornarPathImagemDaLoja($idLoja);
-   
-    
-    
         
     ?>
     <!-- Passa via get qual o nome da loja ao redirecionar paa a pagina de produtos -->

@@ -43,6 +43,24 @@ function retornarPathImagemDaLoja($idLoja) {
         $imageURL = '../assets/images/StoreImages/Default.jpg';
         return $imageURL;
     }};
+function retornPathImagemDoProduto($idLoja,$idProduto){
+    global $conn;
+    $result = $conn->query("SELECT * FROM tb_produtosImages WHERE id = " . $idProduto . " AND id_loja = " . $idLoja);
+    if($result->num_rows > 0){
+        while($row = $result->fetch_assoc()){
+            $imageURL = '../assets/images/StoreImages/'.$row["file_name"];
+        }}
+    if(isset($imageURL)){
+        return $imageURL;
+    }
+    else {
+        $imageURL = '../assets/images/StoreImages/Default.jpg';
+        return $imageURL;
+}
+}
+
+
+
 function insertNovosProdutos($idLoja,$nome,$categoria,$descricao,$valor){
     global $conn;
 
@@ -53,5 +71,40 @@ function insertNovosProdutos($idLoja,$nome,$categoria,$descricao,$valor){
     
     
     return $insertQuery;
-}
+};
+
+function insertImageInLoja($idLoja,$idProduto,$imagemProduto) {
+    global $conn;
+    $diretorio = "/xampp/htdocs/webProjects/KandyNess/src/assets/images/StoreImages/"; //diretório em que as imagens serão postadas
+    $fileName = basename($imagemProduto["name"]);
+    $targetFilePath = $diretorio . $fileName;
+    $fileType = pathinfo($targetFilePath,PATHINFO_EXTENSION);
+    
+    $allowTypes = array('jpg','png','jpeg',);
+    if(isset($imagemProduto["name"])){
+        // Allow certain file formats
+        $allowTypes = array('jpg','png','jpeg',);
+        if(in_array($fileType, $allowTypes)){
+            // Upload file to server
+            if(move_uploaded_file($imagemProduto["tmp_name"], $targetFilePath)){
+                // Insert image file name into database
+                $insert = $conn->query("INSERT INTO tb_produtosImages (file_name, uploaded_on, id_loja,id_produto) VALUES ('".$fileName."', NOW(), '".$idLoja."','".$idProduto."')");
+                if($insert){
+                    $statusMsg = "The file ".$fileName. " has been uploaded successfully.";
+                }else{
+                     $statusMsg = "Upload de imagem falhou, tente novamente";
+                } 
+            }else{
+                 $statusMsg = "Desculpe, houve um erro ao tentar enviar a sua imagem";
+            }
+        }else{
+             $statusMsg = 'Desculpe, somente imagens do tipo JPG, JPEG, PNG, são permitidas no sistema .';
+        }
+    }else{
+         $statusMsg = 'Por favor, selecione uma imagem para dar upload na imagem';
+    }
+    echo $statusMsg;
+};
+    
+
 ?>

@@ -10,16 +10,18 @@
     $row = selecionarTodosOsProdutos($idLoja);
     if(isset($row)) {
         foreach($row as $value=>$result):
+            $idProduto = $result['id'];
             $nomeProduto = $result['nome']; //valores vindos da query do banco de dados
             $descricaoProduto = $result['descricao'];
             $precoProduto = $result['valor'];
-            $categoriaProduto = $result['categoria']
+            $categoriaProduto = $result['categoria'];
+            $pathImagem = retornPathImagemDoProduto($idLoja,$idProduto); //retorn o path da imagem para ser referencido na src do componente
     ?>
     
     <div class="cardGrid">
         <div class="card" style="border-radius: 1vmin;">
         <div class="imgContainer">
-            <img src="" alt="">
+            <img src="<?php echo "".$pathImagem."" ?>" alt="">
             <div class="crud">
                 <div class="iconContainer blue"><span style="color: white;" class="material-symbols-outlined">edit</span></div>
                 <div class="iconContainer red"><span style="color: white;" class="material-symbols-outlined">delete</span></div>

@@ -2,11 +2,21 @@
 require_once "/xampp/htdocs/webProjects/KandyNess/src/dbConnection/connection.php";
 $idLoja = $_POST['idLoja'];
 echo $idLoja;
+echo "    ";
 $diretorio = "/xampp/htdocs/webProjects/KandyNess/src/assets/images/StoreImages/"; //diretório em que as imagens serão postadas
 $fileName = basename($_FILES["file"]["name"]);
+echo 'fileName, '.$fileName;
+echo "    ";
 $targetFilePath = $diretorio . $fileName;
+echo 'targetFilePath, '.$targetFilePath;
+echo "    ";
 $fileType = pathinfo($targetFilePath,PATHINFO_EXTENSION);
-echo $fileName;
+echo 'fileType,'. $fileType;
+echo "    ";
+
+echo "    ".$_FILES["file"]["tmp_name"];
+
+
 if(isset($_POST["submit"]) && !empty($_FILES["file"]["name"])){
     // Allow certain file formats
     $allowTypes = array('jpg','png','jpeg',);
