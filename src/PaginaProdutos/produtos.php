@@ -32,7 +32,7 @@
     
     
 
-    
+        <!--Form de ADD -->
         <dialog id="addModal" class="modalForm">
         <div class="modalDiv">
             <div style="color: blueviolet;"><h1>Adicionar produto</h1></div>
@@ -73,11 +73,60 @@
             </form>
         </div>
     </dialog>
+
+    <!--Form de edit -->
+    <dialog class="modalForm" id= "modalEdit">
+            <div class="modalDiv">
+            <div style="color: blueviolet;"><h1>Editar produto</h1></div>
+            
+            <form action="./InsertProduto.php" method="post" enctype="multipart/form-data" id="editForm">
+                <input type="hidden" name="idLoja">
+                <input type="hidden" name="idProduto">
+                
+                
+                <label for="nomeProduto">Nome do produto:</label>
+                <input type="text" name="nomeProduto" id= "editName">
+                <div class="addErrors" id="nameErrorsEdit"></div>
+                
+                
+                <label for="categoriaProduto">Categoria do produto:</label>
+                <select name="categoriaProduto" id="editCat" required>
+                    <option value="null" label=""></option>
+                    <option value="Doces" label="Doces"></option>
+                    <option value="Salgados" label="Salgados"></option>
+                    <option value="Bebidas" label="Bebidas"></option>
+                </select>
+                <div class="addErrors" id="catErrorsEdit"></div>
+                 
+                
+                <label for="descProduto">Descrição do produto:</label>
+                <textarea name="descProduto" id="editDesc"  cols="28" rows="4" maxlength="100"></textarea>
+                <div class="addErrors" id="descErrorsEdit"></div>
+                
+                
+                <label for="precoProduto">Preço do produto:</label>
+                <div class="addErrors" id="priceErrorsEdit"></div>
+                <input type="text" id="editPrice"  name="precoProduto" placeholder="Ex: 45.00">
+                
+                
+                <label class="imgProduto" for="imgProduto">
+                    Imagem do produto:
+                    <input style="display: none;" type="file" id="imgProdutoEdit" name="imgProduto" accept="image/*">
+                </label>
+                <div class="addErrors" id="imgErrorsEdit"></div>
+                
+                
+                <div style="display: flex;height: 65px;justify-content: center;align-items: center;">
+                    <button id="submitBtnEdit" class="submitBtn">Enviar</button>
+                </div>    
+            </form>
+        </div>
     
     
 </body>
 
 <script>
+    //verificação do form de Add
     const openAddModal = document.getElementById("openAdd")
     const addModal = document.getElementById("addModal")
     const close = document.getElementById("closeAdd")
@@ -173,6 +222,97 @@
             addForm.submit()
         }
     })
+
+    //verificação form de edit
+        const modalEdit = document.getElementById("modalEdit")
+        const editForm = document.getElementById("editForm")
+        const editName = document.getElementById("editName")
+        const editPrice = document.getElementById("editPrice")
+        const submitFormEdit = document.getElementById("submitBtnEdit")
+        const editDesc = document.getElementById("editDesc")
+        const editCategoria = document.getElementById("editCat")
+        
+        const descErrorsEdit = document.getElementById("descErrorsEdit")
+        const nameErrorsEdit = document.getElementById("nameErrorsEdit")
+        const priceErrorsEdit = document.getElementById("priceErrorsEdit")
+        const catErrorsEdit = document.getElementById("catErrorsEdit")
+        //falta img dps
+    
+    function openEditForm(){
+        modalEdit.showModal()
+    }
+  
+    modalEdit.addEventListener("click", e => {
+            const dialogDimensions = editForm.getBoundingClientRect()
+            if (
+                e.clientX < dialogDimensions.left ||
+                e.clientX > dialogDimensions.right ||
+                e.clientY < dialogDimensions.top ||
+                e.clientY > dialogDimensions.bottom
+        ) {
+        modalEdit.close()
+    }
+    })
+
+
+
+
+
+        
+    submitFormEdit.addEventListener("click",(e) => {
+            catErrorsEdit.innerHTML= "";
+            priceErrorsEdit.innerHTML = "";
+            nameErrorsEdit.innerHTML = "";
+            descErrorsEdit.innerHTML="";
+            
+            let errorsCounter = 0;
+            let priceRegex = /^\d+(\.\d{1,2})?$/;
+            let errors = []
+            let selectedOption = editCategoria.options[editCategoria.selectedIndex]
+    
+        
+            let nameRegex = /[0-9!@#$%^&*()_+=[\]{};':",./<>?\\|`~\-]/g;
+            if (editName.value.length < 3) {
+            errors.push("O nome precisa conter pelo menos 3 caracteres!");
+            errorsCounter++
+            }
+            if (nameRegex.test(editName.value)) {
+                errors.push("O nome só pode conter letras!");
+                errorsCounter++
+            }
+     
+            if (errors.length > 0) {
+                errorsCounter++
+                e.preventDefault();
+            errors.forEach(
+                (item) => (nameErrorsEdit.innerHTML += "- " + item + "<br>")
+            )}
+            
+
+            if(!priceRegex.test(editPrice.value)){
+                e.preventDefault();
+                priceErrorsEdit.innerHTML = "Digite o preço no formato especificado!"
+                errorsCounter++
+            }
+
+            if(editDesc.value.length < 15){
+                e.preventDefault()
+                descErrorsEdit.innerHTML = "A descrição precisa conter pelo menos 15 caracteres!"
+                errorsCounter++
+            }
+
+            if(selectedOption.value == "null"){
+                e.preventDefault()
+                catErrorsEdit.innerHTML = "Selecione uma categoria!"
+                errorsCounter++
+            }
+        
+            if(errorsCounter == 0){
+                editForm.submit()
+            }
+        })
+
+
 
     
 

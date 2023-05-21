@@ -23,7 +23,7 @@
         <div class="imgContainer">
             <img src="<?php echo "".$pathImagem."" ?>" alt="">
             <div class="crud">
-                <div class="iconContainer blue"><span style="color: white;" class="material-symbols-outlined">edit</span></div>
+                <div onclick="openEditForm()" class="iconContainer blue"><span style="color: white;" class="material-symbols-outlined">edit</span></div>
                 <div class="iconContainer red"><span style="color: white;" class="material-symbols-outlined">delete</span></div>
             </div>
         </div>
