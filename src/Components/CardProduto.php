@@ -38,49 +38,49 @@
     </div>
   
     
-    <dialog class="modalForm" id= "<?php echo $idProduto . 'modal' ?>">
+    <dialog class="modalForm" id= "modalEdit">
             <div class="modalDiv">
             <div style="color: blueviolet;"><h1>Editar produto</h1></div>
             
-            <form action="./InsertProduto.php" method="post" enctype="multipart/form-data" id="<?php echo $idProduto . 'editForm' ?>">
-                <input type="hidden" name="idLoja" value="<?php echo "".$idLoja."" ?>">
-                <input type="hidden" name="idProduto" value="<?php echo "".$idProduto."" ?>">
+            <form action="./InsertProduto.php" method="post" enctype="multipart/form-data" id="editForm">
+                <input type="hidden" name="idLoja">
+                <input type="hidden" name="idProduto">
                 
                 
                 <label for="nomeProduto">Nome do produto:</label>
-                <input type="text" value= "<?php echo $nomeProduto?>" name="nomeProduto" id= "<?php echo $idProduto . 'editName' ?>">
-                <div class="addErrors" id="<?php echo $idProduto . 'nameErrors'?>"></div>
+                <input type="text" name="nomeProduto" id= "editName">
+                <div class="addErrors" id="nameErrorsEdit"></div>
                 
                 
                 <label for="categoriaProduto">Categoria do produto:</label>
-                <select name="categoriaProduto" id="<?php echo $idProduto . 'editCat'?>" required>
+                <select name="categoriaProduto" id="editCat" required>
                     <option value="null" label=""></option>
                     <option value="Doces" label="Doces"></option>
                     <option value="Salgados" label="Salgados"></option>
                     <option value="Bebidas" label="Bebidas"></option>
                 </select>
-                <div class="addErrors" id="<?php echo $idProduto . 'catErrors'?>"></div>
+                <div class="addErrors" id="catErrorsEdit"></div>
                  
                 
                 <label for="descProduto">Descrição do produto:</label>
-                <textarea name="descProduto" id="<?php echo $idProduto . 'editDesc'?>" value="<?php echo $descricaoProduto?>" cols="28" rows="4" maxlength="100"></textarea>
-                <div class="addErrors" id="<?php echo $idProduto . 'descErrors'?>"></div>
+                <textarea name="descProduto" id="editDesc"  cols="28" rows="4" maxlength="100"></textarea>
+                <div class="addErrors" id="descErrorsEdit"></div>
                 
                 
                 <label for="precoProduto">Preço do produto:</label>
-                <div class="addErrors" id="<?php echo $idProduto . 'priceErrors'?>"></div>
-                <input type="text" id="<?php echo $idProduto . 'editPrice'?>" value= "<?php echo $precoProduto?>" name="precoProduto" placeholder="Ex: 45.00">
+                <div class="addErrors" id="priceErrorsEdit"></div>
+                <input type="text" id="editPrice"  name="precoProduto" placeholder="Ex: 45.00">
                 
                 
                 <label class="imgProduto" for="imgProduto">
                     Imagem do produto:
-                    <input style="display: none;" type="file" id="imgProduto" name="imgProduto" accept="image/*">
+                    <input style="display: none;" type="file" id="imgProdutoEdit" name="imgProduto" accept="image/*">
                 </label>
-                <div class="addErrors" id="<?php echo $idProduto . 'imgErrors'?>"></div>
+                <div class="addErrors" id="imgErrorsEdit"></div>
                 
                 
                 <div style="display: flex;height: 65px;justify-content: center;align-items: center;">
-                    <button id="<?php echo $idProduto . 'submitBtn'?>" class="submitBtn">Enviar</button>
+                    <button id="submitBtnEdit" class="submitBtn">Enviar</button>
                 </div>    
             </form>
         </div>
@@ -93,14 +93,6 @@
     </dialog>
 
     <script>
-        //variaveis php
-        let id = <?php echo json_encode($idProduto); ?>;
-        let nome = <?php echo json_encode($nomeProduto); ?>;
-        let categoria = <?php echo json_encode($categoriaProduto); ?>;
-        let desc = <?php echo json_encode($descricaoProduto); ?>;
-        let preco = <?php echo json_encode($precoProduto); ?>;
-    
-
         const openEditModal = document.getElementById(id + "openEdit")
         const editModal = document.getElementById(id + "modal")
         openEditModal.addEventListener('click',() =>{
@@ -120,26 +112,25 @@
     })
 
 
-        const editForm = document.getElementById(id + "editForm")
-        const editName = document.getElementById(id + "editName")
-        const editPrice = document.getElementById(id +"editPrice")
-        const submitForm = document.getElementById(id +"submitBtn")
-        const editDesc = document.getElementById(id +"editDesc")
-        const editCategoria = document.getElementById(id +"editCat")
+        const editForm = document.getElementById("editForm")
+        const editName = document.getElementById("editName")
+        const editPrice = document.getElementById("editPrice")
+        const submitFormEdit = document.getElementById("submitBtnEdit")
+        const editDesc = document.getElementById("editDesc")
+        const editCategoria = document.getElementById("editCat")
         
-        const descErrors = document.getElementById(id +"descErrors")
-        const nameErrors = document.getElementById(id +"nameErrors")
-        const priceErrors = document.getElementById(id +"priceErrors")
-        const catErrors = document.getElementById(id +"catErrors")
+        const descErrorsEdit = document.getElementById("descErrorsEdit")
+        const nameErrorsEdit = document.getElementById("nameErrorsEdit")
+        const priceErrorsEdit = document.getElementById("priceErrorsEdit")
+        const catErrorsEdit = document.getElementById("catErrorsEdit")
         //falta img dps
     
         
     submitForm.addEventListener("click",(e) => {
-            catErrors.innerHTML= "";
-            priceErrors.innerHTML = "";
-            nameErrors.innerHTML = "";
-            descErrors.innerHTML="";
-            imgErrors.innerHTML = "";
+            catErrorsEdit.innerHTML= "";
+            priceErrorsEdit.innerHTML = "";
+            nameErrorsEdit.innerHTML = "";
+            descErrorsEdit.innerHTML="";
             
             let errorsCounter = 0;
             let priceRegex = /^\d+(\.\d{1,2})?$/;
@@ -161,30 +152,30 @@
                 errorsCounter++
                 e.preventDefault();
             errors.forEach(
-                (item) => (nameErrors.innerHTML += "- " + item + "<br>")
+                (item) => (nameErrorsEdit.innerHTML += "- " + item + "<br>")
             )}
             
 
             if(!priceRegex.test(editPrice.value)){
                 e.preventDefault();
-                priceErrors.innerHTML = "Digite o preço no formato especificado!"
+                priceErrorsEdit.innerHTML = "Digite o preço no formato especificado!"
                 errorsCounter++
             }
 
             if(editDesc.value.length < 15){
                 e.preventDefault()
-                descErrors.innerHTML = "A descrição precisa conter pelo menos 15 caracteres!"
+                descErrorsEdit.innerHTML = "A descrição precisa conter pelo menos 15 caracteres!"
                 errorsCounter++
             }
 
             if(selectedOption.value == "null"){
                 e.preventDefault()
-                catErrors.innerHTML = "Selecione uma categoria!"
+                catErrorsEdit.innerHTML = "Selecione uma categoria!"
                 errorsCounter++
             }
         
             if(errorsCounter == 0){
-                addForm.submit()
+                editForm.submit()
             }
         })
         
