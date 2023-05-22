@@ -2,12 +2,17 @@
 INSERT INTO kandyness.tb_images(file_name)
 VALUES ("Brownie.jpg");
 
-SELECT * from kandyness.tb_images;
+SELECT * from kandyness.tb_lojas;
 
 SELECT * FROM kandyness.tb_produtosImages;
 
 select * from kandyness.tb_produtos where id = 17;
 select * from kandyness.tb_produtos;
+
+select * from kandyness.tb_lojas;
+
+
+
 
 
 DELETE FROM kandyness.tb_produtosImages where id_produto = 15 and id_loja = 1;
@@ -33,6 +38,9 @@ insert into TB_Usuario (matricula, nome, cpf) values (
 );
 insert into TB_Usuario (matricula, nome, cpf) values (
 	"50003632", "Gabriel Portelinha", "15362684387"
+);
+insert into TB_Usuario (matricula, nome, cpf) values (
+	"50003633", "Pedrinho Silva", "15362684387"
 );
 
 

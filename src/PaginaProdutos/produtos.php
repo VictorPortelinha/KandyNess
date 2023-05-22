@@ -15,17 +15,27 @@
 </head>
 <body>
 
-    <?php include "../HeaderKandyness/HeaderKandyness.php" ?>
+    <?php include "../HeaderKandyness/HeaderKandyness.php";
+    $idLojaVendedor = 1;
+    $idLoja = $_GET['idloja'];
+    ?>
+    <!--Botão adcionar loja loja-->
+    <?php if($idLoja == $idLojaVendedor){ 
+        // verfificar se o vendedor "logado" está dentro de sua própria loja, desativando a div de adição de produtos caso nao esteja
+        ?>
     <div id="openAdd" class="absoluteLeft">
         <button class="add">
             <div class="vert"></div>
             <div class="hor"></div>
         </button>
+    <?php }; ?>
     </div>
-    <div class="bigDivider"></div>
+    <div class="bigDivider">
+        <div class="nomeLoja"><h1>Nome da loja</h1></div>
+    </div>
     <div class="cardGrid">
         <?php include "../Components/CardProduto.php";
-        $idLoja = $_GET['idloja'];
+        
         
         ?>
     </div>
@@ -35,7 +45,9 @@
         <!--Form de ADD -->
         <dialog id="addModal" class="modalForm">
         <div class="modalDiv">
-            <div class="close" id="closeAdd"></div>
+            <div class="close" id="closeAdd">
+                <div class="hor"></div>
+            </div>
             <div style="color: blueviolet;"><h1>Adicionar produto</h1></div>
             <form action="./InsertProduto.php" method="post" enctype="multipart/form-data" id="addForm">
                 <input type="hidden" name="idLoja" value="<?php echo "".$idLoja."" ?>">
@@ -64,7 +76,7 @@
                 
                 <label class="imgProduto" for="imgProduto">
                     Imagem do produto:
-                    <input style="display: none;" type="file" id="imgProduto" name="imgProduto" accept="image/*">
+                    <input  type="file" id="imgProduto" name="imgProduto" accept="image/*">
                 </label>
                 <div class="addErrors" id="imgErrors"></div>
                 
@@ -76,23 +88,26 @@
     </dialog>
 
     <!--Form de edit -->
-    <dialog class="modalForm" id= "modalEdit">
+    <dialog  class="modalForm" id= "modalEdit">
             <div class="modalDiv">
+            <div class="close" id="closeEdit">
+                <div class="hor"></div>
+            </div>
             <div style="color: blueviolet;"><h1>Editar produto</h1></div>
             
-            <form action="" method="post" enctype="multipart/form-data" id="editForm">
-                <input type="hidden" name="idLoja">
-                <input type="hidden" name="idProduto">
+            <form action="./updateProduto.php" method="post" enctype="multipart/form-data" id="editForm" nome="editForm">
+                <<input type="hidden" name="idLoja" value="<?php echo "".$idLoja."" ?>">
+                <input type="hidden" name="idProduto" value="<?php echo "".$idProduto."" ?>">
                 
                 
                 <label for="nomeProduto">Nome do produto:</label>
-                <input type="text" name="nomeProduto" id= "editName">
+                <input value="<?php echo $nomeProduto ?>" type="text" name="nomeProduto" id= "editName">
                 <div class="addErrors" id="nameErrorsEdit"></div>
                 
                 
                 <label for="categoriaProduto">Categoria do produto:</label>
                 <select name="categoriaProduto" id="editCat" required>
-                    <option value="null" label=""></option>
+                    <option value="null" selected label=""></option>
                     <option value="Doces" label="Doces"></option>
                     <option value="Salgados" label="Salgados"></option>
                     <option value="Bebidas" label="Bebidas"></option>
@@ -101,18 +116,19 @@
                  
                 
                 <label for="descProduto">Descrição do produto:</label>
-                <textarea name="descProduto" id="editDesc"  cols="28" rows="4" maxlength="100"></textarea>
+                <textarea value="<?php echo $descricaoProduto ?>" name="descProduto" id="editDesc"  cols="28" rows="4" maxlength="100"></textarea>
                 <div class="addErrors" id="descErrorsEdit"></div>
                 
                 
                 <label for="precoProduto">Preço do produto:</label>
                 <div class="addErrors" id="priceErrorsEdit"></div>
-                <input type="text" id="editPrice"  name="precoProduto" placeholder="Ex: 45.00">
+                <input value="<?php echo $precoProduto ?>" type="text" id="editPrice"  name="precoProduto" placeholder="Ex: 45.00">
                 
                 
                 <label class="imgProduto" for="imgProduto">
                     Imagem do produto:
-                    <input style="display: none;" type="file" id="imgProdutoEdit" name="imgProduto" accept="image/*">
+                    <input  style="display: none;" type="file" id="imgProdutoEdit" name="imgProduto" accept="image/*">
+                    <span id="currentImg"></span>
                 </label>
                 <div class="addErrors" id="imgErrorsEdit"></div>
                 
@@ -127,11 +143,21 @@
 </body>
 
 <script>
+    // change text area
+    
+    function changeTextArea(valueTextArea){
+        document.forms['editForm']['descProduto'].value = valueTextArea;
+    }
+    
     // delete produto
     function removeItem(idProduto,idLoja){
         location.href = `./removeProduto.php?idLoja=${idLoja}&idProduto=${idProduto}`
     }
 
+    function displayImgFile(img){
+        let imgFile = document.getElementById("currentImg")
+        imgFile.innerHTML = img;
+    }
 
 
 
@@ -224,6 +250,7 @@
     })
 
     //verificação form de edit
+        const closeEdit = document.getElementById("closeEdit")
         const modalEdit = document.getElementById("modalEdit")
         const editForm = document.getElementById("editForm")
         const editName = document.getElementById("editName")
@@ -238,20 +265,16 @@
         const catErrorsEdit = document.getElementById("catErrorsEdit")
         //falta img dps
     
-    function openEditForm(){
-        modalEdit.showModal()
+    function openEditForm(valueTextArea,imgFile){
+        console.log(typeof valueTextArea)
+        changeTextArea(valueTextArea);
+        displayImgFile(imgFile)
+        modalEdit.showModal();
+        
     }
   
-    modalEdit.addEventListener("click", e => {
-            const dialogDimensions = editForm.getBoundingClientRect()
-            if (
-                e.clientX < dialogDimensions.left ||
-                e.clientX > dialogDimensions.right ||
-                e.clientY < dialogDimensions.top ||
-                e.clientY > dialogDimensions.bottom
-        ) {
+    closeEdit.addEventListener("click", () => {
         modalEdit.close()
-    }
     })
 
 
@@ -336,6 +359,7 @@
         top:12vh;
     }    
 
+
     .close{
         width: 50px;
         height: 50px;
@@ -344,6 +368,14 @@
         position: absolute;
         right: 0;
         top: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .close:hover{
+        filter: brightness(0.8);
+        cursor: pointer;
     }
 
 
@@ -358,6 +390,11 @@
         align-items: center;
         position: relative;
         box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
+    }
+
+    .add:Hover{
+        filter: brightness(0.9);
+        cursor: pointer;
     }
 
     .vert{
@@ -384,11 +421,20 @@
 
   
     .bigDivider{
+        position: relative;
         background-color: blueviolet;
         width: 95%;
         height: 2px;
         margin: auto;
         margin-top: 11vh;
+    }
+
+    .nomeLoja{
+        position: absolute;
+        color: blueviolet;
+        font: sans-serif;
+        top: -35px;
+      
     }
 
     .material-symbols-outlined {

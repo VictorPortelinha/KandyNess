@@ -1,14 +1,9 @@
  <?php
+
  require_once "../dbConnection/queries.php";
- session_start();
- $matricula = 40002627;
- $nome = "Fabio Souza";
- $cpf = 12562984280;
  
- $_SESSION['matricula']= $matricula;
- $_SESSION['nome'] = $nome;
- $_SESSION['cpf'] = $cpf;
- $_SESSION['logado'] = true;
+ 
+ 
 ?>
 
 <!DOCTYPE html>

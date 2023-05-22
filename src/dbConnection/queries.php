@@ -78,6 +78,15 @@ function retornPathImagemDoProduto($idLoja,$idProduto){
         return $imageURL;
 }
 }
+function retornarFileName($idLoja,$idProduto){
+    global $conn;
+    $result = $conn->query("SELECT * FROM tb_produtosImages WHERE id_produto = " . $idProduto . " AND id_loja = " . $idLoja);
+    if($result->num_rows > 0){
+        while($row = $result->fetch_assoc()){
+            return $row["file_name"];
+        }}
+    
+}
 
 
 
@@ -128,11 +137,62 @@ function insertImageInLoja($idLoja,$idProduto,$imagemProduto) {
 };
 function removeProduct($idProduto,$idLoja){
     global $conn;
-    $removeProduct = $conn->query("DELETE FROM tb_produtos WHERE id = " . $idProduto . " AND id_loja = " . $idLoja);
+    $removeProduct = $conn->query("DELETE FROM tb_produtosImages WHERE id = " . $idProduto . " AND id_loja = " . $idLoja);
     return $removeProduct;
     
 
 }
+function updateProduto($idProduto,$idLoja,$nomeProduto,$categoria,$descricaoProduto,$valor){
+    global $conn;
+
+
+    $updateQuery = "UPDATE tb_produtos
+    SET nome = '$nomeProduto', valor = $valor, categoria = '$categoria', descricao = '$descricaoProduto'
+    WHERE id_loja = $idLoja AND id = $idProduto";
+
+    $result = $conn->query($updateQuery);
+    if ($result) {
+        echo 'Query executada corretamente';
+    } else {
+        echo 'falha na query';
+    }
+
+
+    }
+function updateImagemProduto($idLoja,$idProduto,$imagemProduto){
+    global $conn;
+    $diretorio = "/xampp/htdocs/webProjects/KandyNess/src/assets/images/StoreImages/"; //diretório em que as imagens serão postadas
+    $fileName = basename($imagemProduto["name"]);
+    $targetFilePath = $diretorio . $fileName;
+    $fileType = pathinfo($targetFilePath,PATHINFO_EXTENSION);
+    
+    $allowTypes = array('jpg','png','jpeg',);
+    if(isset($imagemProduto["name"])){
+        // Allow certain file formats
+        $allowTypes = array('jpg','png','jpeg',);
+        if(in_array($fileType, $allowTypes)){
+            // Upload file to server
+            if(move_uploaded_file($imagemProduto["tmp_name"], $targetFilePath)){
+                // Insert image file name into database
+                $insert = $conn->query("UPDATE tb_produtosImages SET file_name = '$fileName' WHERE id_loja = '$idLoja' AND id_produto = '$idProduto'");
+
+                if($insert){
+                    $statusMsg = "The file ".$fileName. " has been uploaded successfully.";
+                }else{
+                     $statusMsg = "Upload de imagem falhou, tente novamente";
+                } 
+            }else{
+                 $statusMsg = "Desculpe, houve um erro ao tentar enviar a sua imagem";
+            }
+        }else{
+             $statusMsg = 'Desculpe, somente imagens do tipo JPG, JPEG, PNG, são permitidas no sistema .';
+        }
+    }else{
+         $statusMsg = 'Por favor, selecione uma imagem para dar upload na imagem';
+    }
+    echo $statusMsg;
+}
+
     
 
 ?>

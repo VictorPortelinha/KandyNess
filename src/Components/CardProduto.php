@@ -1,4 +1,10 @@
-<?php require_once "../dbConnection/queries.php"; ?>
+<?php
+require_once "../dbConnection/queries.php";
+$nomeVendedor = 'Victor Portelinha';
+$matriculaVendedor = 40002629;
+$idLojaVendedor = '1';
+
+?>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
@@ -7,7 +13,7 @@
     <?php 
     $idLoja = $_GET['idloja'];
     
-    $row = selecionarTodosOsProdutos($idLoja);
+    $row = selecionarTodosOsProdutos($idLoja); // query select
     if(isset($row)) {
         foreach($row as $value=>$result):
             $idProduto = $result['id'];
@@ -16,6 +22,8 @@
             $precoProduto = $result['valor'];
             $categoriaProduto = $result['categoria'];
             $pathImagem = retornPathImagemDoProduto($idLoja,$idProduto); //retorn o path da imagem para ser referencido na src do componente
+            $fileName = retornarFileName($idLoja,$idProduto);
+            
     ?>
     
     <div class="cardGrid">
@@ -23,8 +31,13 @@
         <div class="imgContainer">
             <img src="<?php echo "".$pathImagem."" ?>" alt="">
             <div class="crud">
-                <div onclick="openEditForm()" class="iconContainer blue"><span style="color: white;" class="material-symbols-outlined">edit</span></div>
+                <?php if($idLoja == $idLojaVendedor){
+
+                 //verifica se o vendendor está dentro de sua prórpia loja
+                ?> 
+                <div onclick="openEditForm('<?php echo $descricaoProduto?>','<?php echo $fileName?>')" class="iconContainer blue"><span style="color: white;" class="material-symbols-outlined">edit</span></div>
                 <div onclick="removeItem(<?php echo $idProduto ?>,<?php echo $idLoja ?>)" class="iconContainer red"><span style="color: white;" class="material-symbols-outlined">delete</span></div>
+                <?php }?>
             </div>
         </div>
         <div class="cardContent">
@@ -41,7 +54,7 @@
     
     <?php endforeach;} else{
         $idProduto = returnAutoIncrementValue(); // retorna o valor atual do AutoIncrement, mesmo que a tabela esteja vazia
-        echo $idProduto;
+        
         
     }
 
@@ -59,7 +72,7 @@
 }
 
 .card{
-    background-color: rgb(255, 255, 255);
+    background-color: #f5f5f5;
     width: 250px;
     height: 320px;
     display: flex;

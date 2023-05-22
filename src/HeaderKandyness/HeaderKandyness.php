@@ -20,7 +20,7 @@
         </div>
         <div class="rightDiv">
             <div class="userProfile" id="userProfile">
-                <!-- imagem será colocada aqui depois que tivermos o banco de dados <span><img src=""></span> -->
+                VP<!-- imagem será colocada aqui depois que tivermos o banco de dados <span><img src=""></span> -->
             </div>
         </div>
     </div>
@@ -32,22 +32,7 @@
 //         document.querySelector("w").classList.toggle("b");
 //         document.querySelector("q").classList.toggle("c");
 const userProfile = document.getElementById("userProfile")
-const userMenu = document.getElementById("userMenu")
-userProfile.addEventListener("click",() =>{
-    userMenu.showModal()
-})
 
-userMenu.addEventListener("click", e => {
-  const dialogDimensions = userMenu.getBoundingClientRect()
-  if (
-    e.clientX < dialogDimensions.left ||
-    e.clientX > dialogDimensions.right ||
-    e.clientY < dialogDimensions.top ||
-    e.clientY > dialogDimensions.bottom
-  ) {
-    userMenu.close()
-  }
-})
    
 // })    
 
@@ -108,10 +93,16 @@ userMenu.addEventListener("click", e => {
     .userProfile{
         height: 55px;
         width: 55px;
-        background-color: grey;
+        background-color: orangered;
+        color: white;
         border-radius: 5vmin;
         margin-left: 20px;
         margin-right: 0px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 25px;
+        font-family: "Roboto", sans-serif;
     }
 
 

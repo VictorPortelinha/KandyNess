@@ -2,7 +2,6 @@
 require "../dbConnection/queries.php";
 
 $idProduto = $_POST['idProduto'];
-echo $idProduto;
 $idLoja = $_POST['idLoja'];
 $nomeProduto = $_POST['nomeProduto'];
 $categoria = $_POST['categoriaProduto'];
@@ -15,7 +14,7 @@ $result = insertNovosProdutos($idLoja,$nomeProduto,$categoria,$descricaoProduto,
 if($result){
     $idProduto = selectHighestId();
     insertImageInLoja($idLoja,$idProduto,$imagemProduto);
-    //header('location:http://localhost/webProjects/KandyNess/src/PaginaProdutos/produtos.php?idloja='.$idLoja);
+    header('location:http://localhost/webProjects/KandyNess/src/PaginaProdutos/produtos.php?idloja='.$idLoja); //retorna a loja aonde foi feita a inserção
 }
 
 

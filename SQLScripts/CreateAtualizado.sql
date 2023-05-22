@@ -94,12 +94,12 @@ CREATE TABLE tb_lojaImages (
     PRIMARY KEY (id),
     foreign key (imagem_loja) references TB_Lojas(id)
 ) ;
-SELECT MAX(id) FROM tb_produtos
+SELECT MAX(id) FROM tb_produtos;
 
 create table TB_Produtos (
 	id int primary key auto_increment,
 	id_loja int ,
-    nome varchar(100) unique,
+    nome varchar(100) ,
     valor float,
     categoria varchar(30),
     descricao varchar(60),
@@ -117,7 +117,7 @@ CREATE TABLE tb_produtosImages (
     id_loja int,
     id_produto int,
     PRIMARY KEY (id),
-    foreign key (id_loja) references TB_Produtos(id_loja) ,
+    foreign key (id_loja) references TB_Produtos(id_loja) ON DELETE CASCADE,
     foreign key (id_produto) references TB_Produtos(id) ON DELETE CASCADE  
 ) ;
 
