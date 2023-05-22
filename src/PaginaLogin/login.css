@@ -28,7 +28,7 @@ body{
     height: 70vh;
     background: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3));
     border-radius: 3vmin;
-    opacity: 75%;
+    opacity: 0.75;
     box-shadow: 7px 7px 60px black;
     padding: 30px 50px;
     position: relative;
@@ -44,6 +44,9 @@ h1{
 }
 label{
     font-size: 25px;
+    color:lightgray;
+    transition: color .3s ease;
+    
 }
 
 .control input{
