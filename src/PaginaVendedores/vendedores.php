@@ -1,14 +1,9 @@
  <?php
+
  require_once "../dbConnection/queries.php";
- session_start();
- $matricula = 40002627;
- $nome = "Fabio Souza";
- $cpf = 12562984280;
  
- $_SESSION['matricula']= $matricula;
- $_SESSION['nome'] = $nome;
- $_SESSION['cpf'] = $cpf;
- $_SESSION['logado'] = true;
+ 
+ 
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +12,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
+        <title>Área das lojas</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="../PaginaVendedores/vendedoresStyles/vendedores.css">

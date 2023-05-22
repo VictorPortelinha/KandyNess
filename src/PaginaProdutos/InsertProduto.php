@@ -7,13 +7,14 @@ $nomeProduto = $_POST['nomeProduto'];
 $categoria = $_POST['categoriaProduto'];
 $descricaoProduto = $_POST['descProduto'];
 $valor = $_POST['precoProduto'];
-$imagemProduto = $_FILES['imgProduto'];
+
 
 
 $result = insertNovosProdutos($idLoja,$nomeProduto,$categoria,$descricaoProduto,$valor);
 if($result){
-    insertImageInLoja($idLoja,$idProduto,$imagemProduto);
-    //header('location:http://localhost/webProjects/KandyNess/src/PaginaProdutos/produtos.php?idloja='.$idLoja);
+    $idProduto = selectHighestId();
+    
+    header('location:http://localhost/webProjects/KandyNess/src/PaginaProdutos/produtos.php?idloja='.$idLoja); //retorna a loja aonde foi feita a inserção
 }
 
 

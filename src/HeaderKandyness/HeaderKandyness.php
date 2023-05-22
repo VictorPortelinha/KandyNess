@@ -19,11 +19,8 @@
             <h1>SOBRE NÓS</h1>
         </div>
         <div class="rightDiv">
-            <dialog class="userMenu" id="userMenu">
-                <button class="logout">SAIR</button>
-            </dialog>
             <div class="userProfile" id="userProfile">
-                <!-- imagem será colocada aqui depois que tivermos o banco de dados <span><img src=""></span> -->
+                VP<!-- imagem será colocada aqui depois que tivermos o banco de dados <span><img src=""></span> -->
             </div>
         </div>
     </div>
@@ -35,22 +32,7 @@
 //         document.querySelector("w").classList.toggle("b");
 //         document.querySelector("q").classList.toggle("c");
 const userProfile = document.getElementById("userProfile")
-const userMenu = document.getElementById("userMenu")
-userProfile.addEventListener("click",() =>{
-    userMenu.showModal()
-})
 
-userMenu.addEventListener("click", e => {
-  const dialogDimensions = userMenu.getBoundingClientRect()
-  if (
-    e.clientX < dialogDimensions.left ||
-    e.clientX > dialogDimensions.right ||
-    e.clientY < dialogDimensions.top ||
-    e.clientY > dialogDimensions.bottom
-  ) {
-    userMenu.close()
-  }
-})
    
 // })    
 
@@ -111,26 +93,18 @@ userMenu.addEventListener("click", e => {
     .userProfile{
         height: 55px;
         width: 55px;
-        background-color: grey;
+        background-color: orangered;
+        color: white;
         border-radius: 5vmin;
         margin-left: 20px;
         margin-right: 0px;
-    }
-
-    .userMenu{
-        position: absolute;
-        top: 70px;
-        left: 90vw;
-        border-radius: 1vmin;
-        height: 200px;
-        width: 150px;
         display: flex;
-        flex-direction: column;
         align-items: center;
-        border: 0;
-        border-radius: 1vmin;
-
+        justify-content: center;
+        font-size: 25px;
+        font-family: "Roboto", sans-serif;
     }
+
 
     .menuContainer{
         position: absolute;

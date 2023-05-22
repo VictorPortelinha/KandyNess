@@ -1,23 +1,13 @@
-insert into TB_Produtos (id_loja, nome, valor,categoria) values (
-	1,
-    "Brownie de Morango",
-    2.0,
-    "Doce"
-);
+select * from kandyness.tb_lojas;
 
-insert into TB_Produtos (id_loja, nome, valor,categoria) values (
-	1,
-    "Brownie de Chocolate",
-    2.0,
-    "Doce"
-);
+insert into tb_produtos(id_loja,nome,categoria,descricao,valor) 
+values ("3","Bolo de pote de morango","Doces","Bolo de pote feito com morangos importados da suécia","25");
+insert into tb_produtos(id_loja,nome,categoria,descricao,valor) 
+values ("3","Bolo de pote de chocolate","Doces","Bolo de pote feito com chocolate importado da bélgica","25");
 
-insert into TB_Produtos (id_loja, nome, valor,categoria) values (
-	1,
-    "Brownie vegano",
-    2.5,
-    "Doce"
-);
+
+
+
 
 drop table kandyness.TB_Produtos;
 
