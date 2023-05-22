@@ -9,10 +9,25 @@ function selectHighestId(){
         $id = $row['max_id'];
         return $id;
     }
-    
-
 }
+function selectProdutoById($idProduto,$idLoja){
+    global $conn;
+    $result = $conn->query("SELECT * FROM tb_produtos WHERE id = " . $idProduto . " AND id_loja = " . $idLoja);
+    while($row = $result->fetch_assoc()){
+        $rows[] = $row;
+    }
+    return $rows;
+}    
 
+
+function selectNomeDoLoja($idLoja) {
+    global $conn;
+    $sql = "SELECT nome as nome FROM tb_lojas WHERE id = " . $idLoja;
+    $result = $conn->query($sql);
+    while($row = $result->fetch_assoc()){
+        $nome = $row['nome'];
+    }return $nome;
+}
 
 
 function returnAutoIncrementValue(){
@@ -137,7 +152,7 @@ function insertImageInLoja($idLoja,$idProduto,$imagemProduto) {
 };
 function removeProduct($idProduto,$idLoja){
     global $conn;
-    $removeProduct = $conn->query("DELETE FROM tb_produtosImages WHERE id = " . $idProduto . " AND id_loja = " . $idLoja);
+    $removeProduct = $conn->query("DELETE FROM tb_produtos WHERE id = " . $idProduto . " AND id_loja = " . $idLoja);
     return $removeProduct;
     
 
@@ -151,11 +166,7 @@ function updateProduto($idProduto,$idLoja,$nomeProduto,$categoria,$descricaoProd
     WHERE id_loja = $idLoja AND id = $idProduto";
 
     $result = $conn->query($updateQuery);
-    if ($result) {
-        echo 'Query executada corretamente';
-    } else {
-        echo 'falha na query';
-    }
+    return $result;
 
 
     }

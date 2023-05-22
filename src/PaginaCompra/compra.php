@@ -1,43 +1,46 @@
 <?php
-require_once "../dbConnection/queries.php";
-$nomeVendedor = 'Victor Portelinha';
-$matriculaVendedor = 40002629;
-$idLojaVendedor = '1';
+require "../dbConnection/queries.php";
 
 ?>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de compra</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+<body>
 
-    <?php 
-    $idLoja = $_GET['idloja'];
-    
-    $row = selecionarTodosOsProdutos($idLoja); // query select
-    if(isset($row)) {
-        foreach($row as $value=>$result):
+    <?php include "../HeaderKandyness/HeaderKandyness.php";
+        $idProduto = $_GET['idProduto'];
+        $idLoja = $_GET['idLoja'];
+        $rows = selectProdutoById($idProduto,$idLoja);
+        foreach($rows as $value=>$result):
             $idProduto = $result['id'];
             $nomeProduto = $result['nome']; //valores vindos da query do banco de dados
             $descricaoProduto = $result['descricao'];
             $precoProduto = $result['valor'];
             $categoriaProduto = $result['categoria'];
-            
-            
+        endforeach;
     ?>
-    
-    <div class="cardGrid">
-        <div onclick="redirectPgCompra(<?php echo $idProduto?>,<?php echo $idLoja?>,<?php echo $idLojaVendedor?>)" class="card" style="border-radius: 1vmin;">
+
+    <div id="openAdd" class="absoluteLeft">
+        <button class="add">
+            <div class="vert"></div>
+            <div class="hor"></div>
+        </button>
+    </div>
+    <div class="bigDivider">
+        <div class="nomeLoja"></div>
+    </div>
+   
+    <div class="card" style="border-radius: 1vmin;">
         <div class="imgContainer">
             <img src=" ?>" alt="">
-            <div class="crud">
-                <?php if($idLoja == $idLojaVendedor){ //verifica se o vendendor está dentro de sua prórpia loja
-
-                 
-                ?> 
-                <div onclick="openEditForm('<?php echo $descricaoProduto?>');event.stopPropagation();" class="iconContainer blue"><span style="color: white;" class="material-symbols-outlined">edit</span></div>
-                <div onclick="removeItem(<?php echo $idProduto ?>,<?php echo $idLoja ?>);event.stopPropagation();" class="iconContainer red"><span style="color: white;" class="material-symbols-outlined">delete</span></div>
-                <?php }?>
-            </div>
         </div>
         <div class="cardContent">
             <div class="cardTitle"><?php echo $nomeProduto ?></div>
@@ -48,33 +51,14 @@ $idLojaVendedor = '1';
             <div class="price"><?php echo "Preço: R$ " . $precoProduto ?></div>
         </div>
     </div>
-    </div>
-    
-    
-    <?php endforeach;} else{
-        $idProduto = returnAutoIncrementValue(); // retorna o valor atual do AutoIncrement, mesmo que a tabela esteja vazia
-        if($idLojaVendedor != $idLoja){ // Caso o vendedor não seja dono da loja que não possui produtos, ele é redirecionado
-            echo "Você não é o vendedor desta loja, e a loja não possui produtos, você será automaticamente redirecionado";
-    ?>
-        <script>
-            setTimeout(() =>{
-                window.location.href = '../PaginaVendedores/vendedores.php'
-            },4000)
-    
-        </script>
-
-        <?php }
-    }?>
 
     
+    
+</body>
+
 
 <style>
-    .cardGrid{
-    display: grid;
-    grid-template-columns: repeat(6,250px);
-    gap: 50px;
-}
-
+    
 .card{
     background-color: #f5f5f5;
     width: 250px;
@@ -84,12 +68,6 @@ $idLojaVendedor = '1';
     font-family: "Roboto",sans-serif;
     font-weight: lighter;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
-}
-
-.card:hover{
-    cursor: pointer;
-    filter: brightness(0.9);
-
 }
 
 .imgContainer{

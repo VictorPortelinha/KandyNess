@@ -1,6 +1,5 @@
 <?php
-
-
+require "../dbConnection/queries.php";
 ?>
 
 <!DOCTYPE html>
@@ -9,7 +8,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Página da loja</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
@@ -17,7 +16,13 @@
 
     <?php include "../HeaderKandyness/HeaderKandyness.php";
     $idLojaVendedor = 1;
+    
+    
     $idLoja = $_GET['idloja'];
+    
+
+    $nome = selectNomeDoLoja($idLoja);
+    
     ?>
     <!--Botão adcionar loja loja-->
     <?php if($idLoja == $idLojaVendedor){ 
@@ -31,7 +36,7 @@
     <?php }; ?>
     </div>
     <div class="bigDivider">
-        <div class="nomeLoja"><h1>Nome da loja</h1></div>
+        <div class="nomeLoja"><h1> <?php echo $nome ?></h1></div>
     </div>
     <div class="cardGrid">
         <?php include "../Components/CardProduto.php";
@@ -73,12 +78,7 @@
                 <label for="precoProduto">Preço do produto:</label>
                 <div class="addErrors" id="priceErrors"></div>
                 <input type="text" id="precoProduto" name="precoProduto" placeholder="Ex: 45.00">
-                
-                <label class="imgProduto" for="imgProduto">
-                    Imagem do produto:
-                    <input  type="file" id="imgProduto" name="imgProduto" accept="image/*">
-                </label>
-                <div class="addErrors" id="imgErrors"></div>
+        
                 
                 <div style="display: flex;height: 65px;justify-content: center;align-items: center;">
                     <button id="submitBtn" class="submitBtn">Enviar</button>
@@ -96,7 +96,7 @@
             <div style="color: blueviolet;"><h1>Editar produto</h1></div>
             
             <form action="./updateProduto.php" method="post" enctype="multipart/form-data" id="editForm" nome="editForm">
-                <<input type="hidden" name="idLoja" value="<?php echo "".$idLoja."" ?>">
+                <input type="hidden" name="idLoja" value="<?php echo "".$idLoja."" ?>">
                 <input type="hidden" name="idProduto" value="<?php echo "".$idProduto."" ?>">
                 
                 
@@ -125,12 +125,6 @@
                 <input value="<?php echo $precoProduto ?>" type="text" id="editPrice"  name="precoProduto" placeholder="Ex: 45.00">
                 
                 
-                <label class="imgProduto" for="imgProduto">
-                    Imagem do produto:
-                    <input  style="display: none;" type="file" id="imgProdutoEdit" name="imgProduto" accept="image/*">
-                    <span id="currentImg"></span>
-                </label>
-                <div class="addErrors" id="imgErrorsEdit"></div>
                 
                 
                 <div style="display: flex;height: 65px;justify-content: center;align-items: center;">
@@ -153,11 +147,17 @@
     function removeItem(idProduto,idLoja){
         location.href = `./removeProduto.php?idLoja=${idLoja}&idProduto=${idProduto}`
     }
-
-    function displayImgFile(img){
-        let imgFile = document.getElementById("currentImg")
-        imgFile.innerHTML = img;
+    
+    function redirectPgCompra(idProduto,idLoja,currentUser){
+        if(idLoja == currentUser){
+            alert("Você não pode comprar um produto de sua própria loja!")
+        }
+        else{
+            location.href = `../PaginaCompra/compra.php?idLoja=${idLoja}&idProduto=${idProduto}`
+        }
+        
     }
+  
 
 
 
@@ -180,13 +180,13 @@
     const submitForm = document.getElementById("submitBtn")
     const addDesc = document.getElementById("descProduto")
     const addCategoria = document.getElementById("categoriaProduto")
-    const addImg = document.getElementById("imgProduto")
+
     
     const descErrors = document.getElementById("descErrors")
     const addErrors = document.getElementById("addErrors")
     const priceErrors = document.getElementById("priceErrors")
     const catErrors = document.getElementById("catErrors")
-    const imgErrors = document.getElementById("imgErrors")
+   
   
     
    submitForm.addEventListener("click",(e) => {
@@ -194,13 +194,13 @@
         priceErrors.innerHTML = "";
         addErrors.innerHTML = "";
         descErrors.innerHTML="";
-        imgErrors.innerHTML = "";
+     
         
         let errorsCounter = 0;
         let priceRegex = /^\d+(\.\d{1,2})?$/;
         let errors = []
         let selectedOption = addCategoria.options[addCategoria.selectedIndex]
-        let imgFile = addImg.files[0];
+      
 
       
         let nameRegex = /[0-9!@#$%^&*()_+=[\]{};':",./<>?\\|`~\-]/g;
@@ -213,10 +213,6 @@
             errorsCounter++
         }
 
-        if(!imgFile){
-            e.preventDefault()
-            imgErrors.innerHTML = "Insira uma imagem para o produto!"
-        }
         
         if (errors.length > 0) {
             errorsCounter++
@@ -263,12 +259,12 @@
         const nameErrorsEdit = document.getElementById("nameErrorsEdit")
         const priceErrorsEdit = document.getElementById("priceErrorsEdit")
         const catErrorsEdit = document.getElementById("catErrorsEdit")
-        //falta img dps
+ 
     
-    function openEditForm(valueTextArea,imgFile){
+    function openEditForm(valueTextArea){
         console.log(typeof valueTextArea)
         changeTextArea(valueTextArea);
-        displayImgFile(imgFile)
+  
         modalEdit.showModal();
         
     }

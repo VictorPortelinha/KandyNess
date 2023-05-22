@@ -7,7 +7,7 @@ $idProduto = $_GET['idProduto'];
 $result = removeProduct($idProduto,$idLoja);
 
 if($result){
-    echo 'Query realizada com sucesso';
+    header('location:http://localhost/webProjects/KandyNess/src/PaginaProdutos/produtos.php?idloja='.$idLoja);
 } else{
     echo 'Não foi possível realizar a sua query';
 }
