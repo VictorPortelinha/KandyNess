@@ -7,7 +7,7 @@
         <title>Login</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="login.css">
+        <link rel="stylesheet" href="Styles/login.css">
         
     </head>
     <body>
@@ -15,7 +15,7 @@
        
     <div class="loginContainer">
         <h1>Login</h1>
-        <form action="#">
+        <form action="#" id="login">
             <div class="control">
                 <label for="name" id="lbName">Nome</label>
                 <input type="text" name="name" id="name">
@@ -57,6 +57,11 @@
             password.addEventListener("blur",() => {
                 passwordLbl.style.color = "lightgray"
             })
+
+           
+
+
+            
         </script>
     </body>
 </html>

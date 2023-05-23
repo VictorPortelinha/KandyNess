@@ -214,7 +214,6 @@ require "../dbConnection/queries.php";
 
         
         if (errors.length > 0) {
-            errorsCounter++
           e.preventDefault();
           errors.forEach(
             (item) => (addErrors.innerHTML += "- " + item + "<br>")

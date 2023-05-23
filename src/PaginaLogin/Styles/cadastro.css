@@ -6,34 +6,46 @@ body{
     background-image: linear-gradient(to bottom right, #FF4500, #8A2BE2);
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: start;
     height: 100vh;
     overflow: hidden;
     font-family: "Roboto",sans-serif;
     color: #ffffff;
+    padding: 0;
+    margin: 0;
 }
 
 .errors{
-    width: 20vw;
-    height: 50vh;
-    background-color: #fff;
-    border-radius: 3vmin;
-    box-shadow: 7px 7px 60px black;
-    margin-left: 20px;
-    display: none;
+    font-size: 20px;
 }
 
-.loginContainer{
-    width: 30vw;
-    height: 70vh;
+.cadastro{
+    width: 33.3vw;
+    height: 100vh;
     background: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3));
-    border-radius: 3vmin;
     opacity: 0.75;
-    box-shadow: 7px 7px 60px black;
+    box-shadow: -7px -7px -60px black;
     padding: 30px 50px;
     position: relative;
+}
 
-  
+.about{
+    width: 66.6vw;
+    height: 100vh;
+    background-color: white;
+    opacity: 0.75;
+    padding: 30px 150px;
+    position: relative;
+    color: blueviolet;
+    text-align: center;
+}
+.about h1{
+    text-transform: uppercase;
+    font-size: 100px;
+    text-align: center;
+    margin-bottom: 100px;
+    margin-top: 0;
+    position: relative;
 }
 
 h1{
@@ -48,8 +60,11 @@ label{
     transition: color .3s ease;
     
 }
+.control{
+    margin-top: 30px;
+}
 
-.control input{
+input{
     width: 100%;
     display: block;
     padding: 10px;
@@ -58,6 +73,7 @@ label{
     outline: none;
     margin: 1em 0;
     font-size: 25px;
+    position: relative;
 }
 
 .control input[type="submit"]{
@@ -89,4 +105,11 @@ label{
 
 .link a:hover {
     opacity: 1;   
+}
+
+
+.kandy{
+    color: orangered;
+    margin-top: 150px;
+    font-size: 50px;
 }
