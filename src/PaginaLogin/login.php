@@ -11,33 +11,31 @@
         
     </head>
     <body>
-       
-       
-    <div class="loginContainer">
-        <h1>Login</h1>
-        <form action="#" id="login">
-            <div class="control">
-                <label for="name" id="lbName">Nome</label>
-                <input type="text" name="name" id="name">
-            </div>
-            <div class="control">
-                <label for="password" id="lbPassword">Senha</label>
-                <input type="password" name="password" id="password">
-            </div>
-            <div class="control">
-                <input type="submit" value="Entrar">
-            </div>
-            <div class="link">
-                <a href="cadastro.php">Não possui uma conta?</a>
-            </div>
 
-        </form>
+    <div class="about">
     </div>
 
-    
-        
+    <div class="loginContainer">
+            <h1>Login</h1>
+            <form action="#" id="login">
+                <div class="control">
+                    <label for="name" id="lbName">Nome</label>
+                    <input type="text" name="name" id="name">
+                </div>
+                <div class="control">
+                    <label for="password" id="lbPassword">Senha</label>
+                    <input type="password" name="password" id="password">
+                </div>
+                <div class="control">
+                    <input type="submit" value="Entrar">
+                </div>
+                <div class="link">
+                    <a href="cadastro.php">Não possui uma conta?</a>
+                </div>
 
-        
+            </form>
+        </div>
+         
         <script defer>
             const username = document.getElementById("name")
             const nameLbl = document.getElementById("lbName")
@@ -45,17 +43,16 @@
             const passwordLbl = document.getElementById("lbPassword")
 
             username.addEventListener("focus",() => {
-                nameLbl.style.color= "white"
+                nameLbl.style.color= "orangered"
             })
             username.addEventListener("blur",() => {
-                nameLbl.style.color = "lightgray"
-            })
+                nameLbl.style.color = "blueviolet"})
 
             password.addEventListener("focus",() => {
-                passwordLbl.style.color= "white"
+                passwordLbl.style.color= "orangered"
             })
             password.addEventListener("blur",() => {
-                passwordLbl.style.color = "lightgray"
+                passwordLbl.style.color = "blueviolet"
             })
 
            
