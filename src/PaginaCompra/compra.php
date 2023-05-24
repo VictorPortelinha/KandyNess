@@ -1,5 +1,5 @@
 <?php
-// require "../dbConnection/queries.php";
+require "../dbConnection/queries.php";
 
 ?>
 
