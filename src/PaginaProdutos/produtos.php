@@ -165,7 +165,6 @@ require "../dbConnection/queries.php";
     const closeAdd = document.getElementById("closeAdd")
     const openAddModal = document.getElementById("openAdd")
     const addModal = document.getElementById("addModal")
-    const close = document.getElementById("closeAdd")
     openAddModal.addEventListener('click',() =>{
         addModal.showModal()
     })
@@ -215,7 +214,6 @@ require "../dbConnection/queries.php";
 
         
         if (errors.length > 0) {
-            errorsCounter++
           e.preventDefault();
           errors.forEach(
             (item) => (addErrors.innerHTML += "- " + item + "<br>")
