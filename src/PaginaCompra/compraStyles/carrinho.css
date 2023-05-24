@@ -1,0 +1,175 @@
+
+.card{
+    background-color: #f5f5f5;
+    width: 250px;
+    height: 320px;
+    display: flex;
+    flex-direction: column;
+    font-family: "Roboto",sans-serif;
+    font-weight: lighter;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.imgContainer{
+    width: 100%;
+    height: 150px;
+    position: relative;
+}
+.imgContainer img{
+    width: 100%;
+    height: 100%;
+}
+
+.cardContent{
+   display: flex;
+   flex-direction: column;
+   padding-left: 10px;
+   padding-right: 10px;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 300,
+  'GRAD' 0,
+  'opsz' 20
+}
+
+.iconContainer{
+   height: 30px;
+   width: 30px;
+   border-radius: 5vmin;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.iconContainer:hover{
+    cursor: pointer;
+    filter: brightness(0.8);
+}
+
+.red{
+    background-color: #F44336;
+}
+
+.blue{
+    background-color: #2196F3;
+}
+
+.join{
+    margin-left: -10px;
+}
+
+.crud{
+    display: flex;
+    gap: 3px;
+    position: absolute;
+    right: 0px;
+    top: 0;
+}
+
+.categoriaLoja{
+    margin-top: 2px;
+    color: hsl(0, 0%, 30%);
+    font-size: 12px;
+}
+
+.cardTitle{
+    margin-top: 12px;
+    font-weight: bold;
+}
+
+.divider{
+    background-color: hsl(0, 0%, 80%);
+    height: 0.08px;
+    margin-top: 10px;
+    
+}
+.cardDesc{
+    font-size: 11px;
+    color: hsl(0, 0%, 40%);
+    margin-top: 12px;
+    word-wrap: break-word;
+    height: 36px;
+}
+
+.price{
+    color: blueviolet;
+    font-weight: 600;
+    position: relative;
+    top: 9px;
+}
+
+table{
+    border-collapse: collapse;
+    margin: 25px 0;
+    min-width: 400px;
+    font-size: 20px;
+    font-family: "roboto",sans-serif;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+}
+
+thead tr{
+    color: white;
+    background-color: blueviolet;
+    text-align: left;
+    font-weight: bold;
+}
+
+th,td{
+    padding: 12px 15px;
+}
+
+tr{
+    border-bottom: 1px solid #dddddd;
+}
+
+tr:last-of-type{
+    border-bottom: 2px blueviolet solid;
+}
+
+.containerCarrinho{
+    margin-top: 100px;
+    margin-left: 300px;
+}
+
+.flex{
+    display: flex;
+    align-items: center;
+    font-size: 40px;
+}
+
+.num{
+    margin-left: 5px;
+    margin-right: 5px;
+    border: 1px solid blueviolet;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.increment{
+    width: 40px;
+    height: 40px;
+    background-color: blueviolet;
+    border: 1px solid blueviolet;
+}
+
+.decrement{
+    width: 40px;
+    height: 40px;
+    background-color: orangered;
+    border: 1px solid orangered;
+}
+
+.remove{
+    width: 40px;
+    height: 40px;
+    background-color: red;
+    border: 1px solid red;
+}
