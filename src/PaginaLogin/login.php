@@ -19,8 +19,8 @@
             <h1>Login</h1>
             <form action="#" id="login">
                 <div class="control">
-                    <label for="name" id="lbName">Nome</label>
-                    <input type="text" name="name" id="name">
+                    <label for="matricula" id="lbmatricula">Matrícula</label>
+                    <input type="text" name="matricula" id="matricula">
                 </div>
                 <div class="control">
                     <label for="password" id="lbPassword">Senha</label>
@@ -37,16 +37,16 @@
         </div>
          
         <script defer>
-            const username = document.getElementById("name")
-            const nameLbl = document.getElementById("lbName")
+            const matricula = document.getElementById("matricula")
+            const matriculaLbl = document.getElementById("lbmatricula")
             const password = document.getElementById("password")
             const passwordLbl = document.getElementById("lbPassword")
 
-            username.addEventListener("focus",() => {
-                nameLbl.style.color= "orangered"
+            matricula.addEventListener("focus",() => {
+                matriculaLbl.style.color= "orangered"
             })
-            username.addEventListener("blur",() => {
-                nameLbl.style.color = "blueviolet"})
+            matricula.addEventListener("blur",() => {
+                matriculaLbl.style.color = "blueviolet"})
 
             password.addEventListener("focus",() => {
                 passwordLbl.style.color= "orangered"

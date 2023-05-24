@@ -13,10 +13,8 @@
     <body>   
     
     <div class="about">
-        
-        
+
     </div>
-    
     <div class="cadastro">
         <h1>Cadastro</h1>
         <form action="#" id="cadastro">
@@ -24,11 +22,9 @@
                 <label for="name" id="lbName">Nome</label>
                 <input type="text" name="name" id="name">
                 <div class="errors">
-                    - O nome escolhido não está mais disponível! <br>
                     - O nome só pode conter letras! <br>
                     - O nome precisa conter pelo menos 3 caracteres! <br>
                 </div>
-                
             </div>
             <div class="control">
                 <label for="password" id="lbPassword">Senha</label>
@@ -40,10 +36,31 @@
                 </div>
             </div>
             <div class="control">
-                <input type="submit" value="Enviar">
+                <label for="matricula" id="lbmatricula">Matrícula</label>
+                <input type="text" name="matricula" id="matricula">
+                <div class="errors">
+                    - A senha precisa conter pelo menos 6 caracteres! <br>
+                </div>
             </div>
-            <div class="link">
-                <a href="login.php">Já possui uma conta?</a>
+            <div class="control">
+                <label for="cpf" id="lbCpf">CPF</label>
+                <input type="text" name="cpf" id="cpf">
+                <div class="errors">
+                    - A senha precisa conter pelo menos 6 caracteres! <br>
+                </div>
+            </div>
+            <div class="control left">
+                <label class="radioLabel" for="cliente">
+                    <input type="radio" id="cliente" name="userType" value="cliente">
+                    Cliente
+                </label>
+                <label class="radioLabel" for="vendedor">
+                    <input type="radio" id="vendedor" name="userType" value="vendedor">
+                    Vendedor
+                </label>
+            </div>
+            <div style="margin-top: 125px;" class="control">
+                <input type="submit" value="Enviar">
             </div>
         </form>
     </div>
