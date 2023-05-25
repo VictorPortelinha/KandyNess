@@ -2,6 +2,13 @@
 require "../dbConnection/connection.php";
 
 
+function insertIntoUsers($nome,$matricula,$password,$cpf,$userType) {
+    global $conn;
+    $result = $conn->query("INSERT INTO tb_usuario(nome,matricula,cpf,vendedor,senha) VALUES ('$nome', '$matricula', '$cpf', '$userType', '$password')");
+    return $result;
+}
+
+
 function selectHighestId(){
     global $conn;
     $result = $conn->query("SELECT MAX(id) AS max_id FROM tb_produtos");

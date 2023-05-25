@@ -17,7 +17,7 @@
     </div>
     <div class="cadastro">
         <h1>Cadastro</h1>
-        <form action="#" id="cadastro">
+        <form action="actionCadastro.php" method="post" enctype="multipart/form-data" id="cadastro">
             <div class="control">
                 <label for="name" id="lbName">Nome</label>
                 <input type="text" name="name" id="name">

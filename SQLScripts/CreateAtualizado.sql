@@ -7,6 +7,8 @@ CREATE TABLE TB_Usuario (
     matricula CHAR(8),
     nome VARCHAR(150),
     cpf CHAR(11),
+    vendedor TINYINT(1),
+    senha VARCHAR(16),
     PRIMARY KEY (matricula)
 ) ;
 
