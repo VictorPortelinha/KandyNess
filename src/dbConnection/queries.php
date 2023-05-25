@@ -1,8 +1,8 @@
 <?php
 require "../dbConnection/connection.php";
-function selectUsers(){
+function selectUsers($matricula){
     global $conn;
-    $sql = "SELECT * from tb_usuario";
+    $sql = "SELECT * from tb_usuario where matricula = " . $matricula;
     $result = $conn->query($sql);
     if($result->num_rows > 0){
         
@@ -11,6 +11,11 @@ function selectUsers(){
         }
     return $rows;
 }
+}
+function insertNewLoja($nomeLoja,$descLoja,$matricula){
+    global $conn;
+    $result = $conn->query("INSERT INTO tb_lojas(nome,descricao,matricula) VALUES ('$nomeLoja', '$descLoja', '$matricula')");
+    return $result;
 }
 
 function insertIntoUsers($nome,$matricula,$password,$cpf,$userType) {
@@ -46,6 +51,16 @@ function selectNomeDoLoja($idLoja) {
         $nome = $row['nome'];
     }return $nome;
 }
+
+function selectIdDaLoja($matricula) {
+    global $conn;
+    $sql = "SELECT id as id FROM tb_lojas WHERE matricula = " . $matricula;
+    $result = $conn->query($sql);
+    while($row = $result->fetch_assoc()){
+        $id = $row['id'];
+    }return $id;
+}
+
 
 
 function returnAutoIncrementValue(){

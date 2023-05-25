@@ -8,14 +8,17 @@ $cpf = $_POST['cpf'];
 $userType = $_POST['userType'];
 
 if($userType == 'vendedor'){
-    echo 'ele é um vendedor';
     $userType = 1;
+    $nomeLoja = $_POST['nomeLoja'];
+    $descLoja = $_POST['desc'];
+
     insertIntoUsers($nome,$matricula,$password,$cpf,$userType);
-    header('location:http://localhost/webProjects/KandyNess/src/PaginaLogin/cadastroLoja.php');
+    insertNewLoja($nomeLoja,$descLoja,$matricula);
+    header('location:http://localhost/webProjects/KandyNess/src/PaginaLogin/login.php');
 }else{
-    echo 'ele não é um vendedor';
     $userType = 0;
     insertIntoUsers($nome,$matricula,$password,$cpf,$userType);
+    header('location:http://localhost/webProjects/KandyNess/src/PaginaLogin/login.php');
 }
 
 

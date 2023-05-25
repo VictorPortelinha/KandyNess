@@ -17,7 +17,7 @@
     </div>
     <div class="cadastro">
         <h1>Cadastro</h1>
-        <form action="#" id="cadastro">
+        <form action="actionCadastro.php" method="post" enctype="multipart/form-data" id="cadastro">
             
             <div id="first">
                 <div class="control">
@@ -74,7 +74,7 @@
                 <div class="control" style="margin-top: 30px;">
                     <label id="lbNomeLoja" for="nomeLoja">Nome da loja</label>
                     <input type="text" name="nomeLoja" id="nomeLoja">
-                    <div class="errors" id="errNomeLoja"></div>
+                    <div style="margin-bottom: 30px;" class="errors" id="errNomeLoja"></div>
                 </div>
                 
                 <label id="lbDesc" for="descDiv">Descrição da loja</label>
@@ -131,14 +131,36 @@
                 clearErrors([errName,errPassword,errMatricula,errCpf])
                 let numErros = 0;
                 
-                // let nameRegex = /[0-9!@#$%^&*()_+=[\]{};':",./<>?\\|`~\-]/g;
-                // if(nameRegex.test(username.value)){
-                //     errName.innerHTML += "- O nome só pode conter letras! <br>"
-                //     numErros ++
-                // }
-                // if(nameRegex.value.length < 3){
-                //     errName.innerHTML += "- O nome precisa conter pelo menos 3 caracteres! <br>"
-                // }
+                let nameRegex = /[0-9!@#$%^&*()_+=[\]{};':",./<>?\\|`~\-]/g;
+                let matriculaRegex = /[^0-9]/g
+                
+                if(nameRegex.test(username.value)){
+                    errName.innerHTML += "- O nome só pode conter letras! <br>"
+                    numErros ++
+                }
+                if(username.value.length < 3){
+                    errName.innerHTML += "- O nome precisa conter pelo menos 3 caracteres! <br>"
+                    numErros ++
+                }
+                if(password.value.length < 6){
+                    errPassword.innerHTML += "- A senha precisa conter pelo menos 6 caracteres! <br>"
+                    numErros ++
+                }
+                if(password.value.length > 16){
+                    errPassword.innerHTML += "- A senha pode conter no máximo 16 caracteres! <br>"
+                    numErros ++
+                }
+                if(matricula.value.length != 8){
+                    errMatricula.innerHTML += "- A matrícula precisa exatamente 8 números! <br>"
+                    numErros ++
+                }
+                if(matriculaRegex.test(matricula.value)){
+                    errMatricula.innerHTML += "- A matrícula só pode conter números! <br>"
+                    numErros ++
+                }
+
+                
+
                 if(numErros == 0){
                     first.classList.add("hidden")
                     second.classList.remove("hidden")
@@ -151,28 +173,39 @@
                 radio.addEventListener("click",() => {
                     let selectedOption = document.querySelector('input[name="userType"]:checked');
                     if(selectedOption.value == "vendedor"){
-                        third.classList.remove("hidden")
+                        third.classList.remove("hidden")          
                     }
                     else{
                         third.classList.add("hidden")
                         nomeLoja.value = ""
                         desc.value = ""
-                        
-                    }
                 }
-                )})
+                }
+            )})
             
-            
-
-
             form.addEventListener("submit",(e) => {
-                e.preventDefault()
+                clearErrors([errNomeLoja,errDesc])
+                let nameRegex = /[0-9!@#$%^&*()_+=[\]{};':",./<>?\\|`~\-]/g;
+                if(nameRegex.test(nomeLoja.value)){
+                        e.preventDefault()
+                        errNomeLoja.innerHTML += "- O nome da loja só pode conter letras! <br>"  
+                        }
+                if(nomeLoja.value.length < 3){
+                        e.preventDefault()
+                        errNomeLoja.innerHTML += "- O nome da loja precisa conter pelo menos 3 caracteres! <br>"
+    
+                        }
+                if(desc.value.length < 5){
+                        e.preventDefault()
+                        errDesc.innerHTML += "- A descrição precisa conter pelo menos 5 caracteres! <br>"
+                        }
             })
+
 
 
             function clearErrors(errors){
                 errors.forEach(error => {
-                    error.innerHtml = ""
+                    error.innerHTML = ""
                 })
             }
 

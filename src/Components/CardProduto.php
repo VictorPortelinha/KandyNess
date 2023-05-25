@@ -1,8 +1,10 @@
 <?php
 require_once "../dbConnection/queries.php";
-$nomeVendedor = 'Victor Portelinha';
-$matriculaVendedor = 40002629;
-$idLojaVendedor = '1';
+
+$nomeVendedor = $_SESSION['nome'];
+$matriculaVendedor = $_SESSION['matricula'];
+$idLojaVendedor = $_SESSION['idLoja'];
+
 
 ?>
 

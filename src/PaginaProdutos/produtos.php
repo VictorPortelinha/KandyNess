@@ -1,5 +1,6 @@
 <?php
 require "../dbConnection/queries.php";
+session_start();
 ?>
 
 <!DOCTYPE html>
