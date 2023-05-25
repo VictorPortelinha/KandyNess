@@ -41,7 +41,7 @@ h1{
     text-transform: uppercase;
     font-size: 50px;
     text-align: center;
-    margin-bottom: 50px;
+    margin-bottom: 75px;
 }
 label{
     font-size: 25px;
@@ -53,6 +53,17 @@ label{
     margin-top: 20px;
 }
 
+.bottom{
+    position: absolute;
+    bottom: 20px;
+    width: 28.5vw;
+}
+
+.hidden{
+    display: none;
+    pointer-events: none;
+}
+
 input{
     width: 100%;
     display: block;
@@ -60,13 +71,15 @@ input{
     color: #222;
     border: none;
     outline: none;
-    font-size: 20px;
+    font-size: 25px;
     position: relative;
     margin-bottom: 10px;
     margin-top: 10px;
 }
 
-.control input[type="submit"]{
+.control input[type="button"],
+.control input[type="submit"]
+{
     background: orangered;
     color: #fff;
     font-size: 30px;
@@ -75,7 +88,9 @@ input{
     transition: opacity .3s ease;
 }
 
-.control input[type="submit"]:hover{
+.control input[type="submit"]:hover,
+.control input[type="button"]:hover
+{
     cursor: pointer;
     opacity: 1;
 }
@@ -97,12 +112,44 @@ input{
     opacity: 1;   
 }
 
+input[type = radio]{
+    display: none;
+}
 
-
+.radioDiv{
+    margin-top: 20px;
+}
       
 .radioLabel {
-    float: left;
-    clear: none;
-    display: block;
-    padding: 0px 1em 0px 8px;
+    position: relative;
+    color: forestgreen;
+    font-family: "roboto",sans-serif;
+    font-size: 25px;
+    border: 2px;
+    padding: 10px 50px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    background-color: white;
+    margin-bottom: 20px;
     }
+
+
+
+input[type="radio"]:checked + label{
+    background-color:forestgreen;
+    color: white;
+}
+
+input[type="radio"]:checked + label:before{
+    height: 16px;
+    width: 16px;
+    border: 10px solid forestgreen;
+    background-color: white;
+}
+
+textarea{
+    width: 100%;
+    font-size: 25px;
+    font-family: "roboto",sans-serif;
+}
