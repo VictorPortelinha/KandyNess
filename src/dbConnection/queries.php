@@ -1,6 +1,17 @@
 <?php
 require "../dbConnection/connection.php";
-
+function selectUsers(){
+    global $conn;
+    $sql = "SELECT * from tb_usuario";
+    $result = $conn->query($sql);
+    if($result->num_rows > 0){
+        
+        while($row = $result->fetch_assoc()){
+            $rows[] = $row;
+        }
+    return $rows;
+}
+}
 
 function insertIntoUsers($nome,$matricula,$password,$cpf,$userType) {
     global $conn;

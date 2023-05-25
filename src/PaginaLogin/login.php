@@ -17,7 +17,7 @@
 
     <div class="loginContainer">
             <h1>Login</h1>
-            <form action="#" id="login">
+            <form action="actionLogin.php" method="post" id="login">
                 <div class="control">
                     <label for="matricula" id="lbmatricula">Matrícula</label>
                     <input type="text" name="matricula" id="matricula">
