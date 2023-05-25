@@ -81,6 +81,10 @@ input{
     margin-top: 10px;
 }
 
+input[type="file"]{
+    color: white;
+}
+
 .control input[type="button"],
 .control input[type="submit"]
 {
