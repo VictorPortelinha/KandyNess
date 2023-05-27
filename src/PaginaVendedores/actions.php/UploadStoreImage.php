@@ -1,20 +1,11 @@
 <?php
 require_once "/xampp/htdocs/webProjects/KandyNess/src/dbConnection/connection.php";
 $idLoja = $_POST['idLoja'];
-echo $idLoja;
-echo "    ";
 $diretorio = "/xampp/htdocs/webProjects/KandyNess/src/assets/images/StoreImages/"; //diretório em que as imagens serão postadas
 $fileName = basename($_FILES["file"]["name"]);
-echo 'fileName, '.$fileName;
-echo "    ";
 $targetFilePath = $diretorio . $fileName;
-echo 'targetFilePath, '.$targetFilePath;
-echo "    ";
 $fileType = pathinfo($targetFilePath,PATHINFO_EXTENSION);
-echo 'fileType,'. $fileType;
-echo "    ";
 
-echo "    ".$_FILES["file"]["tmp_name"];
 
 
 if(isset($_POST["submit"]) && !empty($_FILES["file"]["name"])){
@@ -24,7 +15,7 @@ if(isset($_POST["submit"]) && !empty($_FILES["file"]["name"])){
         // Upload file to server
         if(move_uploaded_file($_FILES["file"]["tmp_name"], $targetFilePath)){
             // Insert image file name into database
-            $insert = $conn->query("INSERT INTO tb_LojaImages (file_name, uploaded_on, imagem_loja) VALUES ('".$fileName."', NOW(), '".$idLoja."')");
+            $insert = $conn->query("INSERT INTO tb_lojaImages (file_name, uploaded_on, imagem_loja) VALUES ('".$fileName."', NOW(), '".$idLoja."')");
             if($insert){
                 $statusMsg = "The file ".$fileName. " has been uploaded successfully.";
             }else{

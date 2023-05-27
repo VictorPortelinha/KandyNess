@@ -18,7 +18,7 @@
 
 <?php include "../HeaderKandyness/HeaderKandyness.php";?>
 <div class="formContainer">
-        <form action="">
+        <form id="editLoja" action="">
             <h1>Editar Loja</h1>
             <div class="control" style="margin-top: 30px;">
                 <label id="lbNomeLoja" for="nomeLoja">Nome da loja</label>
@@ -43,3 +43,36 @@
         </form>
     </div>
 </body>
+
+<script>
+    const form = document.getElementById("editLoja")
+    const nomeLoja = document.getElementById("nomeLoja")
+    const desc = document.getElementById("desc")
+
+    const errNomeLoja = document.getElementById("errNomeLoja")
+    const errDesc = document.getElementById("errDesc")
+
+    form.addEventListener("submit",(e) => {
+                clearErrors([errNomeLoja,errDesc])
+                let nameRegex = /[0-9!@#$%^&*()_+=[\]{};':",./<>?\\|`~\-]/g;
+                if(nameRegex.test(nomeLoja.value)){
+                        e.preventDefault()
+                        errNomeLoja.innerHTML += "- O nome da loja só pode conter letras! <br>"  
+                        }
+                if(nomeLoja.value.length < 3){
+                        e.preventDefault()
+                        errNomeLoja.innerHTML += "- O nome da loja precisa conter pelo menos 3 caracteres! <br>"
+    
+                        }
+                if(desc.value.length < 5){
+                        e.preventDefault()
+                        errDesc.innerHTML += "- A descrição precisa conter pelo menos 5 caracteres! <br>"
+                        }
+            })
+
+    function clearErrors(errors){
+        errors.forEach(error => {
+            error.innerHTML = ""
+        })
+    }
+</script>
