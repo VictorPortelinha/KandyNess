@@ -3,3 +3,5 @@ insert into kandyness.tb_lojas(nome,descricao,matricula) values ('Loja do Joao',
 insert into kandyness.tb_lojas(nome,descricao,matricula) values('Loja do Pedrinho','Pedrinho vende bolos','50003633');
 
 SELECT * FROM kandyness.tb_lojas;
+
+SELECT * FROM kandyness.tb_usuario;

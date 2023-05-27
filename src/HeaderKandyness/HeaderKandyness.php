@@ -18,6 +18,9 @@
         <div class="content">
             <h1>SOBRE NÓS</h1>
         </div>
+        <div class="content" onclick="location.href='../MinhaLoja/minhaLoja.php'">
+            <h1>MINHA LOJA</h1>
+        </div>
         <div class="rightDiv">
             <div class="userProfile" id="userProfile">
                 VP<!-- imagem será colocada aqui depois que tivermos o banco de dados <span><img src=""></span> -->
@@ -25,6 +28,11 @@
         </div>
     </div>
 </header>
+<div class="userMenu" id="userMenu">
+    <button onclick= "window.location = '../SessionDestroy/destroy.php'" class="logout">Sair</button>
+</div>
+
+
 
 <script>
 //     document.querySelector("ham").addEventListener("click",function(){
@@ -32,6 +40,21 @@
 //         document.querySelector("w").classList.toggle("b");
 //         document.querySelector("q").classList.toggle("c");
 const userProfile = document.getElementById("userProfile")
+const userMenu = document.getElementById("userMenu")
+
+userProfile.addEventListener("click", () => {
+    if(userMenu.style.display == "none"){
+        userMenu.style.display = "flex";
+    }
+    else{
+        userMenu.style.display = "none";
+    }
+})
+
+
+
+
+
 
    
 // })    
@@ -58,12 +81,31 @@ const userProfile = document.getElementById("userProfile")
 
     }
 
+    .userMenu{
+        width: 100px;
+        height: 100px;
+        background-color: white;
+        border-radius: 1vmin;
+        position: absolute;
+        right: 20px;
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
+
+    }
+
     .logout{
         background-color: blueviolet;
         width: 80%;
         color: white;
         font-size: 15px;
         margin-top: 15px;
+    }
+
+    .logout:hover{
+        cursor: pointer;
+        filter: brightness(0.8);
     }
 
     .rightDiv{

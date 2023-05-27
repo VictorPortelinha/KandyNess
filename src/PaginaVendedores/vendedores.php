@@ -1,5 +1,12 @@
  <?php
 session_start();
+isset($_SESSION['matricula']);
+if(isset($_SESSION['matricula'])){
+    $lol;
+}else{
+    header('location:http://localhost/webProjects/KandyNess/src/PaginaLogin/cadastro.php');
+}
+
  require_once "../dbConnection/queries.php";
  
  

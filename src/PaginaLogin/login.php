@@ -55,8 +55,6 @@
                 passwordLbl.style.color = "blueviolet"
             })
 
-           
-
 
             
         </script>
