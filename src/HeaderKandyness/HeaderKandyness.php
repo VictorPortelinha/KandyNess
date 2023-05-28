@@ -15,11 +15,11 @@
         <div class="content" onclick="location.href='../PaginaVendedores/vendedores.php'">
             <h1>LOJAS</h1>
         </div>
-        <div class="content">
-            <h1>SOBRE NÓS</h1>
-        </div>
         <div class="content" onclick="location.href='../MinhaLoja/minhaLoja.php'">
             <h1>MINHA LOJA</h1>
+        </div>
+        <div class="content" onclick="location.href='../PaginaCompra/compra.php'">
+            <h1>CARRINHO</h1>
         </div>
         <div class="rightDiv">
             <div class="userProfile" id="userProfile">
@@ -147,6 +147,10 @@ userProfile.addEventListener("click", () => {
         font-family: "Roboto", sans-serif;
     }
 
+    .userProfile:hover{
+        cursor: pointer;
+        filter: brightness(0.8);
+    }
 
     .menuContainer{
         position: absolute;
