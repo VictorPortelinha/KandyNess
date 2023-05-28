@@ -30,9 +30,6 @@
                         <label for="password" id="lbPassword">Senha</label>
                         <input type="password" name="password" id="password">
                         <div class="errors" id="errPassword">
-                            <!-- - A senha precisa conter pelo menos 6 caracteres! <br>
-                            - A senha precisa conter pelos menos 1 caractere especial! <br>
-                            - A senha precisa conter pelo menos 1 número! <br> -->
                         </div>
                     </div>
                     
