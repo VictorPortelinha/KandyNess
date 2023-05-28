@@ -1,5 +1,12 @@
 <?php
+session_start();
+require "../dbConnection/queries.php";
 
+if(isset($_SESSION)){
+    $matricula = $_SESSION['matricula'];
+    $idLoja = selectIdDaLoja($matricula);
+    
+}
 
 ?>
 
@@ -16,19 +23,26 @@
 </head>
 <body>
 
-<?php include "../HeaderKandyness/HeaderKandyness.php";?>
+<?php include "../HeaderKandyness/HeaderKandyness.php";
+    $row = selecionarLoja($idLoja);
+    foreach($row as $value=>$result):
+        $nomeLoja = $result['nome'];
+        $descLoja = $result['descricao'];
+        
+?>
 <div class="formContainer">
-        <form id="editLoja" action="">
+        <form id="editLoja" method="post" enctype="multipart/form-data" action="updateMinhaLoja.php">
+            <input type="hidden" label="<?php $matricula ?>"name="matricula" >
             <h1>Editar Loja</h1>
             <div class="control" style="margin-top: 30px;">
-                <label id="lbNomeLoja" for="nomeLoja">Nome da loja</label>
-                <input type="text" name="nomeLoja" id="nomeLoja">
+                <label id="lbNomeLoja" for="nomeLoja"></label>
+                <input type="text" placeholder="<?php echo $nomeLoja ?>" name="nomeLoja" id="nomeLoja">
                 <div style="margin-bottom: 30px;" class="errors" id="errNomeLoja"></div>
             </div>
             
-            <label id="lbDesc" for="descDiv">Descrição da loja</label>
+            <label id="lbDesc" for="descDiv"></label>
             <div class="control" name="descDiv">
-                <textarea name="desc" id="desc" rows="3" maxlength="100"></textarea>
+                <textarea name="desc" id="desc" placeholder="<?php echo $descLoja ?>" rows="3" maxlength="100"></textarea>
                 <div class="errors" id="errDesc"></div>
             </div>
             
@@ -42,6 +56,7 @@
             </div>
         </form>
     </div>
+    <?php endforeach; ?>
 </body>
 
 <script>

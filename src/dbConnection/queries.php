@@ -1,5 +1,10 @@
 <?php
 require "../dbConnection/connection.php";
+
+function updateMinhaLoja(){
+
+}
+
 function selectUsers($matricula){
     global $conn;
     $sql = "SELECT * from tb_usuario where matricula = " . $matricula;
@@ -70,6 +75,20 @@ function returnAutoIncrementValue(){
     $autoIncrementValue = $row['Auto_increment'];
     return $autoIncrementValue;
 }
+
+function selecionarLoja($idLoja){
+    global $conn;
+    $result = $conn->query("SELECT * from tb_lojas where id = " . $idLoja);
+    if($result->num_rows > 0){
+        
+        while($row = $result->fetch_assoc()){
+            $rows[] = $row;
+        }
+    return $rows;
+
+}
+}
+
 
 function selecionarTodasAsLojas(){
     global $conn; //declara a variavel como global para que ela possar ser recebida dentro da function. Está sendo recebida do arquivo connection.php

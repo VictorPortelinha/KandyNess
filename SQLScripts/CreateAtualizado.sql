@@ -25,7 +25,7 @@ CREATE TABLE TB_Usuario (
     matricula_imagem CHAR(8),
     PRIMARY KEY (id),
     FOREIGN KEY (matricula_imagem) REFERENCES TB_Usuario (matricula)
-) ;*/
+) ;
 
 /*create table TB_FAQ(
 	cod int NOT NULL AUTO_INCREMENT,
