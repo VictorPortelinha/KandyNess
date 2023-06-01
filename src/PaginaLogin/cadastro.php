@@ -30,9 +30,6 @@
                         <label for="password" id="lbPassword">Senha</label>
                         <input type="password" name="password" id="password">
                         <div class="errors" id="errPassword">
-                            <!-- - A senha precisa conter pelo menos 6 caracteres! <br>
-                            - A senha precisa conter pelos menos 1 caractere especial! <br>
-                            - A senha precisa conter pelo menos 1 número! <br> -->
                         </div>
                     </div>
                     
@@ -44,7 +41,7 @@
                     
                     <div class="control">
                         <label for="cpf" id="lbCpf">CPF</label>
-                        <input type="text" name="cpf" id="cpf">
+                        <input type="text" name="cpf" id="cpf" placeholder="Ex: 111.111.111-11">
                         <div class="errors" id="errCpf"><br>
                         </div>
                     </div>
@@ -159,7 +156,10 @@
                     numErros ++
                 }
 
-                
+                if(!validarCPF(cpf.value)){
+                    errCpf.innerHTML += "- Digite um CPF válido no formato especificado! <br>"
+                    numErros ++
+                }
 
                 if(numErros == 0){
                     first.classList.add("hidden")
@@ -245,6 +245,50 @@
             cpf.addEventListener("blur",() => {
                 cpfLbl.style.color = "lightgray"
             })
+
+function validarCPF(cpf) {
+    // Remover caracteres não numéricos
+    cpf = cpf.replace(/\D/g, '');
+
+    // Verificar se o CPF possui 11 dígitos
+    if (cpf.length !== 11) {
+        return false;
+    }
+
+    // Verificar se todos os dígitos são iguais 
+    if (/^(\d)\1+$/.test(cpf)) {
+        return false;
+    }
+
+    // Verificar o primeiro dígito verificador
+    let soma = 0;
+    for (let i = 0; i < 9; i++) {
+        soma += parseInt(cpf.charAt(i)) * (10 - i);
+    }
+    let digito1 = (soma * 10) % 11;
+    if (digito1 === 10) {
+        digito1 = 0;
+    }
+    if (digito1 !== parseInt(cpf.charAt(9))) {
+        return false;
+    }
+
+    // Verificar o segundo dígito verificador
+    soma = 0;
+    for (let i = 0; i < 10; i++) {
+        soma += parseInt(cpf.charAt(i)) * (11 - i);
+    }
+    let digito2 = (soma * 10) % 11;
+    if (digito2 === 10) {
+        digito2 = 0;
+    }
+    if (digito2 !== parseInt(cpf.charAt(10))) {
+        return false;
+    }
+
+    return true;
+}
+
 
         </script>
     </body>

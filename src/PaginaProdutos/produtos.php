@@ -16,7 +16,7 @@ session_start();
 <body>
 
     <?php include "../HeaderKandyness/HeaderKandyness.php";
-    $idLojaVendedor = 1;
+    $idLojaVendedor = $_SESSION['idLoja'];
     
     
     $idLoja = $_GET['idloja'];
@@ -26,7 +26,9 @@ session_start();
     
     ?>
     <!--Botão adcionar loja loja-->
-    <?php if($idLoja == $idLojaVendedor){ 
+    <?php
+
+    if($idLoja == $idLojaVendedor){ 
         // verfificar se o vendedor "logado" está dentro de sua própria loja, desativando a div de adição de produtos caso nao esteja
         ?>
     <div id="openAdd" class="absoluteLeft">
@@ -313,9 +315,9 @@ session_start();
                 errorsCounter++
             }
 
-            if(editDesc.value.length < 15){
+            if(editDesc.value.length < 5){
                 e.preventDefault()
-                descErrorsEdit.innerHTML = "A descrição precisa conter pelo menos 15 caracteres!"
+                descErrorsEdit.innerHTML = "A descrição precisa conter pelo menos 5 caracteres!"
                 errorsCounter++
             }
 
