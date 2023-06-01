@@ -6,6 +6,7 @@ $matriculaVendedor = $_SESSION['matricula'];
 $idLojaVendedor = $_SESSION['idLoja'];
 
 
+
 ?>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -52,7 +53,7 @@ $idLojaVendedor = $_SESSION['idLoja'];
     </div>
   
     
-    <dialog class="modalForm" id= "modalEdit">
+    <!-- <dialog class="modalForm" id= "modalEdit">
             <div class="modalDiv">
             <div style="color: blueviolet;"><h1>Editar produto</h1></div>
             
@@ -96,7 +97,7 @@ $idLojaVendedor = $_SESSION['idLoja'];
                 <div style="display: flex;height: 65px;justify-content: center;align-items: center;">
                     <button id="submitBtnEdit" class="submitBtn">Enviar</button>
                 </div>    
-            </form>
+            </form> -->
         </div>
 
 
@@ -107,91 +108,91 @@ $idLojaVendedor = $_SESSION['idLoja'];
     </dialog>
 
     <script>
-        const openEditModal = document.getElementById(id + "openEdit")
-        const editModal = document.getElementById(id + "modal")
-        openEditModal.addEventListener('click',() =>{
-            editModal.showModal()
-        })
+    //     const openEditModal = document.getElementById(id + "openEdit")
+    //     const editModal = document.getElementById(id + "modal")
+    //     openEditModal.addEventListener('click',() =>{
+    //         editModal.showModal()
+    //     })
 
-        editModal.addEventListener("click", e => {
-            const dialogDimensions = editModal.getBoundingClientRect()
-            if (
-                e.clientX < dialogDimensions.left ||
-                e.clientX > dialogDimensions.right ||
-                e.clientY < dialogDimensions.top ||
-                e.clientY > dialogDimensions.bottom
-        ) {
-        editModal.close()
-    }
-    })
+    //     editModal.addEventListener("click", e => {
+    //         const dialogDimensions = editModal.getBoundingClientRect()
+    //         if (
+    //             e.clientX < dialogDimensions.left ||
+    //             e.clientX > dialogDimensions.right ||
+    //             e.clientY < dialogDimensions.top ||
+    //             e.clientY > dialogDimensions.bottom
+    //     ) {
+    //     editModal.close()
+    // }
+    // })
 
 
-        const editForm = document.getElementById("editForm")
-        const editName = document.getElementById("editName")
-        const editPrice = document.getElementById("editPrice")
-        const submitFormEdit = document.getElementById("submitBtnEdit")
-        const editDesc = document.getElementById("editDesc")
-        const editCategoria = document.getElementById("editCat")
+    //     const editForm = document.getElementById("editForm")
+    //     const editName = document.getElementById("editName")
+    //     const editPrice = document.getElementById("editPrice")
+    //     const submitFormEdit = document.getElementById("submitBtnEdit")
+    //     const editDesc = document.getElementById("editDesc")
+    //     const editCategoria = document.getElementById("editCat")
         
-        const descErrorsEdit = document.getElementById("descErrorsEdit")
-        const nameErrorsEdit = document.getElementById("nameErrorsEdit")
-        const priceErrorsEdit = document.getElementById("priceErrorsEdit")
-        const catErrorsEdit = document.getElementById("catErrorsEdit")
-        //falta img dps
+    //     const descErrorsEdit = document.getElementById("descErrorsEdit")
+    //     const nameErrorsEdit = document.getElementById("nameErrorsEdit")
+    //     const priceErrorsEdit = document.getElementById("priceErrorsEdit")
+    //     const catErrorsEdit = document.getElementById("catErrorsEdit")
+    //     //falta img dps
     
         
-    submitForm.addEventListener("click",(e) => {
-            catErrorsEdit.innerHTML= "";
-            priceErrorsEdit.innerHTML = "";
-            nameErrorsEdit.innerHTML = "";
-            descErrorsEdit.innerHTML="";
+    // submitForm.addEventListener("click",(e) => {
+    //         catErrorsEdit.innerHTML= "";
+    //         priceErrorsEdit.innerHTML = "";
+    //         nameErrorsEdit.innerHTML = "";
+    //         descErrorsEdit.innerHTML="";
             
-            let errorsCounter = 0;
-            let priceRegex = /^\d+(\.\d{1,2})?$/;
-            let errors = []
-            let selectedOption = editCategoria.options[editCategoria.selectedIndex]
+    //         let errorsCounter = 0;
+    //         let priceRegex = /^\d+(\.\d{1,2})?$/;
+    //         let errors = []
+    //         let selectedOption = editCategoria.options[editCategoria.selectedIndex]
     
         
-            let nameRegex = /[0-9!@#$%^&*()_+=[\]{};':",./<>?\\|`~\-]/g;
-            if (editName.value.length < 3) {
-            errors.push("O nome precisa conter pelo menos 3 caracteres!");
-            errorsCounter++
-            }
-            if (nameRegex.test(editName.value)) {
-                errors.push("O nome só pode conter letras!");
-                errorsCounter++
-            }
+    //         let nameRegex = /[0-9!@#$%^&*()_+=[\]{};':",./<>?\\|`~\-]/g;
+    //         if (editName.value.length < 3) {
+    //         errors.push("O nome precisa conter pelo menos 3 caracteres!");
+    //         errorsCounter++
+    //         }
+    //         if (nameRegex.test(editName.value)) {
+    //             errors.push("O nome só pode conter letras!");
+    //             errorsCounter++
+    //         }
      
-            if (errors.length > 0) {
-                errorsCounter++
-                e.preventDefault();
-            errors.forEach(
-                (item) => (nameErrorsEdit.innerHTML += "- " + item + "<br>")
-            )}
+    //         if (errors.length > 0) {
+    //             errorsCounter++
+    //             e.preventDefault();
+    //         errors.forEach(
+    //             (item) => (nameErrorsEdit.innerHTML += "- " + item + "<br>")
+    //         )}
             
 
-            if(!priceRegex.test(editPrice.value)){
-                e.preventDefault();
-                priceErrorsEdit.innerHTML = "Digite o preço no formato especificado!"
-                errorsCounter++
-            }
+    //         if(!priceRegex.test(editPrice.value)){
+    //             e.preventDefault();
+    //             priceErrorsEdit.innerHTML = "Digite o preço no formato especificado!"
+    //             errorsCounter++
+    //         }
 
-            if(editDesc.value.length < 15){
-                e.preventDefault()
-                descErrorsEdit.innerHTML = "A descrição precisa conter pelo menos 15 caracteres!"
-                errorsCounter++
-            }
+    //         if(editDesc.value.length < 15){
+    //             e.preventDefault()
+    //             descErrorsEdit.innerHTML = "A descrição precisa conter pelo menos 15 caracteres!"
+    //             errorsCounter++
+    //         }
 
-            if(selectedOption.value == "null"){
-                e.preventDefault()
-                catErrorsEdit.innerHTML = "Selecione uma categoria!"
-                errorsCounter++
-            }
+    //         if(selectedOption.value == "null"){
+    //             e.preventDefault()
+    //             catErrorsEdit.innerHTML = "Selecione uma categoria!"
+    //             errorsCounter++
+    //         }
         
-            if(errorsCounter == 0){
-                editForm.submit()
-            }
-        })
+    //         if(errorsCounter == 0){
+    //             editForm.submit()
+    //         }
+    //     })
         
     </script>
 
