@@ -10,7 +10,7 @@ CREATE TABLE TB_Usuario (
     vendedor TINYINT(1),
     senha CHAR(16),
     PRIMARY KEY (matricula)
-) ;
+);
 
 
 
