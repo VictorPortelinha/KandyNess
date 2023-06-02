@@ -10,86 +10,82 @@
         <link rel="stylesheet" href="Styles/cadastro.css">
         
     </head>
-    <body>   
-    
-    <div class="about">
+    <body>
+        <div class="about"></div>   
+        <div class="cadastro">
+            <h1>Cadastro<span>.</span></h1>
+            <div class="first">
+                <form action="actionCadastro.php" method="post" enctype="multipart/form-data" id="cadastro">
+                
+                    <div class="control">
+                            <label for="name" id="lbName">Nome</label>
+                            <input type="text" name="name" id="name">
+                            <div class="errors" id="errName"></div>
+                        </div>
+                        
+                        <div class="control">
+                            <label for="password" id="lbPassword">Senha</label>
+                            <input type="password" name="password" id="password">
+                            <div class="errors" id="errPassword">
+                            </div>
+                        </div>
+                        
+                        <div class="control">
+                            <label for="matricula" id="lbMatricula">Matrícula</label>
+                            <input type="text" name="matricula" id="matricula">
+                            <div class="errors" id="errMatricula"></div>
+                        </div>
+                        
+                        <div class="control">
+                            <label for="cpf" id="lbCpf">CPF</label>
+                            <input type="text" name="cpf" id="cpf">
+                            <div class="errors" id="errCpf"><br>
+                            </div>
+                        </div>
 
-    </div>
-    <div class="cadastro">
-        <h1>Cadastro</h1>
-        <form action="actionCadastro.php" method="post" enctype="multipart/form-data" id="cadastro">
-            
-            <div id="first">
-                <div class="control">
-                        <label for="name" id="lbName">Nome</label>
-                        <input type="text" name="name" id="name">
-                        <div class="errors" id="errName"></div>
-                    </div>
-                    
-                    <div class="control">
-                        <label for="password" id="lbPassword">Senha</label>
-                        <input type="password" name="password" id="password">
-                        <div class="errors" id="errPassword">
+                        <div class="control button">
+                            <input type="button" id="continue" value="Continuar">
                         </div>
-                    </div>
-                    
-                    <div class="control">
-                        <label for="matricula" id="lbMatricula">Matrícula</label>
-                        <input type="text" name="matricula" id="matricula">
-                        <div class="errors" id="errMatricula"></div>
-                    </div>
-                    
-                    <div class="control">
-                        <label for="cpf" id="lbCpf">CPF</label>
-                        <input type="text" name="cpf" id="cpf" placeholder="Ex: 111.111.111-11">
-                        <div class="errors" id="errCpf"><br>
-                        </div>
+                </div>
+        </div>         
+
+                <div class="hidden" id="second">
+                    <label for="radio" style="color:white">Tipo de conta</label>
+                    <div class="radioDiv" name="radio">
+                        <input type="radio" id="cliente" name="userType" value="cliente" checked="checked">
+                        <label class="radioLabel" for="cliente">Cliente</label>
+                        <input type="radio" id="vendedor" name="userType" value="vendedor">
+                        <label class="radioLabel" for="vendedor">Vendedor</label>
                     </div>
 
                     <div class="control bottom">
-                        <input type="button" id="continue" value="Continuar">
+                        <input type="submit" value="Enviar">
                     </div>
-            </div>
+                </div>
+  
+    
+                <div id="third" class="hidden">
+                    <div class="control" style="margin-top: 30px;">
+                        <label id="lbNomeLoja" for="nomeLoja">Nome da loja</label>
+                        <input type="text" name="nomeLoja" id="nomeLoja">
+                        <div style="margin-bottom: 30px;" class="errors" id="errNomeLoja"></div>
+                    </div>
+                    
+                    <label id="lbDesc" for="descDiv">Descrição da loja</label>
+                    <div class="control" name="descDiv">
+                        <textarea name="desc" id="desc" rows="3" maxlength="100"></textarea>
+                        <div class="errors" id="errDesc"></div>
+                    </div>
+                    
+                    <div class="control">
+                        <label style="color:white" for="imgLoja">Imagem da loja</label>
+                        <input type="file" id="imgLoja" name="imgLoja" accept="image/png, image/jpeg">
+                    </div>
+                </div>
+                    
+                </form>
 
-            <div class="hidden" id="second">
-                <label for="radio" style="color:white">Tipo de conta</label>
-                <div class="radioDiv" name="radio">
-                    <input type="radio" id="cliente" name="userType" value="cliente" checked="checked">
-                    <label class="radioLabel" for="cliente">Cliente</label>
-                    <input type="radio" id="vendedor" name="userType" value="vendedor">
-                    <label class="radioLabel" for="vendedor">Vendedor</label>
-                </div>
-
-                <div class="control bottom">
-                    <input type="submit" value="Enviar">
-                </div>
-            </div>
-
-            
-            
-            <div id="third" class="hidden">
-                <div class="control" style="margin-top: 30px;">
-                    <label id="lbNomeLoja" for="nomeLoja">Nome da loja</label>
-                    <input type="text" name="nomeLoja" id="nomeLoja">
-                    <div style="margin-bottom: 30px;" class="errors" id="errNomeLoja"></div>
-                </div>
-                
-                <label id="lbDesc" for="descDiv">Descrição da loja</label>
-                <div class="control" name="descDiv">
-                    <textarea name="desc" id="desc" rows="3" maxlength="100"></textarea>
-                    <div class="errors" id="errDesc"></div>
-                </div>
-                
-                <div class="control">
-                    <label style="color:white" for="imgLoja">Imagem da loja</label>
-                    <input type="file" id="imgLoja" name="imgLoja" accept="image/png, image/jpeg">
-                </div>
-            </div>
-            
-            
-            
-        </form>
-    </div>
+        </div>
 
     
         

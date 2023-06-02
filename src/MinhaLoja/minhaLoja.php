@@ -32,7 +32,7 @@ if(isset($_SESSION)){
 ?>
 <div class="formContainer">
         <form id="editLoja" method="post" enctype="multipart/form-data" action="updateMinhaLoja.php">
-            <input type="hidden" label="<?php $matricula ?>"name="matricula" >
+            <input type="hidden" value="<?php echo $matricula ?>"name="matricula" >
             <h1>Editar Loja</h1>
             <div class="control" style="margin-top: 30px;">
                 <label id="lbNomeLoja" for="nomeLoja"></label>

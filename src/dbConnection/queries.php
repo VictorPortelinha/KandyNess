@@ -22,6 +22,13 @@ function insertNewLoja($nomeLoja,$descLoja,$matricula){
     $result = $conn->query("INSERT INTO tb_lojas(nome,descricao,matricula) VALUES ('$nomeLoja', '$descLoja', '$matricula')");
     return $result;
 }
+function updateLoja($newNomeLoja,$newDescLoja,$matricula,$idLoja){
+    global $conn;
+    $result = $conn->query("UPDATE tb_lojas
+    SET nome = '$newNomeLoja', descricao = '$newDescLoja'
+    WHERE id = $idLoja AND matricula = $matricula");
+    return $result;
+}
 
 function insertIntoUsers($nome,$matricula,$password,$cpf,$userType) {
     global $conn;
