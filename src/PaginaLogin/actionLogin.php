@@ -18,6 +18,7 @@ if(isset($row)){
         $_SESSION['matricula'] = $selectMatricula;
         $_SESSION['vendedor'] = $vendedor;
         $_SESSION['cpf'] = $cpf;
+        $_SESSION['carrinho'] = [];
         if($vendedor == 1){
             $_SESSION['idLoja'] = selectIdDaLoja($matricula);
         }
