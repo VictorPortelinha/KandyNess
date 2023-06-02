@@ -4,15 +4,13 @@
 body{
     background-attachment: fixed;
     background-image: linear-gradient(to bottom left, #FF4500, #8A2BE2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    overflow: hidden;
-    font-family: "Roboto",sans-serif;
-    color:  blueviolet;
-    padding: 0;
     margin: 0;
+	padding: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	font-family: 'Jost', sans-serif;
 }
 
 .errors{
@@ -26,60 +24,85 @@ body{
 }
 
 .loginContainer{
-    width: 30vw;
-    height: 70vh;
-    background-color: #f5f5f5;
-    border-radius: 3vmin;
-    opacity: 1;
-    box-shadow: 7px 7px 60px black;
-    padding: 30px 50px;
-    position: absolute;
-}
-
-.about{
-    width: 100vw;
-    height: 100vh;
-    background-color: white;
-    opacity: 0.2;
-    padding: 30px 150px;
-    color: blueviolet;
+    width: 350px;
+	height: 600px;
+	background: rgb(255 , 0, 0);
+	overflow: hidden;
+	background: linear-gradient(to bottom, #270f0f, #be2020, #351c1c);
+	border-radius: 10px;
+	box-shadow: 5px 20px 50px #000;
 }
 
 span{
+    color: rgb(172, 184, 17);
     margin: 0;
     padding: 0;
 }
 
 h1{
-    text-transform: uppercase;
-    font-size: 50px;
-    text-align: center;
-    margin-bottom: 2em;
-}
-label{
-    font-size: 25px;
-    transition: color .3s ease;
-    font-weight: bold;
+    color: #fff;
+	font-size: 3.0em;
+    align-items: center;
+	justify-content: center;
+	display: flex;
+	margin: 30px;
+	margin-bottom: 80px;
+	font-weight: bold;
+	cursor: pointer;
+	transition: .5s ease-in-out;
 }
 
+.control{
+    width: 60%;
+	height: 50px;
+	margin: 20px auto;
+	justify-content: left;
+	display: block;
+	color: #fff;
+	font-size: 1em;
+	font-weight: bold;
+	margin-top: 0px;
+	outline: none;
+	border: none;
+	border-radius: 5px;
+	transition: .2s ease-in;
+	cursor: pointer;
+}
+
+label{
+    color: #fff;
+	font-size: 1.5em;
+    align-items: center;
+	justify-content: center;
+	display: flex;
+	margin: 10px auto;
+	font-weight: bold;
+	cursor: pointer;
+	transition: .5s ease-in-out;  
+}
+
+
 .control input{
-    width: 100%;
-    display: block;
-    padding: 10px;
-    color: #222;
-    border: none;
-    outline: none;
-    margin: 1em 0;
-    font-size: 25px;
+    width: 70%;
+	height: 20px;
+	background: #e0dede;
+	justify-content: center;
+	display: flex;
+	margin: 10px auto;
+	padding: 10px;
+    border: 2px solid #ccc;
+	outline: none;
+	border-radius: 7px;
 }
 
 .control input[type="submit"]{
     background: blueviolet;
     color: #fff;
-    font-size: 30px;
-    margin-top: 50px;
+    font-size: 18px;
+    margin: 20px auto;
     opacity: 0.8;
-    transition: opacity .3s ease;
+    transition: .2s ease-in;
+    height: 20px;
 }
 
 .control input[type="submit"]:hover{
@@ -94,7 +117,7 @@ label{
 
 .link a {
     text-decoration: none;
-    color: orangered;
+    color: white;
     opacity: .6;
     transition: opacity .3s ease;
     

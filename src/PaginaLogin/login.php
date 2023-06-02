@@ -12,11 +12,8 @@
     </head>
     <body>
 
-    <div class="about">
-    </div>
-
-    <div class="loginContainer">
-            <h1>Login</h1>
+        <div class="loginContainer">
+            <h1>Login<span>.</span></h1>
             <form action="actionLogin.php" method="post" id="login">
                 <div class="control">
                     <label for="matricula" id="lbmatricula">Matrícula</label>
@@ -32,7 +29,6 @@
                 <div class="link">
                     <a href="cadastro.php">Não possui uma conta?</a>
                 </div>
-
             </form>
         </div>
          
