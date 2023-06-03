@@ -2,7 +2,7 @@
 session_start();
 isset($_SESSION['matricula']);
 if(isset($_SESSION['matricula'])){
-    $lol;
+    $pass;
 }else{
     header('location:http://localhost/webProjects/KandyNess/src/PaginaLogin/cadastro.php');
 }

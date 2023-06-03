@@ -164,12 +164,12 @@ function retornarFileName($idLoja,$idProduto){
 
 
 
-function insertNovosProdutos($idLoja,$nome,$categoria,$descricao,$valor){
+function insertNovosProdutos($idLoja,$nome,$categoria,$descricao,$valor,$estoque){
     global $conn;
 
 
-    $insertQuery = "INSERT INTO tb_produtos (id_loja, nome, valor, descricao, categoria)
-    VALUES ('$idLoja', '$nome', '$valor', '$descricao', '$categoria')";
+    $insertQuery = "INSERT INTO tb_produtos (id_loja, nome, valor, descricao, categoria,estoque)
+    VALUES ('$idLoja', '$nome', '$valor', '$descricao', '$categoria','$estoque')";
 
     $conn->query($insertQuery);
     
@@ -216,12 +216,12 @@ function removeProduct($idProduto,$idLoja){
     
 
 }
-function updateProduto($idProduto,$idLoja,$nomeProduto,$categoria,$descricaoProduto,$valor){
+function updateProduto($idProduto,$idLoja,$nomeProduto,$categoria,$descricaoProduto,$valor,$estoqueProduto){
     global $conn;
 
 
     $updateQuery = "UPDATE tb_produtos
-    SET nome = '$nomeProduto', valor = $valor, categoria = '$categoria', descricao = '$descricaoProduto'
+    SET nome = '$nomeProduto', valor = $valor, categoria = '$categoria', descricao = '$descricaoProduto' , estoque = '$estoqueProduto'
     WHERE id_loja = $idLoja AND id = $idProduto";
 
     $result = $conn->query($updateQuery);

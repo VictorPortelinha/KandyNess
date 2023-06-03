@@ -7,10 +7,10 @@ $nomeProduto = $_POST['nomeProduto'];
 $categoria = $_POST['categoriaProduto'];
 $descricaoProduto = $_POST['descProduto'];
 $valor = $_POST['precoProduto'];
+$estoque = $_POST['estoqueProduto'];
 
 
-
-$result = insertNovosProdutos($idLoja,$nomeProduto,$categoria,$descricaoProduto,$valor);
+$result = insertNovosProdutos($idLoja,$nomeProduto,$categoria,$descricaoProduto,$valor,$estoque);
 if($result){
     $idProduto = selectHighestId();
     

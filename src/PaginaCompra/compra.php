@@ -1,12 +1,17 @@
 <?php
 require "../dbConnection/queries.php";
+session_start();
+if(isset($_SESSION['matricula'])){
+    $pass;
+}else{
+    header('location:http://localhost/webProjects/KandyNess/src/PaginaLogin/cadastro.php');
+}
 
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+<head>    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página de compra</title>
@@ -15,20 +20,7 @@ require "../dbConnection/queries.php";
     <link rel="stylesheet" href="compraStyles/compra.css">
 </head>
 <body>
-
-    <?php include "../HeaderKandyness/HeaderKandyness.php";
-        // $idProduto = $_GET['idProduto'];
-        // $idLoja = $_GET['idLoja'];
-        // $rows = selectProdutoById($idProduto,$idLoja);
-        // foreach($rows as $value=>$result):
-        //     $idProduto = $result['id'];
-        //     $nomeProduto = $result['nome']; //valores vindos da query do banco de dados
-        //     $descricaoProduto = $result['descricao'];
-        //     $precoProduto = $result['valor'];
-        //     $categoriaProduto = $result['categoria'];
-        // endforeach;
-    ?>
-
+    <?php include "../HeaderKandyness/HeaderKandyness.php"; ?>
     <div class="containerCarrinho">
         <table>
             <thead>
@@ -40,8 +32,18 @@ require "../dbConnection/queries.php";
                 </tr>
             </thead>
             <tbody>
+            <?php 
+            $idProduto = $_GET['idProduto'];
+            $idLoja = $_GET['idLoja'];
+            $rows = selectProdutoById($idProduto,$idLoja);
+            foreach($rows as $value=>$result):
+            $idProduto = $result['id'];
+            $nomeProduto = $result['nome']; //valores vindos da query do banco de dados
+            $descricaoProduto = $result['descricao'];
+            $precoProduto = $result['valor'];
+            $categoriaProduto = $result['categoria'];?>
                 <tr>
-                    <td>Laranja</td>
+                    <td><?php echo $nomeProduto ?></td>
                     <td class="flex">
                         <div class="decrement">
                             <span style="color:white" class="material-symbols-outlined">remove</span>
@@ -56,9 +58,10 @@ require "../dbConnection/queries.php";
                             <span style="color:white" class="material-symbols-outlined">close</span>
                         </div>
                     </td>
-                    <td>R$ 50.00</td>
+                    <td><?php echo $precoProduto?></td>
                 </tr>
                 <tr>
+                <?php endforeach; ?>
                     <td colspan="2">
                         <input style="margin-left: 5vw;" type="button" value="Esvaziar carrinho">
                     </td>
@@ -70,6 +73,7 @@ require "../dbConnection/queries.php";
             
         </table>
     </div>
+    
     
 </body>
 

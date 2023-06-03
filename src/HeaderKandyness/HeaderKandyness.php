@@ -158,7 +158,7 @@ userProfile.addEventListener("click", () => {
         display:flex;
         align-items:center;
         gap: 20px;
-
+        z-index: 1;
     }
 
     .content a{

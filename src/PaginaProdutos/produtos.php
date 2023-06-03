@@ -1,7 +1,7 @@
-<?php
-require "../dbConnection/queries.php";
+<?php require "../dbConnection/queries.php";
 session_start();
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,6 +14,7 @@ session_start();
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 <body>
+    <div id="message" class="message hidden">Item adicionado ao carrinho!</div>
 
     <?php include "../HeaderKandyness/HeaderKandyness.php";
     $idLojaVendedor = $_SESSION['idLoja'];
@@ -81,6 +82,10 @@ session_start();
                 <label for="precoProduto">Preço do produto:</label>
                 <div class="addErrors" id="priceErrors"></div>
                 <input type="text" id="precoProduto" name="precoProduto" placeholder="Ex: 45.00">
+
+                <label for="estoqueProduto">Estoque do produto:</label>
+                <div class="addErrors" id="estoqueErrors"></div>
+                <input type="text" id="estoqueProduto" name="estoqueProduto" placeholder="Ex: 45">
         
                 
                 <div style="display: flex;height: 65px;justify-content: center;align-items: center;">
@@ -126,20 +131,28 @@ session_start();
                 <label for="precoProduto">Preço do produto:</label>
                 <div class="addErrors" id="priceErrorsEdit"></div>
                 <input value="<?php echo $precoProduto ?>" type="text" id="editPrice"  name="precoProduto" placeholder="Ex: 45.00">
-                
-                
-                
-                
+
+                <label for="editEstoque">Estoque do produto:</label>
+                <div class="addErrors" id="estoqueErrorsEdit"></div>
+                <input value="<?php echo $estoqueProduto ?>" type="text" id="editEstoque"  name="estoqueProduto" placeholder="Ex: 45">
+                         
                 <div style="display: flex;height: 65px;justify-content: center;align-items: center;">
                     <button id="submitBtnEdit" class="submitBtn">Enviar</button>
                 </div>    
             </form>
+
         </div>
-    
+
     
 </body>
 
 <script>
+
+    function showMessage(){
+        let message = document.getElementById("message");
+        message.style.opacity = "1"
+        setTimeout(() => {message.style.opacity = "0"},2000)
+    }
     // change text area
     
     function changeTextArea(valueTextArea){
@@ -156,7 +169,7 @@ session_start();
             alert("Você não pode comprar um produto de sua própria loja!")
         }
         else{
-            location.href = `../PaginaCompra/compra.php?idLoja=${idLoja}&idProduto=${idProduto}`
+            location.href = `../PaginaCompra/addProdutoCarrinho.php?idLoja=${idLoja}&idProduto=${idProduto}`
         }
         
     }
@@ -182,12 +195,14 @@ session_start();
     const submitForm = document.getElementById("submitBtn")
     const addDesc = document.getElementById("descProduto")
     const addCategoria = document.getElementById("categoriaProduto")
+    const addEstoque = document.getElementById("estoqueProduto")
 
     
     const descErrors = document.getElementById("descErrors")
     const addErrors = document.getElementById("addErrors")
     const priceErrors = document.getElementById("priceErrors")
     const catErrors = document.getElementById("catErrors")
+    const estoqueErrors = document.getElementById("estoqueErrors")
    
   
     
@@ -196,10 +211,13 @@ session_start();
         priceErrors.innerHTML = "";
         addErrors.innerHTML = "";
         descErrors.innerHTML="";
+        estoqueErrors.innerHTML = "";
+        
      
         
         let errorsCounter = 0;
         let priceRegex = /^\d+(\.\d{1,2})?$/;
+        let estoqueRegex = /[^0-9]/g
         let errors = []
         let selectedOption = addCategoria.options[addCategoria.selectedIndex]
       
@@ -240,6 +258,12 @@ session_start();
              catErrors.innerHTML = "Selecione uma categoria!"
              errorsCounter++
         }
+
+        if(estoqueRegex.test(addEstoque.value)){
+            e.preventDefault()
+            estoqueErrors.innerHTML = "Digite um valor numérico para o estoque!"
+            errorsCounter ++
+        }
     
         if(errorsCounter == 0){
             addForm.submit()
@@ -255,11 +279,13 @@ session_start();
         const submitFormEdit = document.getElementById("submitBtnEdit")
         const editDesc = document.getElementById("editDesc")
         const editCategoria = document.getElementById("editCat")
+        const editEstoque = document.getElementById("editEstoque")
         
         const descErrorsEdit = document.getElementById("descErrorsEdit")
         const nameErrorsEdit = document.getElementById("nameErrorsEdit")
         const priceErrorsEdit = document.getElementById("priceErrorsEdit")
         const catErrorsEdit = document.getElementById("catErrorsEdit")
+        const estoqueErrorsEdit = document.getElementById("estoqueErrorsEdit")
  
     
     function openEditForm(valueTextArea){
@@ -284,11 +310,13 @@ session_start();
             priceErrorsEdit.innerHTML = "";
             nameErrorsEdit.innerHTML = "";
             descErrorsEdit.innerHTML="";
+            estoqueErrorsEdit.innerHTML = "";
             
             let errorsCounter = 0;
             let priceRegex = /^\d+(\.\d{1,2})?$/;
             let errors = []
             let selectedOption = editCategoria.options[editCategoria.selectedIndex]
+            let estoqueRegex = /[^0-9]/g
     
         
             let nameRegex = /[0-9!@#$%^&*()_+=[\]{};':",./<>?\\|`~\-]/g;
@@ -326,6 +354,11 @@ session_start();
                 catErrorsEdit.innerHTML = "Selecione uma categoria!"
                 errorsCounter++
             }
+            if(estoqueRegex.test(editEstoque.value)){
+                e.preventDefault()
+                estoqueErrorsEdit.innerHTML = "Digite um valor numérico para o estoque!"
+                errorsCounter++
+            }
         
             if(errorsCounter == 0){
                 editForm.submit()
@@ -339,9 +372,43 @@ session_start();
 
 </script>
 
+<?php
+if(isset($_SESSION['addCarrinho'])){
+    $addCarrinho = $_SESSION['addCarrinho'];
+    if($addCarrinho == 1){
+        echo '<script type="text/javascript">',
+        'showMessage();',
+        '</script>';
+        $_SESSION['addCarrinho'] = 0;
+    ;
+    }
+}
+
+?>
+
+
 </html>
 
 <style>
+
+    
+
+    .message{
+        font-size: 35px;
+        color: darkgreen;
+        position: absolute;
+        background-color: lightgreen;
+        bottom: 30px;
+        right: 30px;
+        padding: 10px;
+        height: 50px;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+    }
 
      .center{
        position: absolute;
@@ -387,6 +454,7 @@ session_start();
         align-items: center;
         position: relative;
         box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
+        z-index: -1;
     }
 
     .add:Hover{

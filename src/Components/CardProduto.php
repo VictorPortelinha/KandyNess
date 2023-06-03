@@ -24,12 +24,12 @@ $idLojaVendedor = $_SESSION['idLoja'];
             $descricaoProduto = $result['descricao'];
             $precoProduto = $result['valor'];
             $categoriaProduto = $result['categoria'];
-            
+            $estoqueProduto = $result['estoque'];
             
     ?>
     
     <div class="cardGrid">
-        <div onclick="redirectPgCompra(<?php echo $idProduto?>,<?php echo $idLoja?>,<?php echo $idLojaVendedor?>)" class="card" style="border-radius: 1vmin;">
+        <div class="card" style="border-radius: 1vmin;">
         <div class="imgContainer">
             <img src=" ?>" alt="">
             <div class="crud">
@@ -49,6 +49,10 @@ $idLojaVendedor = $_SESSION['idLoja'];
             <div class="cardDesc"><?php echo "Descrição do produto:" . $descricaoProduto ?></div>
             <div class="divider"></div>
             <div class="price"><?php echo "Preço: R$ " . $precoProduto ?></div>
+            <div style="margin-top: 5px;" class="price"><?php echo "Quantidade : " . $estoqueProduto ?></div>
+            <div class="iconContainer green" onclick="redirectPgCompra(<?php echo $idProduto?>,<?php echo $idLoja?>,<?php echo $idLojaVendedor?>);event.stopPropagation();">
+                <span style="color: white;" class="material-symbols-outlined">shopping_cart</span>
+            </div>
         </div>
     </div>
         </div>
@@ -71,25 +75,19 @@ $idLojaVendedor = $_SESSION['idLoja'];
         <?php }
     }?>
 
-    
+
 
 <style>
     
 .card{
     background-color: #f5f5f5;
     width: 250px;
-    height: 320px;
+    height: 330px;
     display: flex;
     flex-direction: column;
     font-family: "Roboto",sans-serif;
     font-weight: lighter;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
-}
-
-.card:hover{
-    cursor: pointer;
-    filter: brightness(0.9);
-
 }
 
 .imgContainer{
@@ -138,6 +136,16 @@ $idLojaVendedor = $_SESSION['idLoja'];
 
 .blue{
     background-color: #2196F3;
+}
+
+.green{
+    margin-left: 205px;
+    margin-bottom: 5px;
+    background-color: green;
+}
+
+.hidden{
+    display: none;
 }
 
 .join{

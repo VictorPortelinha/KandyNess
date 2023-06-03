@@ -18,10 +18,16 @@ if(isset($row)){
         $_SESSION['matricula'] = $selectMatricula;
         $_SESSION['vendedor'] = $vendedor;
         $_SESSION['cpf'] = $cpf;
+        $_SESSION['carrinho'] = [];
         if($vendedor == 1){
             $_SESSION['idLoja'] = selectIdDaLoja($matricula);
+            $idLoja = $_SESSION['idLoja'];
+            header('location:http://localhost/webProjects/KandyNess/src/PaginaProdutos/produtos.php?idloja='.$idLoja);
+        }else{
+            $_SESSION['idLoja'] = -1;
+            header("location:http://localhost/webProjects/KandyNess/src/PaginaVendedores/vendedores.php");
         }
-        header("location:http://localhost/webProjects/KandyNess/src/PaginaVendedores/vendedores.php");
+        
         
     }else{
         echo "senha incorreta"; // fazer lógica para retornar ao front end

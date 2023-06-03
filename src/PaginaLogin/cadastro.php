@@ -193,29 +193,31 @@
                         third.classList.add("hidden")
                         nomeLoja.value = ""
                         desc.value = ""
-                }
+                    }
                 }
             )})
-            
+
             form.addEventListener("submit",(e) => {
-                clearErrors([errNomeLoja,errDesc])
-                let nameRegex = /[0-9!@#$%^&*()_+=[\]{};':",./<>?\\|`~\-]/g;
-                if(nameRegex.test(nomeLoja.value)){
-                        e.preventDefault()
-                        errNomeLoja.innerHTML += "- O nome da loja só pode conter letras! <br>"  
-                        }
-                if(nomeLoja.value.length < 3){
-                        e.preventDefault()
-                        errNomeLoja.innerHTML += "- O nome da loja precisa conter pelo menos 3 caracteres! <br>"
-    
-                        }
-                if(desc.value.length < 5){
-                        e.preventDefault()
-                        errDesc.innerHTML += "- A descrição precisa conter pelo menos 5 caracteres! <br>"
-                        }
+                let selectedOption = document.querySelector('input[name="userType"]:checked');
+                if(selectedOption.value == "vendedor"){
+                    clearErrors([errNomeLoja,errDesc])
+                    let nameRegex = /[0-9!@#$%^&*()_+=[\]{};':",./<>?\\|`~\-]/g;
+                    if(nameRegex.test(nomeLoja.value)){
+                            e.preventDefault()
+                            errNomeLoja.innerHTML += "- O nome da loja só pode conter letras! <br>"  
+                            }
+                    if(nomeLoja.value.length < 3){
+                            e.preventDefault()
+                            errNomeLoja.innerHTML += "- O nome da loja precisa conter pelo menos 3 caracteres! <br>"
+        
+                            }
+                    if(desc.value.length < 5){
+                            e.preventDefault()
+                            errDesc.innerHTML += "- A descrição precisa conter pelo menos 5 caracteres! <br>"
+                            }
+                }
             })
-
-
+            
 
             function clearErrors(errors){
                 errors.forEach(error => {
@@ -277,16 +279,16 @@ function validarCPF(strCPF) {
     for (i=1; i<=9; i++) Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (11 - i);
     Resto = (Soma * 10) % 11;
 
-        if ((Resto == 10) || (Resto == 11))  Resto = 0;
-        if (Resto != parseInt(strCPF.substring(9, 10)) ) return false;
+    if ((Resto == 10) || (Resto == 11))  Resto = 0;
+    if (Resto != parseInt(strCPF.substring(9, 10)) ) return false;
 
     Soma = 0;
-        for (i = 1; i <= 10; i++) Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (12 - i);
-        Resto = (Soma * 10) % 11;
+    for (i = 1; i <= 10; i++) Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (12 - i);
+    Resto = (Soma * 10) % 11;
 
-        if ((Resto == 10) || (Resto == 11))  Resto = 0;
-        if (Resto != parseInt(strCPF.substring(10, 11) ) ) return false;
-        return true;
+    if ((Resto == 10) || (Resto == 11))  Resto = 0;
+    if (Resto != parseInt(strCPF.substring(10, 11) ) ) return false;
+    return true;
 
 }
 
