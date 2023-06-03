@@ -10,82 +10,94 @@
         <link rel="stylesheet" href="Styles/cadastro.css">
         
     </head>
-    <body>
-        <div class="about"></div>   
-        <div class="cadastro">
-            <h1>Cadastro<span>.</span></h1>
-            <div class="first">
-                <form action="actionCadastro.php" method="post" enctype="multipart/form-data" id="cadastro">
-                
+    <body>   
+    
+    <div class="about">
+
+    </div>
+    <div class="cadastro">
+        <h1>Cadastro</h1>
+        <form action="actionCadastro.php" method="post" enctype="multipart/form-data" id="cadastro">
+            
+            <div id="first">
+                <div class="control">
+                        <label for="name" id="lbName">Nome</label>
+                        <input type="text" name="name" id="name">
+                        <div class="errors" id="errName"></div>
+                    </div>
+                    
                     <div class="control">
-                            <label for="name" id="lbName">Nome</label>
-                            <input type="text" name="name" id="name">
-                            <div class="errors" id="errName"></div>
+                        <label for="password" id="lbPassword">Senha</label>
+                        <input type="password" name="password" id="password">
+                        <div class="errors" id="errPassword">
                         </div>
-                        
-                        <div class="control">
-                            <label for="password" id="lbPassword">Senha</label>
-                            <input type="password" name="password" id="password">
-                            <div class="errors" id="errPassword">
-                            </div>
-                        </div>
-                        
-                        <div class="control">
-                            <label for="matricula" id="lbMatricula">Matrícula</label>
-                            <input type="text" name="matricula" id="matricula">
-                            <div class="errors" id="errMatricula"></div>
-                        </div>
-                        
-                        <div class="control">
-                            <label for="cpf" id="lbCpf">CPF</label>
-                            <input type="text" name="cpf" id="cpf">
-                            <div class="errors" id="errCpf"><br>
-                            </div>
-                        </div>
+                    </div>
 
-                        <div class="control button">
-                            <input type="button" id="continue" value="Continuar">
+                    <div class="control">
+                        <label for="confirm" id="lbConfirm">Confirmar senha</label>
+                        <input type="password" name="confirm" id="confirm">
+                        <div class="errors" id="errConfirm">
                         </div>
-                </div>
-        </div>         
-
-                <div class="hidden" id="second">
-                    <label for="radio" style="color:white">Tipo de conta</label>
-                    <div class="radioDiv" name="radio">
-                        <input type="radio" id="cliente" name="userType" value="cliente" checked="checked">
-                        <label class="radioLabel" for="cliente">Cliente</label>
-                        <input type="radio" id="vendedor" name="userType" value="vendedor">
-                        <label class="radioLabel" for="vendedor">Vendedor</label>
+                    </div>
+                    
+                    <div class="control">
+                        <label for="matricula" id="lbMatricula">Matrícula</label>
+                        <input type="text" name="matricula" id="matricula">
+                        <div class="errors" id="errMatricula"></div>
+                    </div>
+                    
+                    <div class="control">
+                        <label for="cpf" id="lbCpf">CPF</label>
+                        <input type="text" name="cpf" id="cpf" placeholder="Ex: 11111111111">
+                        <div class="errors" id="errCpf"><br>
+                        </div>
                     </div>
 
                     <div class="control bottom">
-                        <input type="submit" value="Enviar">
+                        <input type="button" id="continue" value="Continuar">
                     </div>
-                </div>
-  
-    
-                <div id="third" class="hidden">
-                    <div class="control" style="margin-top: 30px;">
-                        <label id="lbNomeLoja" for="nomeLoja">Nome da loja</label>
-                        <input type="text" name="nomeLoja" id="nomeLoja">
-                        <div style="margin-bottom: 30px;" class="errors" id="errNomeLoja"></div>
-                    </div>
-                    
-                    <label id="lbDesc" for="descDiv">Descrição da loja</label>
-                    <div class="control" name="descDiv">
-                        <textarea name="desc" id="desc" rows="3" maxlength="100"></textarea>
-                        <div class="errors" id="errDesc"></div>
-                    </div>
-                    
-                    <div class="control">
-                        <label style="color:white" for="imgLoja">Imagem da loja</label>
-                        <input type="file" id="imgLoja" name="imgLoja" accept="image/png, image/jpeg">
-                    </div>
-                </div>
-                    
-                </form>
+            </div>
 
-        </div>
+            <div class="hidden" id="second">
+                <label for="radio" style="color:white">Tipo de conta</label>
+                <div class="radioDiv" name="radio">
+                    <input type="radio" id="cliente" name="userType" value="cliente" checked="checked">
+                    <label class="radioLabel" for="cliente">Cliente</label>
+                    <input type="radio" id="vendedor" name="userType" value="vendedor">
+                    <label class="radioLabel" for="vendedor">Vendedor</label>
+                </div>
+
+                <div class="control bottom">
+                    <input type="submit" value="Enviar">
+                </div>
+            </div>
+
+            
+            
+            <div id="third" class="hidden">
+                <div class="control" style="margin-top: 30px;">
+                    <label id="lbNomeLoja" for="nomeLoja">Nome da loja</label>
+                    <input type="text" name="nomeLoja" id="nomeLoja">
+                    <div style="margin-bottom: 30px;" class="errors" id="errNomeLoja"></div>
+                </div>
+                
+                <label id="lbDesc" for="descDiv">Descrição da loja</label>
+                <div class="control" name="descDiv">
+                    <textarea name="desc" id="desc" rows="3" maxlength="100"></textarea>
+                    <div class="errors" id="errDesc"></div>
+                </div>
+                
+                <div class="control">
+                    <label style="color:white" for="imgLoja">Imagem da loja</label>
+                    <input type="file" id="imgLoja" name="imgLoja" accept="image/png, image/jpeg">
+                </div>
+            </div>
+            
+            
+            
+        </form>
+    </div>
+
 
     
         
@@ -101,6 +113,7 @@
             //divs de erros
             const errName = document.getElementById("errName")
             const errPassword = document.getElementById("errPassword")
+            const errConfirm = document.getElementById("errConfirm")
             const errMatricula = document.getElementById("errMatricula")
             const errCpf = document.getElementById("errCpf")
             const errNomeLoja = document.getElementById("errNomeLoja")
@@ -110,6 +123,7 @@
             //primeiro form
             const username = document.getElementById("name")
             const password = document.getElementById("password")
+            const confirm = document.getElementById("confirm")
             const matricula = document.getElementById("matricula")
             const cpf = document.getElementById("cpf")
             //segundo
@@ -121,7 +135,7 @@
 
            //verificação do primeiro form e display do segundo
             continueBtn.addEventListener("click",() => {
-                clearErrors([errName,errPassword,errMatricula,errCpf])
+                clearErrors([errName,errPassword,errMatricula,errCpf,errConfirm])
                 let numErros = 0;
                 
                 let nameRegex = /[0-9!@#$%^&*()_+=[\]{};':",./<>?\\|`~\-]/g;
@@ -142,6 +156,10 @@
                 if(password.value.length > 16){
                     errPassword.innerHTML += "- A senha pode conter no máximo 16 caracteres! <br>"
                     numErros ++
+                
+                }
+                if(confirm.value != password.value){
+                    errConfirm.innerHTML += "- As senhas não correspondem!"
                 }
                 if(matricula.value.length != 8){
                     errMatricula.innerHTML += "- A matrícula precisa exatamente 8 números! <br>"
@@ -152,7 +170,7 @@
                     numErros ++
                 }
 
-                if(!validarCPF(cpf.value)){
+                if(!validarCPF(cpf.value) || /[^a-zA-Z0-9]/.test(cpf.value)){
                     errCpf.innerHTML += "- Digite um CPF válido no formato especificado! <br>"
                     numErros ++
                 }
@@ -209,6 +227,7 @@
             const nameLbl = document.getElementById("lbName")
             const passwordLbl = document.getElementById("lbPassword")
             const matriculaLbl = document.getElementById("lbMatricula")
+            const confirmLbl = document.getElementById("lbConfirm")
             const cpfLbl = document.getElementById("lbCpf")
             const lojaLbl = document.getElementById("lbLoja")
             const descLbl = document.getElementById("lbDesc")
@@ -242,47 +261,33 @@
                 cpfLbl.style.color = "lightgray"
             })
 
-function validarCPF(cpf) {
-    // Remover caracteres não numéricos
-    cpf = cpf.replace(/\D/g, '');
+            confirm.addEventListener("focus",() => {
+                confirmLbl.style.color= "white"
+            })
+            confirm.addEventListener("blur",() => {
+                confirmLbl.style.color = "lightgray"
+            })
 
-    // Verificar se o CPF possui 11 dígitos
-    if (cpf.length !== 11) {
-        return false;
-    }
+function validarCPF(strCPF) {
+    let Soma;
+    let Resto;
+    Soma = 0;
+    if (strCPF == "00000000000") return false;
 
-    // Verificar se todos os dígitos são iguais 
-    if (/^(\d)\1+$/.test(cpf)) {
-        return false;
-    }
+    for (i=1; i<=9; i++) Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (11 - i);
+    Resto = (Soma * 10) % 11;
 
-    // Verificar o primeiro dígito verificador
-    let soma = 0;
-    for (let i = 0; i < 9; i++) {
-        soma += parseInt(cpf.charAt(i)) * (10 - i);
-    }
-    let digito1 = (soma * 10) % 11;
-    if (digito1 === 10) {
-        digito1 = 0;
-    }
-    if (digito1 !== parseInt(cpf.charAt(9))) {
-        return false;
-    }
+        if ((Resto == 10) || (Resto == 11))  Resto = 0;
+        if (Resto != parseInt(strCPF.substring(9, 10)) ) return false;
 
-    // Verificar o segundo dígito verificador
-    soma = 0;
-    for (let i = 0; i < 10; i++) {
-        soma += parseInt(cpf.charAt(i)) * (11 - i);
-    }
-    let digito2 = (soma * 10) % 11;
-    if (digito2 === 10) {
-        digito2 = 0;
-    }
-    if (digito2 !== parseInt(cpf.charAt(10))) {
-        return false;
-    }
+    Soma = 0;
+        for (i = 1; i <= 10; i++) Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (12 - i);
+        Resto = (Soma * 10) % 11;
 
-    return true;
+        if ((Resto == 10) || (Resto == 11))  Resto = 0;
+        if (Resto != parseInt(strCPF.substring(10, 11) ) ) return false;
+        return true;
+
 }
 
 

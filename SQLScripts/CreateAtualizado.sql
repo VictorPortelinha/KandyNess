@@ -10,7 +10,7 @@ CREATE TABLE TB_Usuario (
     vendedor TINYINT(1),
     senha CHAR(16),
     PRIMARY KEY (matricula)
-) ;
+) 
 
 
 
@@ -105,6 +105,7 @@ create table TB_Produtos (
     valor float,
     categoria varchar(30),
     descricao varchar(60),
+    estoque int,
     foreign key (id_loja) references TB_Lojas(id)
     
 );
