@@ -1,8 +1,12 @@
 <?php
 require "../dbConnection/connection.php";
 
-function updateMinhaLoja(){
+function atualizarEstoque($idLoja,$quantidade,$idProduto){
+    global $conn;
 
+    $result =$conn->query("UPDATE tb_produtos
+    SET estoque = estoque -'$quantidade'
+    WHERE id = '$idProduto' and id_loja = '$idLoja'");
 }
 
 function selectUsers($matricula){

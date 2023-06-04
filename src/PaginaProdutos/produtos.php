@@ -391,8 +391,6 @@ if(isset($_SESSION['addCarrinho'])){
 
 <style>
 
-    
-
     .message{
         font-size: 35px;
         color: darkgreen;
@@ -454,7 +452,7 @@ if(isset($_SESSION['addCarrinho'])){
         align-items: center;
         position: relative;
         box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
-        z-index: -1;
+        z-index: 1;
     }
 
     .add:Hover{
@@ -583,6 +581,11 @@ textarea{
     position: absolute;
     margin: auto;
     width: 30%;
+}
+
+.submitBtn:hover{
+    cursor: pointer;
+    filter: brightness(0.8);
 }
 
 .addErrors{

@@ -92,7 +92,7 @@ userProfile.addEventListener("click", () => {
         flex-direction: column;
         align-items: center;
         box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
-
+        z-index: 2;
     }
 
     .logout{

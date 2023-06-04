@@ -90,7 +90,7 @@ if(isset($_GET['addQuantidade']) && isset($_GET['indexProduto'])) {
                         <input onclick="deleteCarrinho(<?php echo $i ?>)" style="margin-left: 5vw;" type="button" value="Esvaziar carrinho">
                     </td>
                     <td colspan="2">
-                    <input style="border-color: green;background:green"  type="button" value="Finalizar compra">
+                    <input type="submit" style="border-color: green;background:green"  type="button" value="Finalizar compra">
                     </td>
                 </tr>
                 </form>
