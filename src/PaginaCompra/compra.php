@@ -33,15 +33,19 @@ if(isset($_SESSION['matricula'])){
             </thead>
             <tbody>
             <?php 
-            $idProduto = $_GET['idProduto'];
-            $idLoja = $_GET['idLoja'];
-            $rows = selectProdutoById($idProduto,$idLoja);
-            foreach($rows as $value=>$result):
-            $idProduto = $result['id'];
-            $nomeProduto = $result['nome']; //valores vindos da query do banco de dados
-            $descricaoProduto = $result['descricao'];
-            $precoProduto = $result['valor'];
-            $categoriaProduto = $result['categoria'];?>
+            if(isset($_SESSION['carrinho'])){
+            $carrinho = $_SESSION['carrinho'];
+            
+            for($i = 0; $i < count($carrinho);$i++){
+                $idProduto = $carrinho[$i][0];
+                $idLoja = $carrinho[$i][1];
+                $rows = selectProdutoById($idProduto,$idLoja);
+                foreach($rows as $value=>$result):
+                $nomeProduto = $result['nome']; //valores vindos da query do banco de dados
+                $precoProduto = $result['valor'];
+               
+                
+            ?>
                 <tr>
                     <td><?php echo $nomeProduto ?></td>
                     <td class="flex">
@@ -61,7 +65,7 @@ if(isset($_SESSION['matricula'])){
                     <td><?php echo $precoProduto?></td>
                 </tr>
                 <tr>
-                <?php endforeach; ?>
+                <?php endforeach;}} ?>
                     <td colspan="2">
                         <input style="margin-left: 5vw;" type="button" value="Esvaziar carrinho">
                     </td>

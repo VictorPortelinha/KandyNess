@@ -4,13 +4,14 @@ session_start();
 $idProduto = $_GET['idProduto'];
 $idLoja = $_GET['idLoja'];
 
-$carrinho = $_SESSION['carrinho'];
+
 $_SESSION['addCarrinho'] = 1;
+$arrayProduto = array($idProduto,$idLoja);
+array_push($_SESSION['carrinho'],$arrayProduto);
 
-$arrayProduto = selectProdutoById($idProduto,$idLoja);
-array_push($carrinho,...$arrayProduto);
 
+print_r($_SESSION['carrinho']);
 
-header('location:http://localhost/webProjects/KandyNess/src/PaginaProdutos/produtos.php?idloja='.$idLoja)
+//header('location:http://localhost/webProjects/KandyNess/src/PaginaProdutos/produtos.php?idloja='.$idLoja)
 
 ?>
