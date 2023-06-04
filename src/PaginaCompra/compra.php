@@ -6,6 +6,25 @@ if(isset($_SESSION['matricula'])){
 }else{
     header('location:http://localhost/webProjects/KandyNess/src/PaginaLogin/cadastro.php');
 }
+if(isset($_GET['addQuantidade']) && isset($_GET['indexProduto'])) {
+    $index = $_GET['indexProduto'];
+    $quantidade = $_GET['addQuantidade'];
+    $quantidade += 1;
+    $_SESSION['carrinho'][$index][2] = $quantidade;
+}elseif(isset($_GET['subQuantidade']) && isset($_GET['indexProduto'])){
+    $index = $_GET['indexProduto'];
+    $quantidade = $_GET['subQuantidade'];
+    $quantidade -= 1;
+    $_SESSION['carrinho'][$index][2] = $quantidade;
+}elseif(isset($_GET['indexRemoverProduto'])){
+    $index = $_GET['indexRemoverProduto'];
+    $removeCarrinho = $_SESSION['carrinho'];
+    unset($removeCarrinho[$index]);
+    $_SESSION['carrinho'] = array_values($removeCarrinho);
+}elseif(isset($_GET['indexRemoverTodosProdutos'])) {
+    unset($_SESSION['carrinho']);
+}
+
 
 ?>
 
@@ -39,26 +58,27 @@ if(isset($_SESSION['matricula'])){
             for($i = 0; $i < count($carrinho);$i++){
                 $idProduto = $carrinho[$i][0];
                 $idLoja = $carrinho[$i][1];
+                $quantidade = $carrinho[$i][2];
                 $rows = selectProdutoById($idProduto,$idLoja);
                 foreach($rows as $value=>$result):
                 $nomeProduto = $result['nome']; //valores vindos da query do banco de dados
                 $precoProduto = $result['valor'];
-               
                 
-            ?>
+            ?>  
+                <form method="POST" action="finalizarCompra.php">
                 <tr>
                     <td><?php echo $nomeProduto ?></td>
                     <td class="flex">
-                        <div class="decrement">
+                        <div onclick="subtrairItem(<?php echo $i ?>,<?php echo $quantidade ?>)" class="decrement">
                             <span style="color:white" class="material-symbols-outlined">remove</span>
                         </div>
-                        <div class="num">2</div>
-                        <div class="increment">
+                        <div class="num"><?php echo $quantidade ?></div>
+                        <div onclick="adcionarItem(<?php echo $i ?>,<?php echo $quantidade ?>)" class="increment">
                             <span style="color:white" class="material-symbols-outlined">add</span>
                         </div>
                     </td>
                     <td >
-                        <div class="remove">
+                        <div onclick="removerItem(<?php echo $i ?>)" class="remove">
                             <span style="color:white" class="material-symbols-outlined">close</span>
                         </div>
                     </td>
@@ -67,17 +87,32 @@ if(isset($_SESSION['matricula'])){
                 <tr>
                 <?php endforeach;}} ?>
                     <td colspan="2">
-                        <input style="margin-left: 5vw;" type="button" value="Esvaziar carrinho">
+                        <input onclick="deleteCarrinho(<?php echo $i ?>)" style="margin-left: 5vw;" type="button" value="Esvaziar carrinho">
                     </td>
                     <td colspan="2">
                     <input style="border-color: green;background:green"  type="button" value="Finalizar compra">
                     </td>
                 </tr>
+                </form>
             </tbody>
             
         </table>
     </div>
-    
+    <script>
+        function adcionarItem(index,quantidade){
+            location.href = `./compra.php?indexProduto=${index}&addQuantidade=${quantidade}`
+        }
+        function subtrairItem(index,quantidade){
+            location.href = `./compra.php?indexProduto=${index}&subQuantidade=${quantidade}`
+        }
+        function removerItem(index){
+            location.href = `./compra.php?indexRemoverProduto=${index}`
+        }
+        function deleteCarrinho(index){
+            location.href = `./compra.php?indexRemoverTodosProdutos=${index}`
+        }
+            
+    </script>
     
 </body>
 
