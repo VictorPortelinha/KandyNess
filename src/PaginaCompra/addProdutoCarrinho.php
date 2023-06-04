@@ -10,8 +10,8 @@ $arrayProduto = array($idProduto,$idLoja);
 array_push($_SESSION['carrinho'],$arrayProduto);
 
 
-print_r($_SESSION['carrinho']);
 
-//header('location:http://localhost/webProjects/KandyNess/src/PaginaProdutos/produtos.php?idloja='.$idLoja)
+
+header('location:http://localhost/webProjects/KandyNess/src/PaginaProdutos/produtos.php?idloja='.$idLoja)
 
 ?>
