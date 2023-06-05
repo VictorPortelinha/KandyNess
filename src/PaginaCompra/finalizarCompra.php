@@ -9,11 +9,12 @@ for($i = 0; $i < count($carrinho);$i++){
     $idLoja = $carrinho[$i][1];
     $quantidade = $carrinho[$i][2];
     $rows = atualizarEstoque($idLoja,$quantidade,$idProduto);
+    echo $rows;
     if($rows == 0){
         $_SESSION['erros'] = [];
         array_push($_SESSION['erros'],'Falha na compra: A quantidade de um dos itens da compra é maior que o que há em estoque');
         array_push($_SESSION['erros'],'tente novamente com uma quantidade menor de itens');
-        $_SESSION['compraFinalizada'] = 0;
+        $_SESSION['compraFinalizada'] = 2;
         $_SESSION['carrinho'] = [];
         header("location:http://localhost/webProjects/KandyNess/src/FinalizarCompra/compraFinalizada.php");
     }
@@ -21,7 +22,7 @@ for($i = 0; $i < count($carrinho);$i++){
 }
 $_SESSION['compraFinalizada'] = 1;
 
-header("location:http://localhost/webProjects/KandyNess/src/FinalizarCompra/compraFinalizada.php")
+header("location:http://localhost/webProjects/KandyNess/src/FinalizarCompra/compraFinalizada.php");
 
 
 ?>

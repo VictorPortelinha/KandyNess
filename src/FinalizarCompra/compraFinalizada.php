@@ -26,7 +26,7 @@ if(!isset($_SESSION['compraFinalizada'])){
             
         </h1>
         <h1 class="red">
-          <?php if($_SESSION['compraFinalizada'] == 0){
+          <?php if($_SESSION['compraFinalizada'] == 2){
               for($i = 0;$i<count($_SESSION['erros']);$i++){ ?>
               <span> <?php echo $_SESSION['erros'][$i] ?></span>
               <br>
