@@ -21,7 +21,7 @@ if(!isset($_SESSION['erros'])){
             <br>
             <?php } ?>
         </h1>
-        <a href="../PaginaLogin/cadastro.php" >Voltar ao cadastro</a>
+        <a href="../PaginaLogin/login.php" >Voltar ao login</a>
         <?php session_destroy(); ?>
     </div>
 </body>

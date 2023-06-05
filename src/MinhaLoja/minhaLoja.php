@@ -46,11 +46,7 @@ if(isset($_SESSION)){
                 <div class="errors" id="errDesc"></div>
             </div>
             
-            <div class="control">
-                <label style="color:white" for="imgLoja">Imagem da loja</label>
-                <input type="file" id="imgLoja" name="imgLoja" accept="image/png, image/jpeg">
-            </div>
-
+            
             <div class="control">
                 <input type="submit" value="Enviar">
             </div>

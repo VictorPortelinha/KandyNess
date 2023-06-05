@@ -29,7 +29,7 @@ function atualizarEstoque($idLoja,$quantidade,$idProduto){
         $result =$conn->query("UPDATE tb_produtos
         SET estoque = estoque -'$quantidade'
         WHERE id = '$idProduto' and id_loja = '$idLoja'");
-        return $result;
+        return true;
     }else{
         return false;
     }
