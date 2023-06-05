@@ -4,8 +4,13 @@ require "../dbConnection/queries.php";
 
 $matricula = $_POST['matricula'];
 $password = $_POST['password'];
-
+$_SESSION['erroMatricula'] = '';
+$_SESSION['senhaIncorreta'] = '';
 $row = selectUsers($matricula);
+if($row == false){
+    $_SESSION['erroMatricula'] = "Usuario não encontrado, tente novamente";
+}
+
 if(isset($row)){
     foreach($row as $value=>$result):
     $selectMatricula = $result['matricula'];
@@ -14,6 +19,8 @@ if(isset($row)){
     $vendedor = $result['vendedor'];
     $cpf = $result['cpf'];
     if($selectMatricula == $matricula && $selectPassword == $password){
+        $_SESSION['erroMatricula'] = '';
+        $_SESSION['senhaIncorreta'] = '';
         $_SESSION['nome'] = $nome;
         $_SESSION['matricula'] = $selectMatricula;
         $_SESSION['vendedor'] = $vendedor;
@@ -29,12 +36,15 @@ if(isset($row)){
         }
         
         
-    }else{
-        echo "senha incorreta"; // fazer lógica para retornar ao front end
+    }elseif($selectPassword != $password){
+        $_SESSION['senhaIncorreta'] = "Senha incorreta, tente novamente!";
+        echo "tchau";
     }
     endforeach;
-}else{
-    echo "Não há usuarios cadastrados";
+
+}
+if($_SESSION['erroMatricula'] != '' || $_SESSION['senhaIncorreta'] != ''){
+    header("location:http://localhost/webProjects/KandyNess/src/PaginaLogin/login.php");
 }
 
 

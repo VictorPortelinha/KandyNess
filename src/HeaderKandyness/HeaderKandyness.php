@@ -1,3 +1,8 @@
+<?php
+if(!isset($_SESSION)){
+header("location:http://localhost/webProjects/KandyNess/src/PaginaLogin/login.php");} ?>
+
+
 <header class="container">
     <div class="burgerContainer" onclick="openMenu()">
         <div class="ham">
@@ -15,15 +20,34 @@
         <div class="content" onclick="location.href='../PaginaVendedores/vendedores.php'">
             <h1>LOJAS</h1>
         </div>
+        <?php 
+        if(isset($_SESSION['vendedor'])){
+            if($_SESSION['vendedor'] == 1 ){ ?>
         <div class="content" onclick="location.href='../MinhaLoja/minhaLoja.php'">
             <h1>MINHA LOJA</h1>
         </div>
+        <?php }} ?>
         <div class="content" onclick="location.href='../PaginaCompra/compra.php'">
             <h1>CARRINHO</h1>
         </div>
         <div class="rightDiv">
-            <div class="userProfile" id="userProfile">
-                VP<!-- imagem será colocada aqui depois que tivermos o banco de dados <span><img src=""></span> -->
+            <div class="userProfile"   id="userProfile">
+                <script>
+                    function tratarNome(nome){
+                        const userProfile = document.getElementById("userProfile")
+                        let regex = /\s/g
+                        let matches = [...nome.matchAll(regex = /\s/g)]
+                        if(matches.length > 0){
+                            userProfile.innerHTML = nome[0].toUpperCase() + nome[matches[0].index + 1].toUpperCase()
+                        }
+                        else{
+                            userProfile.innerHTML = nome[0].toUpperCase() + nome[1].toUpperCase()
+                        }
+
+                    }
+                    tratarNome("<?php echo $_SESSION['nome'] ?>");
+                </script>
+                
             </div>
         </div>
     </div>
@@ -50,14 +74,7 @@ userProfile.addEventListener("click", () => {
         userMenu.style.display = "none";
     }
 })
-
-
-
-
-
-
    
-// })    
 
 </script>
 

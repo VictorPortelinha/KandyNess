@@ -12,9 +12,7 @@
     </head>
     <body>   
     
-    <div class="about">
-
-    </div>
+    <div class="about"></div>
     <div class="cadastro">
         <h1>Cadastro</h1>
         <form action="actionCadastro.php" method="post" enctype="multipart/form-data" id="cadastro">
@@ -59,7 +57,7 @@
             </div>
 
             <div class="hidden" id="second">
-                <label for="radio" style="color:white">Tipo de conta</label>
+                <label for="radio">Tipo de conta</label>
                 <div class="radioDiv" name="radio">
                     <input type="radio" id="cliente" name="userType" value="cliente" checked="checked">
                     <label class="radioLabel" for="cliente">Cliente</label>
@@ -86,21 +84,11 @@
                     <textarea name="desc" id="desc" rows="3" maxlength="100"></textarea>
                     <div class="errors" id="errDesc"></div>
                 </div>
-                
-                <div class="control">
-                    <label style="color:white" for="imgLoja">Imagem da loja</label>
-                    <input type="file" id="imgLoja" name="imgLoja" accept="image/png, image/jpeg">
-                </div>
-            </div>
-            
-            
-            
         </form>
     </div>
 
-
     
-        
+
 
         
         <script defer>
@@ -236,38 +224,38 @@
 
             //animações das labels
             username.addEventListener("focus",() => {
-                nameLbl.style.color= "white"
+                nameLbl.style.color= "orangered"
             })
             username.addEventListener("blur",() => {
-                nameLbl.style.color = "lightgray"
+                nameLbl.style.color = "blueviolet"
             })
 
             password.addEventListener("focus",() => {
-                passwordLbl.style.color= "white"
+                passwordLbl.style.color= "orangered"
             })
             password.addEventListener("blur",() => {
-                passwordLbl.style.color = "lightgray"
+                passwordLbl.style.color = "blueviolet"
             })
 
             matricula.addEventListener("focus",() => {
-                matriculaLbl.style.color= "white"
+                matriculaLbl.style.color= "orangered"
             })
             matricula.addEventListener("blur",() => {
-                matriculaLbl.style.color = "lightgray"
+                matriculaLbl.style.color = "blueviolet"
             })
 
             cpf.addEventListener("focus",() => {
-                cpfLbl.style.color= "white"
+                cpfLbl.style.color= "orangered"
             })
             cpf.addEventListener("blur",() => {
-                cpfLbl.style.color = "lightgray"
+                cpfLbl.style.color = "blueviolet"
             })
 
             confirm.addEventListener("focus",() => {
-                confirmLbl.style.color= "white"
+                confirmLbl.style.color= "orangered"
             })
             confirm.addEventListener("blur",() => {
-                confirmLbl.style.color = "lightgray"
+                confirmLbl.style.color = "blueviolet"
             })
 
 function validarCPF(strCPF) {

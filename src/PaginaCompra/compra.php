@@ -15,14 +15,22 @@ if(isset($_GET['addQuantidade']) && isset($_GET['indexProduto'])) {
     $index = $_GET['indexProduto'];
     $quantidade = $_GET['subQuantidade'];
     $quantidade -= 1;
-    $_SESSION['carrinho'][$index][2] = $quantidade;
+
+    if($quantidade == 0 ) {
+        $removeCarrinho = $_SESSION['carrinho'];
+        unset($removeCarrinho[$index]);
+        $_SESSION['carrinho'] = array_values($removeCarrinho);
+    } elseif ($quantidade > 0 ) {
+        $_SESSION['carrinho'][$index][2] = $quantidade;
+    }
+    
 }elseif(isset($_GET['indexRemoverProduto'])){
     $index = $_GET['indexRemoverProduto'];
     $removeCarrinho = $_SESSION['carrinho'];
     unset($removeCarrinho[$index]);
     $_SESSION['carrinho'] = array_values($removeCarrinho);
 }elseif(isset($_GET['indexRemoverTodosProdutos'])) {
-    unset($_SESSION['carrinho']);
+    $_SESSION['carrinho'] = [];
 }
 
 
@@ -52,8 +60,10 @@ if(isset($_GET['addQuantidade']) && isset($_GET['indexProduto'])) {
             </thead>
             <tbody>
             <?php 
-            if(isset($_SESSION['carrinho'])){
+            if(isset($_SESSION['carrinho']) && $_SESSION['carrinho'] != []){
+            
             $carrinho = $_SESSION['carrinho'];
+            print_r($carrinho);
             
             for($i = 0; $i < count($carrinho);$i++){
                 $idProduto = $carrinho[$i][0];
@@ -84,8 +94,10 @@ if(isset($_GET['addQuantidade']) && isset($_GET['indexProduto'])) {
                     </td>
                     <td><?php echo $precoProduto?></td>
                 </tr>
+                <?php 
+                endforeach;
+                } ?>
                 <tr>
-                <?php endforeach;}} ?>
                     <td colspan="2">
                         <input onclick="deleteCarrinho(<?php echo $i ?>)" style="margin-left: 5vw;" type="button" value="Esvaziar carrinho">
                     </td>
@@ -94,6 +106,13 @@ if(isset($_GET['addQuantidade']) && isset($_GET['indexProduto'])) {
                     </td>
                 </tr>
                 </form>
+                <?php }
+                ?>  
+
+
+
+
+
             </tbody>
             
         </table>

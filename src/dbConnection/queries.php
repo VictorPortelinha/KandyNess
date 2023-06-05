@@ -1,12 +1,39 @@
 <?php
 require "../dbConnection/connection.php";
 
+function selectAllUsers(){
+    global $conn;
+    $sql = "SELECT * from tb_usuario";
+    $result = $conn->query($sql);
+    if($result->num_rows > 0){
+        
+        while($row = $result->fetch_assoc()){
+            $rows[] = $row;
+        }
+    return $rows;
+}
+}
+function selectEstoqueAtual($idLoja,$idProduto){
+    global $conn;
+    $result = $conn->query("SELECT estoque FROM tb_produtos WHERE id = " . $idProduto . " AND id_loja = " . $idLoja);
+    while($row = $result->fetch_assoc()){
+        $estoque = $row['estoque'];
+    }
+    return $estoque;
+}
+
 function atualizarEstoque($idLoja,$quantidade,$idProduto){
     global $conn;
-
-    $result =$conn->query("UPDATE tb_produtos
-    SET estoque = estoque -'$quantidade'
-    WHERE id = '$idProduto' and id_loja = '$idLoja'");
+    $estoque = selectEstoqueAtual($idLoja,$idProduto);
+    if($quantidade <= $estoque){
+        $result =$conn->query("UPDATE tb_produtos
+        SET estoque = estoque -'$quantidade'
+        WHERE id = '$idProduto' and id_loja = '$idLoja'");
+        return $result;
+    }else{
+        return false;
+    }
+    
 }
 
 function selectUsers($matricula){
@@ -19,7 +46,9 @@ function selectUsers($matricula){
             $rows[] = $row;
         }
     return $rows;
-}
+    }else{
+        return  false;
+    }
 }
 function insertNewLoja($nomeLoja,$descLoja,$matricula){
     global $conn;

@@ -6,7 +6,7 @@ body{
     background-image: linear-gradient(to bottom right, #FF4500, #8A2BE2);
     display: flex;
     align-items: center;
-    justify-content: start;
+    justify-content: center;
     height: 100vh;
     overflow: hidden;
     font-family: "Roboto",sans-serif;
@@ -21,24 +21,25 @@ div{
 
 .errors{
     font-size: 20px;
+    color:red;
 }
 
 .cadastro{
     width: 33.3vw;
     height: 100vh;
-    background: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3));
-    opacity: 0.75;
+    background: #f5f5f5;
     box-shadow: -7px -7px -60px black;
     padding: 10px 50px;
     position: relative;
+    color: blueviolet;
 }
 
 .about{
-    width: 66.6vw;
+    width: 100vw;
     height: 100vh;
     background-color: white;
-    opacity: 0.75;
-    position: relative;
+    opacity: 0.2;
+    position: absolute;
 }
 
 h1{
@@ -49,7 +50,7 @@ h1{
 }
 label{
     font-size: 25px;
-    color:lightgray;
+    color:blueviolet;
     transition: color .3s ease;
     
 }
@@ -88,11 +89,11 @@ input[type="file"]{
 .control input[type="button"],
 .control input[type="submit"]
 {
-    background: orangered;
+    background: blueviolet;
     color: #fff;
     font-size: 30px;
     margin-top: 50px;
-    opacity: 0.7;
+    opacity: 0.8;
     transition: opacity .3s ease;
 }
 

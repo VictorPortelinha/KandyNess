@@ -1,0 +1,26 @@
+*{box-sizing: border-box;}
+
+body{
+    margin: 0;
+    padding: 0;
+    font-family: "roboto",sans-serif;
+}
+
+.messageContainer{
+    width: 100vw;
+    text-align: center;
+    margin-top: 35vh;
+}
+
+.messageContainer h1{
+    font-size: 60px;
+}
+
+.red{
+    color:red;
+}
+
+.green{
+    color: green;
+}
+

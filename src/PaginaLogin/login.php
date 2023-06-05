@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 
 <html>
@@ -25,6 +26,17 @@
                 <div class="control">
                     <label for="password" id="lbPassword">Senha</label>
                     <input type="password" name="password" id="password">
+                    <div style="color:red;height:20px;">
+                        <?php
+                         if(isset($_SESSION['senhaIncorreta'])){
+                            echo $_SESSION['senhaIncorreta'];
+                        
+                        }
+                        if(isset($_SESSION['erroMatricula'])){
+                            echo $_SESSION['erroMatricula'];
+                        }
+                        ?>
+                    </div>
                 </div>
                 <div class="control">
                     <input type="submit" value="Entrar">
