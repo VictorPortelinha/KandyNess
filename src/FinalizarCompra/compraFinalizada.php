@@ -17,8 +17,10 @@ if(!isset($_SESSION['compraFinalizada'])){
     <div class="messageContainer">
         <h1 class="green"  >
 
-        <?php if($_SESSION['compraFinalizada'] == 0){ ?>
-        Compra finalizada com sucesso
+        <?php if($_SESSION['compraFinalizada'] == 0){
+          $_SESSION['carrinho'] = array();
+           ?>
+        <span><?php echo "Compra finalizada com sucesso" ?></span>
         <?php }  ?>
             
         </h1>
@@ -27,7 +29,9 @@ if(!isset($_SESSION['compraFinalizada'])){
               for($i = 0;$i<count($_SESSION['erros']);$i++){ ?>
               <span> <?php echo $_SESSION['erros'][$i] ?></span>
               <br>
-              <?php }} ?>
+              <?php 
+              $_SESSION['carrinho'] = array();
+              }} ?>
         </h1>
         <?php $_SESSION['erros'] = [] ?>
         

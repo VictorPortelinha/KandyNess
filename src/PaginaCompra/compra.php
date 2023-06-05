@@ -1,6 +1,7 @@
 <?php
 require "../dbConnection/queries.php";
 session_start();
+header("Cache-Control: no cache");
 if(isset($_SESSION['matricula'])){
     $pass;
 }else{
@@ -63,8 +64,6 @@ if(isset($_GET['addQuantidade']) && isset($_GET['indexProduto'])) {
             if(isset($_SESSION['carrinho']) && $_SESSION['carrinho'] != []){
             
             $carrinho = $_SESSION['carrinho'];
-            print_r($carrinho);
-            
             for($i = 0; $i < count($carrinho);$i++){
                 $idProduto = $carrinho[$i][0];
                 $idLoja = $carrinho[$i][1];

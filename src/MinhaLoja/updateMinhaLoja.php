@@ -10,7 +10,7 @@ if (isset($_POST)){
 
     $update = updateLoja($nomeLoja,$descLoja,$matricula,$idLoja);
     if(isset($update)){
-        echo "query realizada com sucesso";
+        header("location:http://localhost/webProjects/KandyNess/src/PaginaVendedores/vendedores.php");
     }
 
 }

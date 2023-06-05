@@ -50,9 +50,11 @@ $idLojaVendedor = $_SESSION['idLoja'];
             <div class="divider"></div>
             <div class="price"><?php echo "Preço: R$ " . $precoProduto ?></div>
             <div style="margin-top: 5px;" class="price"><?php echo "Quantidade : " . $estoqueProduto ?></div>
+            <?php if($estoqueProduto > 0){ ?>
             <div class="iconContainer green" onclick="redirectPgCompra(<?php echo $idProduto?>,<?php echo $idLoja?>,<?php echo $idLojaVendedor?>);event.stopPropagation();">
                 <span style="color: white;" class="material-symbols-outlined">shopping_cart</span>
             </div>
+            <?php } ?>
         </div>
     </div>
         </div>
